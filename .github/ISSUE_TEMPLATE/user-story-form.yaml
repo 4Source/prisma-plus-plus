@@ -1,0 +1,27 @@
+name: User Story
+description: Vorlage für das Erstellen einer User Story
+body:
+  - type: textarea
+    id: content
+    attributes:
+      label: User Story
+      # https://www.business-wissen.de/artikel/user-storys-schreiben-beispiele-anleitung-tipps/
+      description: |
+        Wer fordert etwas an? (=Rolle)
+        Der Anforderer ist meist der spätere Nutzer des Systems oder der Nutznießer der zu entwickelnden Lösung.
+
+        Was wünscht sich der Anforderer? (=Funktion)
+        Der Anforderer wünscht sich, dass etwas Bestimmtes passiert. Je klarer und präziser der Wunsch in die User Story eingeht, desto hilfreicher ist die User Story für das Entwicklerteam, um die Anforderungen zu realisieren.
+
+        Warum ist das für den Geschäftsfall wichtig? (=Nutzen)
+        Durch die Anforderung soll ein Ziel erreicht werden. Der Anforderer verspricht sich davon einen Nutzen. Die Beschreibung des Grundes der Anforderung liefert dem Entwicklerteam weitere Informationen zur richtigen Ausführung.
+      placeholder: Als <Rolle> möchte ich <Funktion> um <Nutzen>.
+      value: "Als <Rolle> möchte ich <Funktion> um <Nutzen>."
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Akzeptanzkriterien
+      description: Bedingungen, die erfüllt sein müssen, damit die Story abgeschlossen ist
+      placeholder: "- Kriterium 1\n- Kriterium 2"

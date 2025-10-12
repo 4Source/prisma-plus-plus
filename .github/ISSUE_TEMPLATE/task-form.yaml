@@ -1,0 +1,17 @@
+name: Task
+description: Vorlage für das Erstellen einer Task
+body:
+  - type: textarea
+    id: content
+    attributes:
+      label: Beschreibung
+      description: Detaillierte Beschreibung der Aufgabe, damit das Team genau versteht, was erledigt werden muss.
+      placeholder: "Beschreibe hier, was getan werden muss..."
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Füge gegebenenfalls Links, Screenshots oder technische Details hinzu.
+      placeholder: "Link to ..."
