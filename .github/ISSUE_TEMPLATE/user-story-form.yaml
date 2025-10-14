@@ -1,5 +1,5 @@
 name: User Story
-description: Vorlage für das Erstellen einer User Story
+description: Template for creating a User Story
 body:
   - type: textarea
     id: content
@@ -7,21 +7,21 @@ body:
       label: User Story
       # https://www.business-wissen.de/artikel/user-storys-schreiben-beispiele-anleitung-tipps/
       description: |
-        Wer fordert etwas an? (=Rolle)
-        Der Anforderer ist meist der spätere Nutzer des Systems oder der Nutznießer der zu entwickelnden Lösung.
+        Who is requesting something? (=Role)
+        The requester is usually the later user of the system or the beneficiary of the solution to be developed.
 
-        Was wünscht sich der Anforderer? (=Funktion)
-        Der Anforderer wünscht sich, dass etwas Bestimmtes passiert. Je klarer und präziser der Wunsch in die User Story eingeht, desto hilfreicher ist die User Story für das Entwicklerteam, um die Anforderungen zu realisieren.
+        What does the requester want? (=Function)
+        The requester wants something specific to happen. The clearer and more precise the wish is described in the user story, the more helpful it is for the development team to implement the requirements.
 
-        Warum ist das für den Geschäftsfall wichtig? (=Nutzen)
-        Durch die Anforderung soll ein Ziel erreicht werden. Der Anforderer verspricht sich davon einen Nutzen. Die Beschreibung des Grundes der Anforderung liefert dem Entwicklerteam weitere Informationen zur richtigen Ausführung.
-      placeholder: Als <Rolle> möchte ich <Funktion> um <Nutzen>.
-      value: "Als <Rolle> möchte ich <Funktion> um <Nutzen>."
+        Why is this important for the business case? (=Benefit)
+        The requirement is intended to achieve a goal. The requester expects a benefit from it. Describing the reason for the requirement provides the development team with additional information for proper implementation.
+      placeholder: As a <Role>, I want <Function> so that <Benefit>.
+      value: "As a <Role>, I want <Function> so that <Benefit>."
     validations:
       required: true
   - type: textarea
     id: acceptance_criteria
     attributes:
-      label: Akzeptanzkriterien
-      description: Bedingungen, die erfüllt sein müssen, damit die Story abgeschlossen ist
-      placeholder: "- Kriterium 1\n- Kriterium 2"
+      label: Acceptance Criteria
+      description: Conditions that must be met for the story to be considered complete
+      placeholder: "- Criterion 1\n- Criterion 2"
