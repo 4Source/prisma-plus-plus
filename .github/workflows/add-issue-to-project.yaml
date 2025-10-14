@@ -1,0 +1,28 @@
+name: Add new issues to project backlog
+
+on:
+  # Triggers the workflow when a new issue is opened in the repository.
+  issues:
+    types:
+      - opened
+
+jobs:
+  add-to-project:
+    name: Add issue to project
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # Uses the `actions/add-to-project` GitHub Action to add items to a GitHub project.
+      # This action simplifies the process of adding issues or pull requests to a project board.
+      - uses: actions/add-to-project@v1.0.2
+
+        with:
+          # The URL of the GitHub project where the issue or pull request should be added.
+          # Replace this URL with the correct project URL for your repository.
+          project-url: ${{ secrets.PROJECT_URL }}
+
+          # The GitHub personal access token (PAT) used to authenticate the action.
+          # The token must have the necessary permissions to modify the specified project.
+          # Store the token securely in the repository's secrets as `ADD_TO_PROJECT_PAT`.
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
