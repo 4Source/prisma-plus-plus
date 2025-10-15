@@ -1,5 +1,6 @@
 name: Task
 description: Template for creating a task
+labels: "Task"
 body:
   - type: textarea
     id: content
