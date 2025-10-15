@@ -1,5 +1,6 @@
 name: User Story
 description: Template for creating a User Story
+labels: "User Story"
 body:
   - type: textarea
     id: content
