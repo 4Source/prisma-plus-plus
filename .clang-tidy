@@ -1,8 +1,0 @@
-# Checks
-Checks: '-*,cppcoreguidelines-*,modernize-*,bugprone-*,performance-*,cert-*,gsl-*,clang-analyzer-*'
-
-WarningsAsErrors: "*"
-# Only check own headers
-HeaderFilterRegex: '^(src|include)/'
-# Format-info from .clang-format.yml
-FormatStyle: file
