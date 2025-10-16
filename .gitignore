@@ -55,3 +55,5 @@ build/*
 !build/Build.md
 CMakeFiles/*
 CMakeCache.txt
+
+#Googletest

@@ -1,4 +1,4 @@
-# Anleitung Clang, Cmake
+# Anleitung Clang, Cmake, Googletest
 ## Benutzte Guidelines und Standards
 [Clang-Tidy Checks](https://clang.llvm.org/extra/clang-tidy/checks/list.html)
 
@@ -38,4 +38,12 @@ cmake build
 ## Build
 ```bash
 cmake --build build
+```
+
+## Googletest
+[Googletest](https://github.com/google/googletest)
+
+Googletests wird beim clonen mit folgendem Aufruf automatisch als Submodul hinzugefügt.
+```bash
+git clone --recurse-submodules https://github.com/4Source/prisma-plus-plus.git
 ```

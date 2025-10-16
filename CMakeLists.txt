@@ -29,7 +29,16 @@ endif()
 
 # Add include and src
 include_directories(include)
+add_library(firstcode src/firstcode.cpp)
 
-add_executable(prisma_pp
-    src/main.cpp
-)
+# Main executable
+add_executable(prisma_pp src/main.cpp)
+target_link_libraries(prisma_pp firstcode)
+
+# Test executable
+add_executable(runTests tests/test_firstcode.cpp)
+target_link_libraries(runTests gtest gtest_main firstcode)
+
+# Register tests with CTest
+include(GoogleTest)
+gtest_discover_tests(runTests)
