@@ -51,9 +51,8 @@
 .LSOverride
 
 # Build
-build/*
-!build/Build.md
-CMakeFiles/*
-CMakeCache.txt
+Software/Produkt/build/*
+Software/Produkt/CMakeFiles/*
+Software/Produkt/CMakeCache.txt
 
 #Googletest
