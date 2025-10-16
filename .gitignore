@@ -49,3 +49,9 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# Build
+build/*
+!build/Build.md
+CMakeFiles/*
+CMakeCache.txt
