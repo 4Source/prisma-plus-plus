@@ -1,6 +1,7 @@
 # Prisma++
 A ray tracing application.
-
+### Clone Repository with:
+git clone --recurse-submodules https://github.com/4Source/prisma-plus-plus.git
 ## Project Structure
 ```
 prisma-plus-plus/
