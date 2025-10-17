@@ -64,6 +64,7 @@ git checkout -b feat-new origin/master
 3. When you are finished with all the work for your this task. It is time to Publish your branch (if not already) and ensure the latest changes are pushed. 
 4. When you pushed your branch to GitHub you can create a pull request. Simply go to the repository and GitHub will most likely suggest to create a pull request for your branch. If not go to [your branches](https://github.com/4Source/prisma-plus-plus/branches/yours) and you will find new pull request in the branch menu. 
     - Ensure the correct base branch (master) is selected in Comparing changes and compare should be your branch.
-    - You should get a predefined template where you can enter what you have changed and under Related Issues after Fixed enter the issue number. 
-    e.g. ``Fixed #1`` The ``#`` is important for linking and the ``Fixed`` will ensure the issue gets closed if this pull request is merged.
+    - You should get a predefined template where you can enter what you have changed and under Related Issues after Fixed enter the issue number of the task this branch was created for. 
+
+      e.g. ``Fixed #1`` The ``#`` is important for linking and the ``Fixed`` will ensure the issue gets closed if this pull request is merged.
 5. Now someone has to review and approve your changes. They will than be merged into the master branch.
