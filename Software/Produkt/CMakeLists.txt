@@ -34,6 +34,9 @@ else()
 	endif()
 endif()
 
+
+add_subdirectory(googletest)
+
 # Add include and src
 include_directories(include)
 add_library(firstcode src/firstcode.cpp)
