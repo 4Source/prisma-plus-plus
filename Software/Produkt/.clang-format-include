@@ -1,0 +1,8 @@
+# All files in src/ and its subdirectories
+src/**/*
+
+# All files in include/ but not its subdirectories
+include/*
+
+# All files in tests/ and its subdirectories
+tests/**/*
