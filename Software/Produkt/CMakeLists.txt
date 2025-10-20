@@ -16,6 +16,16 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Generate compile_commands.json (clang tidy)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# Activate Exceptions for Windows
+if(MSVC)
+    # MSVC oder clang-cl auf Windows
+    add_compile_options(/EHsc)
+elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
+    # Clang oder GCC auf Linux/macOS
+    add_compile_options(-fexceptions)
+endif()
+
+
 if(APPLE)
 	# macOS: deactivate clang-tidy
 	set(CMAKE_CXX_CLANG_TIDY "")
