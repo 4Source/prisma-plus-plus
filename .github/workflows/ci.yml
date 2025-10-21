@@ -1,0 +1,44 @@
+name: Windows CI
+
+on:
+  push:
+    branches: [ feature/ci-test ]
+  pull_request:
+    branches: [ feature/ci-test ]
+
+jobs:
+  build:
+    name: Build, clang-tidy & Test (Windows)
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      shell: powershell
+      run: |
+        choco install -y ninja
+        choco install -y llvm
+        choco install -y cmake
+        choco install -y git
+
+        # Sicherstellen, dass clang-tidy und cmake im PATH sind
+        $env:PATH += ";C:\Program Files\LLVM\bin;C:\Program Files\CMake\bin"
+        Write-Host "LLVM and CMake installed successfully."
+
+    - name: Configure with CMake (Ninja)
+      shell: powershell
+      run: |
+        cmake -G Ninja -B build -S .
+        Get-ChildItem build
+
+    - name: Build project
+      shell: powershell
+      run: cmake --build build -- -v
+
+    - name: Run tests (GoogleTest)
+      shell: powershell
+      run: |
+        cd build
+        ctest --output-on-failure
