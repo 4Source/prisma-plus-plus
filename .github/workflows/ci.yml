@@ -30,7 +30,7 @@ jobs:
     - name: Configure with CMake (Ninja)
       shell: powershell
       run: |
-        cmake -G Ninja -B build -S Software/Produkt
+        cmake -G Ninja -B build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
         Get-ChildItem build
 
     - name: Build project
