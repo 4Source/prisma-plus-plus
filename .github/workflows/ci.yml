@@ -12,26 +12,42 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout repository with submodules
       uses: actions/checkout@v4
+      with:
+        submodules: recursive
 
     - name: Install dependencies
       shell: powershell
       run: |
+        choco feature enable -n allowGlobalConfirmation
         choco install -y ninja
         choco install -y llvm
         choco install -y cmake
         choco install -y git
 
-        # Sicherstellen, dass clang-tidy und cmake im PATH sind
         $env:PATH += ";C:\Program Files\LLVM\bin;C:\Program Files\CMake\bin"
         Write-Host "LLVM and CMake installed successfully."
+
+        clang-tidy --version
+        cmake --version
+        ninja --version
 
     - name: Configure with CMake (Ninja)
       shell: powershell
       run: |
         cmake -G Ninja -B build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-        Get-ChildItem build
+
+    - name: Run clang-tidy
+      shell: powershell
+      run: |
+        # Prüfe nur eigenes Projekt: src, include, tests
+        $folders = @("Software/Produkt/src","Software/Produkt/include","Software/Produkt/tests")
+        foreach ($f in $folders) {
+            Get-ChildItem $f -Recurse -Include *.cpp | ForEach-Object {
+                clang-tidy $_.FullName --p=build
+            }
+        }
 
     - name: Build project
       shell: powershell
@@ -41,4 +57,4 @@ jobs:
       shell: powershell
       run: |
         cd build
-        ctest --output-on-failure
+        ctest --output-on-failure --parallel
