@@ -2,9 +2,9 @@ name: Windows CI
 
 on:
   push:
-    branches: [ feature/ci-test ]
+    branches: [ feature-branch-check-workflow ]
   pull_request:
-    branches: [ feature/ci-test ]
+    branches: [ feature-branch-check-workflow ]
 
 jobs:
   build:
