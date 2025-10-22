@@ -58,46 +58,41 @@ jobs:
       shell: bash
       run: |
         sudo apt-get update
-        # Check if ninja is installed
-        if ! command -v ninja >/dev/null 2>&1; then
-          echo "::debug::Installing ninja..."
-          sudo apt-get install -y ninja-build
-        fi
-        # Check if clang-tidy is installed
-        if ! command -v clang-tidy >/dev/null 2>&1; then
-          echo "::debug::Installing clang-tidy..."
-          sudo apt-get install -y clang-tidy
-        fi
-        # Check if cmake is installed
-        if ! command -v cmake >/dev/null 2>&1; then
-          echo "::debug::Installing cmake..."
-          sudo apt-get install -y cmake
-        fi
-        # Check if git is installed
-        if ! command -v git >/dev/null 2>&1; then
-          echo "::debug::Installing git..."
-          sudo apt-get install -y git
-        fi
-        # Check if clang is installed
-        if ! command -v clang >/dev/null 2>&1; then
-          echo "::debug::Installing clang..."
-          sudo apt-get install -y clang
-        fi
-        # Check if wayland-scanner is installed
-        if ! command -v wayland-scanner >/dev/null 2>&1; then
-          echo "::debug::Installing wayland-scanner and libwayland-dev..."
-          sudo apt-get install -y wayland-protocols libwayland-dev
-        fi
-        # Check and install libxkbcommon-dev
-        if ! dpkg -s libxkbcommon-dev >/dev/null 2>&1; then
-          echo "::debug::Installing libxkbcommon-dev..."
-          sudo apt-get install -y libxkbcommon-dev
-        fi
-        # Check if pkg-config is installed
-        if ! command -v pkg-config >/dev/null 2>&1; then
-          echo "::debug::Installing pkg-config..."
-          sudo apt-get install -y pkg-config
-        fi
+    
+        # Helper function to install a package if missing
+        install_pkg_if_missing() {
+            pkg=$1
+            check_cmd=$2
+            if ! $check_cmd >/dev/null 2>&1; then
+                echo "::debug::Installing $pkg..."
+                sudo apt-get install -y $pkg
+            else
+                echo "::debug::$pkg is already installed."
+            fi
+        }
+    
+        # Build tools
+        install_pkg_if_missing "ninja-build" "command -v ninja"
+        install_pkg_if_missing "cmake" "command -v cmake"
+        install_pkg_if_missing "git" "command -v git"
+        install_pkg_if_missing "clang" "command -v clang"
+        install_pkg_if_missing "clang-tidy" "command -v clang-tidy"
+    
+        # X11 / OpenGL dependencies
+        install_pkg_if_missing "libx11-dev" "dpkg -s libx11-dev"
+        install_pkg_if_missing "libxrandr-dev" "dpkg -s libxrandr-dev"
+        install_pkg_if_missing "libxinerama-dev" "dpkg -s libxinerama-dev"
+        install_pkg_if_missing "libxcursor-dev" "dpkg -s libxcursor-dev"
+        install_pkg_if_missing "libxi-dev" "dpkg -s libxi-dev"
+        install_pkg_if_missing "libgl1-mesa-dev" "dpkg -s libgl1-mesa-dev"
+        install_pkg_if_missing "libglu1-mesa-dev" "dpkg -s libglu1-mesa-dev"
+        install_pkg_if_missing "libudev-dev" "dpkg -s libudev-dev"
+    
+        # Wayland / GLFW dependencies
+        install_pkg_if_missing "wayland-protocols libwayland-dev" "command -v wayland-scanner"
+        install_pkg_if_missing "libxkbcommon-dev" "dpkg -s libxkbcommon-dev"
+        install_pkg_if_missing "pkg-config" "command -v pkg-config"
+    
         export PATH="/usr/bin:$PATH"
 
     - name: Install dependencies (macOS)
@@ -105,26 +100,30 @@ jobs:
       shell: bash
       run: |
         brew update
-        # Check if ninja is installed
-        if ! command -v ninja >/dev/null 2>&1; then
-          echo "::debug::Installing ninja..."
-          brew install ninja
-        fi
-        # Check if llvm is installed
-        if ! command -v clang-tidy >/dev/null 2>&1; then
-          echo "::debug::Installing llvm..."
-          brew install llvm
-        fi
-        # Check if cmake is installed
-        if ! command -v cmake >/dev/null 2>&1; then
-          echo "::debug::Installing cmake..."
-          brew install cmake
-        fi
-        # Check if git is installed
-        if ! command -v git >/dev/null 2>&1; then
-          echo "::debug::Installing git..."
-          brew install git
-        fi
+    
+        # Helper function to install a package if missing
+        install_brew_if_missing() {
+            pkg=$1
+            if ! brew list --versions "$pkg" >/dev/null 2>&1; then
+                echo "::debug::Installing $pkg..."
+                brew install "$pkg"
+            else
+                echo "::debug::$pkg is already installed."
+            fi
+        }
+    
+        # Core build tools
+        install_brew_if_missing "ninja"
+        install_brew_if_missing "cmake"
+        install_brew_if_missing "git"
+        install_brew_if_missing "llvm"
+    
+        # GLFW / ImGui dependencies
+        install_brew_if_missing "pkg-config"
+        install_brew_if_missing "glfw"
+        install_brew_if_missing "glew"
+        install_brew_if_missing "freetype"
+    
         export PATH="$(brew --prefix llvm)/bin:$PATH"
 
     - name: Configure with CMake and Ninja (Windows)
@@ -171,12 +170,12 @@ jobs:
       shell: powershell
       if: runner.os == 'Windows'
       run: |
-        cd build
+        cd Software/Produkt/build
         ctest --output-on-failure --parallel
 
     - name: Run tests - GoogleTest (Ubuntu/macOS)
       shell: bash
       if: runner.os != 'Windows'
       run: |
-        cd build
+        cd Software/Produkt/build
         ctest --output-on-failure --parallel
