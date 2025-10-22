@@ -4,7 +4,7 @@
 # Configure with:
 # cmake -S Software/Produkt -B Software/Produkt/build -G Ninja from Project Root
 # for clang-tidy checks:
-# cmake -S . -B Software/Produkt/build -G Ninja -DCHECK_CLANG=ON
+# cmake -S Software/Produkt -B Software/Produkt/build -G Ninja -DCHECK_CLANG=ON
 # ------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.16)
 project(prisma_pp LANGUAGES CXX)
@@ -107,4 +107,5 @@ add_executable(runTests tests/test_firstcode.cpp)
 target_link_libraries(runTests PRIVATE gtest_main firstcode)
 
 include(GoogleTest)
+enable_testing()
 gtest_discover_tests(runTests)
