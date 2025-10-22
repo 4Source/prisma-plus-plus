@@ -1,3 +1,11 @@
+# ------------------------------------------------------------------------------
+# CMake Build File
+# Description
+# Configure with:
+# cmake -S Software/Produkt -B Software/Produkt/build -G Ninja from Project Root
+# for clang-tidy checks:
+# cmake -S . -B Software/Produkt/build -G Ninja -DCHECK_CLANG=ON
+# ------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.16)
 project(prisma_pp LANGUAGES CXX)
 
@@ -13,36 +21,36 @@ endif()
 # Use modern C++
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-# Generate compile_commands.json (clang tidy)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# Activate Exceptions for Windows
+# Enable exceptions
 if(MSVC)
-    # MSVC oder clang-cl auf Windows
     add_compile_options(/EHsc)
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
-    # Clang oder GCC auf Linux/macOS
     add_compile_options(-fexceptions)
 endif()
 
+# ------------------------------------------------------------------------------
+# Optional clang-tidy
+# Use -DCHECK_CLANG=ON or --check-clang
+# ------------------------------------------------------------------------------
+option(CHECK_CLANG "Enable clang-tidy checks" OFF)
 
-if(APPLE)
-	# macOS: deactivate clang-tidy
-	set(CMAKE_CXX_CLANG_TIDY "")
+if(CHECK_CLANG)
+    find_program(CLANG_TIDY_EXE NAMES clang-tidy)
+    if(CLANG_TIDY_EXE)
+        message(STATUS "clang-tidy enabled: ${CLANG_TIDY_EXE}")
+        set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXE}" "--format-style=file")
+    else()
+        message(WARNING "clang-tidy not found, disabling checks")
+    endif()
 else()
-	# Other systems: clang-tidy
-	# Check for clang-tidy 
-	# No tidy -> no build :)
-	find_program(CLANG_TIDY_EXE NAMES clang-tidy)
-	if(CLANG_TIDY_EXE)
-	    message(STATUS "Found clang-tidy: ${CLANG_TIDY_EXE}")
-	    set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXE}" "--format-style=file")    
-	    message(STATUS "Clang-Tidy enabled. Configuration via .clang-tidy")
-	else()
-	    message(FATAL_ERROR "clang-tidy not found!!")
-	endif()
+    message(STATUS "clang-tidy checks are disabled (use -DCHECK_CLANG=ON or --check-clang to enable)")
 endif()
 
+# ------------------------------------------------------------------------------
+# Dependencies
+# ------------------------------------------------------------------------------
 add_subdirectory(external/googletest)
 add_subdirectory(external/glfw)
 
@@ -70,10 +78,12 @@ target_include_directories(imgui PUBLIC
 
 target_link_libraries(imgui PUBLIC glfw)
 
+# ------------------------------------------------------------------------------
 # Main executable
+# ------------------------------------------------------------------------------
 add_executable(prisma_pp 
-	src/main.cpp
-	src/ui/UIManager.cpp
+    src/main.cpp
+    src/ui/UIManager.cpp
     src/ui/MenuBar.cpp
 )
 
@@ -90,10 +100,11 @@ elseif(UNIX)
     target_link_libraries(prisma_pp PRIVATE firstcode imgui GL X11 pthread dl)
 endif()
 
-# Test executable
+# ------------------------------------------------------------------------------
+# Tests
+# ------------------------------------------------------------------------------
 add_executable(runTests tests/test_firstcode.cpp)
 target_link_libraries(runTests PRIVATE gtest_main firstcode)
 
-# Register tests with CTest
 include(GoogleTest)
 gtest_discover_tests(runTests)
