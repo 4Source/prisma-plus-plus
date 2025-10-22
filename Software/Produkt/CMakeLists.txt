@@ -29,7 +29,6 @@ endif()
 if(APPLE)
 	# macOS: deactivate clang-tidy
 	set(CMAKE_CXX_CLANG_TIDY "")
-	add_subdirectory(googletest)
 else()
 	# Other systems: clang-tidy
 	# Check for clang-tidy 
@@ -44,27 +43,12 @@ else()
 	endif()
 endif()
 
-
-add_subdirectory(googletest)
+add_subdirectory(external/googletest)
+add_subdirectory(external/glfw)
 
 # Add include and src
 include_directories(include)
 add_library(firstcode src/firstcode.cpp)
-
-# FetchContent for GLFW
-include(FetchContent)
-FetchContent_Declare(
-    glfw
-    GIT_REPOSITORY https://github.com/glfw/glfw.git
-    GIT_TAG 3.3.9
-)
-
-# Disable examples/tests/docs
-set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
-set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
-FetchContent_MakeAvailable(glfw)
 
 # ImGui setup
 set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/external/imgui)
