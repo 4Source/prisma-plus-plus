@@ -1,0 +1,181 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - '*'   # triggers on pushes to any branch (pushes to feature branches in pull requests + master when pull request is merged)
+    # paths:
+    #   - 'Software/**' # triggers only if changes in folder Software
+
+
+jobs:
+  build:
+    name: Build, clang-tidy & Test
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30 
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+    - name: Checkout repository with submodules
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Install dependencies (Windows)
+      if: runner.os == 'Windows'
+      shell: powershell
+      run: |
+        choco feature enable -n allowGlobalConfirmation
+
+        # Check if ninja is installed
+        if (-not (Get-Command ninja -ErrorAction SilentlyContinue)) {
+          Write-Output "::debug::Installing ninja..."
+          choco install -y ninja
+        }
+        # Check if llvm is installed
+        if (-not (Get-Command clang -ErrorAction SilentlyContinue)) {
+          Write-Output "::debug::Installing clang..."
+          choco install -y llvm
+        }
+        # Check if cmake is installed
+        if (-not (Get-Command cmake -ErrorAction SilentlyContinue)) {
+          Write-Output "::debug::Installing cmake..."
+          choco install -y cmake
+        }
+        # Check if git is installed
+        if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+          Write-Output "::debug::Installing git..."
+          choco install -y git
+        }
+
+        $env:PATH += ";C:\Program Files\LLVM\bin;C:\Program Files\CMake\bin"
+        Write-Host "LLVM and CMake installed successfully."
+
+    - name: Install dependencies (Ubuntu)
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        sudo apt-get update
+    
+        # Helper function to install a package if missing
+        install_pkg_if_missing() {
+            pkg=$1
+            check_cmd=$2
+            if ! $check_cmd >/dev/null 2>&1; then
+                echo "::debug::Installing $pkg..."
+                sudo apt-get install -y $pkg
+            else
+                echo "::debug::$pkg is already installed."
+            fi
+        }
+    
+        # Build tools
+        install_pkg_if_missing "ninja-build" "command -v ninja"
+        install_pkg_if_missing "cmake" "command -v cmake"
+        install_pkg_if_missing "git" "command -v git"
+        install_pkg_if_missing "clang" "command -v clang"
+        install_pkg_if_missing "clang-tidy" "command -v clang-tidy"
+    
+        # X11 / OpenGL dependencies
+        install_pkg_if_missing "libx11-dev" "dpkg -s libx11-dev"
+        install_pkg_if_missing "libxrandr-dev" "dpkg -s libxrandr-dev"
+        install_pkg_if_missing "libxinerama-dev" "dpkg -s libxinerama-dev"
+        install_pkg_if_missing "libxcursor-dev" "dpkg -s libxcursor-dev"
+        install_pkg_if_missing "libxi-dev" "dpkg -s libxi-dev"
+        install_pkg_if_missing "libgl1-mesa-dev" "dpkg -s libgl1-mesa-dev"
+        install_pkg_if_missing "libglu1-mesa-dev" "dpkg -s libglu1-mesa-dev"
+        install_pkg_if_missing "libudev-dev" "dpkg -s libudev-dev"
+    
+        # Wayland / GLFW dependencies
+        install_pkg_if_missing "wayland-protocols libwayland-dev" "command -v wayland-scanner"
+        install_pkg_if_missing "libxkbcommon-dev" "dpkg -s libxkbcommon-dev"
+        install_pkg_if_missing "pkg-config" "command -v pkg-config"
+    
+        export PATH="/usr/bin:$PATH"
+
+    - name: Install dependencies (macOS)
+      if: runner.os == 'macOS'
+      shell: bash
+      run: |
+        brew update
+    
+        # Helper function to install a package if missing
+        install_brew_if_missing() {
+            pkg=$1
+            if ! brew list --versions "$pkg" >/dev/null 2>&1; then
+                echo "::debug::Installing $pkg..."
+                brew install "$pkg"
+            else
+                echo "::debug::$pkg is already installed."
+            fi
+        }
+    
+        # Core build tools
+        install_brew_if_missing "ninja"
+        install_brew_if_missing "cmake"
+        install_brew_if_missing "git"
+        install_brew_if_missing "llvm"
+    
+        # GLFW / ImGui dependencies
+        install_brew_if_missing "pkg-config"
+        install_brew_if_missing "glfw"
+        install_brew_if_missing "glew"
+        install_brew_if_missing "freetype"
+    
+        export PATH="$(brew --prefix llvm)/bin:$PATH"
+
+    - name: Configure with CMake and Ninja (Windows)
+      if: runner.os == 'Windows'
+      shell: powershell
+      run: |
+        cmake -G Ninja -B Software/Produkt/build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+    - name: Configure with CMake and Ninja (Ubuntu/macOS)
+      if: runner.os != 'Windows'
+      shell: bash
+      run: |
+        cmake -G Ninja -B Software/Produkt/build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+
+    - name: Run clang-tidy (Windows)
+      if: runner.os == 'Windows'
+      shell: powershell
+      run: |
+        # Check only this project: src, include, tests
+        $folders = @("Software/Produkt/src","Software/Produkt/include","Software/Produkt/tests")
+        foreach ($f in $folders) {
+            Get-ChildItem $f -Recurse -Include *.cpp | ForEach-Object {
+                clang-tidy $_.FullName --p=Software/Produkt/build
+            }
+        }
+
+    - name: Run clang-tidy (Ubuntu/macOS)
+      if: runner.os != 'Windows'
+      shell: bash
+      run: |
+        find Software/Produkt/{src,include,tests} -name '*.cpp' -print0 | xargs -0 -n1 clang-tidy --p=Software/Produkt/build || true
+
+    - name: Build project (Windows)
+      shell: powershell
+      if: runner.os == 'Windows'
+      run: cmake --build Software/Produkt/build -- -v
+
+    - name: Build project (Ubuntu/macOS)
+      if: runner.os != 'Windows'
+      shell: bash
+      run: cmake --build Software/Produkt/build -- -v
+
+    - name: Run tests - GoogleTest (Windows) 
+      shell: powershell
+      if: runner.os == 'Windows'
+      run: |
+        cd Software/Produkt/build
+        ctest --output-on-failure --parallel
+
+    - name: Run tests - GoogleTest (Ubuntu/macOS)
+      shell: bash
+      if: runner.os != 'Windows'
+      run: |
+        cd Software/Produkt/build
+        ctest --output-on-failure --parallel
