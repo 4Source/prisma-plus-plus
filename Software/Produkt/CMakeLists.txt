@@ -29,7 +29,6 @@ endif()
 if(APPLE)
 	# macOS: deactivate clang-tidy
 	set(CMAKE_CXX_CLANG_TIDY "")
-	add_subdirectory(googletest)
 else()
 	# Other systems: clang-tidy
 	# Check for clang-tidy 
@@ -44,19 +43,54 @@ else()
 	endif()
 endif()
 
-
-add_subdirectory(googletest)
+add_subdirectory(external/googletest)
+add_subdirectory(external/glfw)
 
 # Add include and src
 include_directories(include)
 add_library(firstcode src/firstcode.cpp)
 
+# ImGui setup
+set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/external/imgui)
+
+add_library(imgui STATIC
+    ${IMGUI_DIR}/imgui.cpp
+    ${IMGUI_DIR}/imgui_draw.cpp
+    ${IMGUI_DIR}/imgui_tables.cpp
+    ${IMGUI_DIR}/imgui_widgets.cpp
+    ${IMGUI_DIR}/backends/imgui_impl_glfw.cpp
+    ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
+)
+
+target_include_directories(imgui PUBLIC
+    ${IMGUI_DIR}
+    ${IMGUI_DIR}/backends
+    ${glfw_SOURCE_DIR}/include
+)
+
+target_link_libraries(imgui PUBLIC glfw)
+
 # Main executable
-add_executable(prisma_pp src/main.cpp)
-target_link_libraries(prisma_pp firstcode)
+add_executable(prisma_pp 
+	src/main.cpp
+	src/ui/UIManager.cpp
+    src/ui/MenuBar.cpp
+)
+
+if(APPLE)
+    target_link_libraries(prisma_pp PRIVATE firstcode imgui
+        "-framework OpenGL"
+        "-framework Cocoa"
+        "-framework IOKit"
+        "-framework CoreFoundation"
+    )
+elseif(WIN32)
+    target_link_libraries(prisma_pp PRIVATE firstcode imgui opengl32)
+elseif(UNIX)
+    target_link_libraries(prisma_pp PRIVATE firstcode imgui GL X11 pthread dl)
+endif()
 
 # Test executable
-#find_package(GTest REQUIRED)
 add_executable(runTests tests/test_firstcode.cpp)
 target_link_libraries(runTests PRIVATE gtest_main firstcode)
 

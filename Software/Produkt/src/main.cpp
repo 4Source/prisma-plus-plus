@@ -1,12 +1,16 @@
 #include <iostream>
 #include <stdexcept>
 #include <firstcode.h>
+#include "ui/UIManager.h"
 
 auto main() -> int { // NOLINT(bugprone-exception-escape)
     try {
         std::cout << "Hello Prisma++" << "\n";
         std::cout << "Add-Lib: " << add(1,2) << "\n";
         
+        
+        UIManager ui(800, 600, "Prisma++"); // create window
+        ui.run();                           // run main UI loop
         return 0;
     }
     catch (const std::exception& e) {
