@@ -131,7 +131,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_TOKEN: ${{ secrets.GH_PAT }}
       run: |
+        echo "${{ steps.binaries.outputs.files }}"
+        ls
         cd release-assets
+        ls
         gh release create "${{ steps.semver.outputs.next }}" \
           --title "${{ steps.semver.outputs.next }}" \
           ${{ steps.binaries.outputs.files }}
