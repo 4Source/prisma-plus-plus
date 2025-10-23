@@ -65,7 +65,7 @@ jobs:
         run-id: ${{ steps.get_run.outputs.run_id }}
         path: artifact/run-${{ steps.get_run.outputs.run_id }}
         pattern: ${{ github.event.repository.name }}-*
-        merge-multiple: true
+        merge-multiple: false
     
     - name: Collect binaries
       id: binaries
