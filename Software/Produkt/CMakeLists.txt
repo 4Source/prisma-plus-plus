@@ -7,7 +7,7 @@
 # cmake -S Software/Produkt -B Software/Produkt/build -G Ninja -DCHECK_CLANG=ON
 # ------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.16)
-project(prisma++ LANGUAGES CXX)
+project(prisma-plus-plus LANGUAGES CXX)
 
 # Always use Ninja and build inside ./build
 if(NOT CMAKE_GENERATOR STREQUAL "Ninja")
@@ -81,23 +81,23 @@ target_link_libraries(imgui PUBLIC glfw)
 # ------------------------------------------------------------------------------
 # Main executable
 # ------------------------------------------------------------------------------
-add_executable(prisma++ 
+add_executable(prisma-plus-plus 
     src/main.cpp
     src/ui/UIManager.cpp
     src/ui/MenuBar.cpp
 )
 
 if(APPLE)
-    target_link_libraries(prisma++ PRIVATE firstcode imgui
+    target_link_libraries(prisma-plus-plus PRIVATE firstcode imgui
         "-framework OpenGL"
         "-framework Cocoa"
         "-framework IOKit"
         "-framework CoreFoundation"
     )
 elseif(WIN32)
-    target_link_libraries(prisma++ PRIVATE firstcode imgui opengl32)
+    target_link_libraries(prisma-plus-plus PRIVATE firstcode imgui opengl32)
 elseif(UNIX)
-    target_link_libraries(prisma++ PRIVATE firstcode imgui GL X11 pthread dl)
+    target_link_libraries(prisma-plus-plus PRIVATE firstcode imgui GL X11 pthread dl)
 endif()
 
 # ------------------------------------------------------------------------------

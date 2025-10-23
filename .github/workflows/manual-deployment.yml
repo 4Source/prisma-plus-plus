@@ -76,7 +76,7 @@ jobs:
 
         echo "::debug::$(ls -R .)"
         
-        files=$(find . -type f \( -name "prisma++" -o -name "prisma++.exe" \))
+        files=$(find . -type f \( -name "prisma-plus-plus" -o -name "prisma-plus-plus.exe" \))
 
         cd ../..
         
