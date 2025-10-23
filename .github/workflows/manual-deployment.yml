@@ -72,6 +72,7 @@ jobs:
       shell: bash
       run: |
         echo "Run id: ${{ steps.get_run.outputs.run_id }}"
+        
         cd artifact/run-${{ steps.get_run.outputs.run_id }}
 
         echo "::debug::$(ls -R .)"
@@ -86,17 +87,30 @@ jobs:
         fi
 
         files=$(echo "$files" | sed "s|^\.|"./artifact/run-${{ steps.get_run.outputs.run_id }}"|")
+
+        assets=""
+        mkdir release-assets
+        for f in $files; do
+          # Extract the OS from the parent directory
+          os=$(basename "$(dirname "$f")")
+          os="${os#*-}"
+          filename=$(basename "$f")
+        
+          # Copy and rename 
+          cp "$f" "release-assets/${os}_${filename}"
+          assets=$(echo "$assets ${os}_${filename}")
+        done
         
         echo "Found binaries:"
-        echo "$files"
+        echo "$assets"
         
-        count=$(echo "$files" | grep -c '^')
+        count=$(echo "$assets" | wc -w)
         if [ "$count" -ne 3 ]; then
           echo "::error::Unexpected count of binaries (Windows, macOS, Linux), found: $count/3"
           exit 1
         fi
         
-        files_list=$(echo $files | tr '\n' ' ')
+        files_list=$(echo $assets | sed "s|^|release-assets/|")
         echo "files=$files_list" >> $GITHUB_OUTPUT
 
     - name: Set up Git
@@ -116,6 +130,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_TOKEN: ${{ secrets.GH_PAT }}
       run: |
+        cd release-assets
         gh release create "${{ steps.semver.outputs.next }}" \
           --title "${{ steps.semver.outputs.next }}" \
           ${{ steps.binaries.outputs.files }}
@@ -130,7 +145,7 @@ jobs:
         for f in ${{ steps.binaries.outputs.files }}; do
           # Extract the OS from the parent directory
           os=$(basename "$(dirname "$f")")
-          os="${os#*-}"
+          os="${os#*_}"
           filename=$(basename "$f")
           # Markdown link to the uploaded asset
           notes+="- [$os: $filename](https://github.com/${{ github.repository }}/releases/download/${{ steps.semver.outputs.next }}/$filename)\n"
