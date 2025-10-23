@@ -185,5 +185,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: ${{ github.event.repository.name }}-${{ matrix.os }}
-        path: Software/Produkt/build/prisma_pp*
+        path: Software/Produkt/build/prisma++*
         if-no-files-found: error

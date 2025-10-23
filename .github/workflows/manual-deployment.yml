@@ -67,7 +67,7 @@ jobs:
 
         echo "::debug::$(ls -R .)"
         
-        files=$(find . -type f \( -name "prisma_pp" -o -name "prisma_pp.exe" \))
+        files=$(find . -type f \( -name "prisma++" -o -name "prisma++.exe" \))
         
         if [ -z "$files" ]; then
           echo "::error::Missing binaries"
