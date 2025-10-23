@@ -4,8 +4,9 @@ on:
   push:
     branches:
       - '*'   # triggers on pushes to any branch (pushes to feature branches in pull requests + master when pull request is merged)
-    # paths:
-    #   - 'Software/**' # triggers only if changes in folder Software
+    paths:
+      - 'Software/**' # triggers only if changes in folder Software
+  workflow_dispatch:
 
 
 jobs:
