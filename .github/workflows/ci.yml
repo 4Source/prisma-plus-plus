@@ -143,10 +143,10 @@ jobs:
       shell: powershell
       run: |
         # Check only this project: src, include, tests
-        $folders = @("src","include","tests")
+        $folders = @("Software/Produkt/src","Software/Produkt/include","Software/Produkt/tests")
         foreach ($f in $folders) {
             Get-ChildItem -Path $f -Recurse -Include *.cpp,*.h -File | ForEach-Object {
-                clang-tidy $_.FullName --p=build
+                clang-tidy $_.FullName --p=Software/Produkt/build
             }
         }
 
