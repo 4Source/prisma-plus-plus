@@ -4,12 +4,18 @@ on:
   workflow_dispatch:
     inputs:
       version_bump:
-        description: "Version increment (major, minor, patch)"
+        description: 'Level of changes for new version'
         required: true
-        default: "patch"
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
         
 jobs:
-  download:
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -25,9 +31,12 @@ jobs:
     - name: Determine next version
       id: semver
       run: |
-        current=$(git describe --tags --abbrev=0)
-        echo "Current version: $current"
-        next=$(npx semver $current -i ${{ github.event.inputs.version_bump }})
+        # Try to get the latest tag
+        latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+        echo "Latest tag: $latest_tag"
+
+        next=$(npx semver $latest_tag -i ${{ github.event.inputs.version_bump }})
+        echo "New tag: $next"
         echo "next=$next" >> $GITHUB_OUTPUT
 
     - name: Get latest successful run ID for a branch
@@ -35,7 +44,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-        workflow_name="Upload"
+        workflow_name="Continuous Integration"
         
         json=$(gh run list \
           --repo ${{ github.repository }} \
@@ -67,7 +76,7 @@ jobs:
 
         echo "::debug::$(ls -R .)"
         
-        files=$(find . -type f \( -name "prisma_pp" -o -name "prisma_pp.exe" \))
+        files=$(find . -type f \( -name "prisma++" -o -name "prisma++.exe" \))
         
         if [ -z "$files" ]; then
           echo "::error::Missing binaries"
@@ -98,3 +107,19 @@ jobs:
         gh release create "${{ steps.semver.outputs.next }}" \
           --title "${{ steps.semver.outputs.next }}" \
           ${{ steps.binaries.outputs.files }}
+
+    - name: Update release notes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        notes="## Release ${{ steps.semver.outputs.next }}\n\nBinaries:\n"
+
+        for f in ${{ steps.binaries.outputs.files }}; do
+          # Extract the OS from the parent directory
+          os=${$(basename $(dirname "$f"))#*-}
+          filename=$(basename "$f")
+          # Markdown link to the uploaded asset
+          notes+="- [$os: $filename](https://github.com/${{ github.repository }}/releases/download/${{ steps.semver.outputs.next }}/$filename)\n"
+        done
+
+        gh release edit "${{ steps.semver.outputs.next }}" --notes "$notes"

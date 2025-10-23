@@ -1,11 +1,18 @@
 name: Continuous Integration
 
 on:
+  # triggers on pushes to master branch
   push:
     branches:
-      - '*'   # triggers on pushes to any branch (pushes to feature branches in pull requests + master when pull request is merged)
+      - 'master'
+  # triggers on creating or pushing commits to pull request 
+  pull_request:
+    types:
+      - opened
+      - synchronize
     paths:
       - 'Software/**' # triggers only if changes in folder Software
+  # Manual trigger
   workflow_dispatch:
 
 
@@ -25,7 +32,7 @@ jobs:
         submodules: recursive
 
     - name: Install dependencies (Windows)
-      if: runner.os == 'Windows'
+      if: runner.os == 'Windows' 
       shell: powershell
       run: |
         choco feature enable -n allowGlobalConfirmation
@@ -55,7 +62,7 @@ jobs:
         Write-Host "LLVM and CMake installed successfully."
 
     - name: Install dependencies (Ubuntu)
-      if: runner.os == 'Linux'
+      if: runner.os == 'Linux' 
       shell: bash
       run: |
         sudo apt-get update
@@ -130,14 +137,12 @@ jobs:
     - name: Configure with CMake and Ninja (Windows)
       if: runner.os == 'Windows'
       shell: powershell
-      run: |
-        cmake -G Ninja -B Software/Produkt/build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+      run: cmake -G Ninja -B Software/Produkt/build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
     - name: Configure with CMake and Ninja (Ubuntu/macOS)
       if: runner.os != 'Windows'
       shell: bash
-      run: |
-        cmake -G Ninja -B Software/Produkt/build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+      run: cmake -G Ninja -B Software/Produkt/build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
     - name: Run clang-tidy (Windows)
       if: runner.os == 'Windows'
@@ -154,8 +159,7 @@ jobs:
     - name: Run clang-tidy (Ubuntu/macOS)
       if: runner.os != 'Windows'
       shell: bash
-      run: |
-        find Software/Produkt/{src,include,tests} \( -name '*.cpp' -o -name '*.h' \) -print0 | xargs -0 -n1 clang-tidy --p=Software/Produkt/build || true
+      run: find Software/Produkt/{src,include,tests} \( -name '*.cpp' -o -name '*.h' \) -print0 | xargs -0 -n1 clang-tidy --p=Software/Produkt/build || true
 
     - name: Build project (Windows)
       shell: powershell
@@ -182,8 +186,9 @@ jobs:
         ctest --output-on-failure --parallel
 
     - name: Upload Artifact
+      if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
       uses: actions/upload-artifact@v4
       with:
         name: ${{ github.event.repository.name }}-${{ matrix.os }}
-        path: Software/Produkt/build/prisma_pp*
+        path: Software/Produkt/build/prisma++*
         if-no-files-found: error
