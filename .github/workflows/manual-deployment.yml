@@ -9,7 +9,8 @@ on:
         default: "patch"
         
 jobs:
-  download:
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -25,9 +26,11 @@ jobs:
     - name: Determine next version
       id: semver
       run: |
-        current=$(git describe --tags --abbrev=0)
-        echo "Current version: $current"
-        next=$(npx semver $current -i ${{ github.event.inputs.version_bump }})
+        # Try to get the latest tag
+        latest_tag=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+        echo "Latest tag: $latest_tag"
+
+        next=$(npx semver $latest_tag -i ${{ github.event.inputs.version_bump }})
         echo "next=$next" >> $GITHUB_OUTPUT
 
     - name: Get latest successful run ID for a branch
