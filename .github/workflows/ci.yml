@@ -39,7 +39,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: C:\ProgramData\chocolatey\lib
-        key: windows-dependencies
+        key: windows-dependencies-${{ hashFiles('**/Software/Produkt/CMakeLists.txt') }}
 
     - name: Install dependencies (Windows)
       if: runner.os == 'Windows' && steps.cache-windows-dependencies.outputs.cache-hit != 'true'
@@ -81,7 +81,7 @@ jobs:
         path: |
           /var/cache/apt/archives
           /var/lib/apt/lists
-        key: ubuntu-dependencies
+        key: ubuntu-dependencies-${{ hashFiles('**/Software/Produkt/CMakeLists.txt') }}
 
     - name: Install dependencies (Ubuntu)
       if: runner.os == 'Linux' && steps.cache-ubuntu-dependencies.outputs.cache-hit != 'true'
@@ -133,7 +133,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: /opt/homebrew/Cellar
-        key: macos-dependencies
+        key: macos-dependencies-${{ hashFiles('**/Software/Produkt/CMakeLists.txt') }}
 
     - name: Install dependencies (macOS)
       if: runner.os == 'macOS' && steps.cache-macos-dependencies.outputs.cache-hit != 'true'
@@ -169,14 +169,12 @@ jobs:
     - name: Configure with CMake and Ninja (Windows)
       if: runner.os == 'Windows'
       shell: powershell
-      run: |
-        cmake -G Ninja -B Software/Produkt/build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+      run: cmake -G Ninja -B Software/Produkt/build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
     - name: Configure with CMake and Ninja (Ubuntu/macOS)
       if: runner.os != 'Windows'
       shell: bash
-      run: |
-        cmake -G Ninja -B Software/Produkt/build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+      run: cmake -G Ninja -B Software/Produkt/build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 
     - name: Run clang-tidy (Windows)
       if: runner.os == 'Windows'
@@ -193,8 +191,7 @@ jobs:
     - name: Run clang-tidy (Ubuntu/macOS)
       if: runner.os != 'Windows'
       shell: bash
-      run: |
-        find Software/Produkt/{src,include,tests} \( -name '*.cpp' -o -name '*.h' \) -print0 | xargs -0 -n1 clang-tidy --p=Software/Produkt/build || true
+      run: find Software/Produkt/{src,include,tests} \( -name '*.cpp' -o -name '*.h' \) -print0 | xargs -0 -n1 clang-tidy --p=Software/Produkt/build || true
 
     - name: Build project (Windows)
       shell: powershell
