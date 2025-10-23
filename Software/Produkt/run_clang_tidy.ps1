@@ -1,6 +1,6 @@
 $folders = @("src","include","tests")
 foreach ($f in $folders) {
-             Get-ChildItem $f -Recurse -Include *.cpp | ForEach-Object {
-                 clang-tidy $_.FullName --p=build
-             }
-         }
+    Get-ChildItem -Path $f -Recurse -Include *.cpp,*.h -File | ForEach-Object {
+        clang-tidy $_.FullName --p=build
+    }
+}
