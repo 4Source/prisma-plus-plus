@@ -110,9 +110,8 @@ jobs:
           echo "::error::Unexpected count of binaries (Windows, macOS, Linux), found: $count/3"
           exit 1
         fi
-        
-        files_list=$(echo $assets | sed "s|^|release-assets/|")
-        echo "files=$files_list" >> $GITHUB_OUTPUT
+
+        echo "files=$assets" >> $GITHUB_OUTPUT
 
     - name: Set up Git
       run: |
