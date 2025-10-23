@@ -85,7 +85,7 @@ jobs:
           exit 1
         fi
 
-        files=$(echo "$files" | sed "s|^\.|"artifact/run-${{ steps.get_run.outputs.run_id }}/"|")
+        files=$(echo "$files" | sed "s|^\.|"artifact/run-${{ steps.get_run.outputs.run_id }}"|")
         
         echo "Found binaries:"
         echo "$files"
