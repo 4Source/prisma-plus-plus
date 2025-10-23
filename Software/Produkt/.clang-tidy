@@ -1,7 +1,7 @@
 # Checks
 Checks: '-*,cppcoreguidelines-*,modernize-*,bugprone-*,performance-*,cert-*,gsl-*,clang-analyzer-*'
 #TODO Activate WarningsAsErrors after building googletest
-WarningsAsErrors: ""
+WarningsAsErrors: "*"
 # Only check own headers
 HeaderFilterRegex: '^(src|include)/'
 # Format-info from .clang-format.yml
