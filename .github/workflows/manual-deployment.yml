@@ -25,7 +25,7 @@ jobs:
       id: checkout
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0
+        fetch-depth: 100
         fetch-tags: true
 
     - name: Determine next version
@@ -116,7 +116,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_TOKEN: ${{ secrets.GH_PAT }}
       run: |
-        echo "$GH_TOKEN" | gh auth login --with-token
         gh release create "${{ steps.semver.outputs.next }}" \
           --title "${{ steps.semver.outputs.next }}" \
           ${{ steps.binaries.outputs.files }}
