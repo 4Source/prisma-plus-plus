@@ -1,0 +1,100 @@
+name: Manual Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: "Version increment (major, minor, patch)"
+        required: true
+        default: "patch"
+        
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+    steps:
+    - name: Checkout
+      id: checkout
+      # TODO: Have to use this commit because fetch-tags is not working in main till this is merged to main
+      uses: actions/checkout@0548471950d86b19eae6c063105707c831fb5c03
+      with:
+        fetch-tags: true
+
+    - name: Determine next version
+      id: semver
+      run: |
+        current=$(git describe --tags --abbrev=0)
+        echo "Current version: $current"
+        next=$(npx semver $current -i ${{ github.event.inputs.version_bump }})
+        echo "next=$next" >> $GITHUB_OUTPUT
+
+    - name: Get latest successful run ID for a branch
+      id: get_run
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        workflow_name="Upload"
+        
+        json=$(gh run list \
+          --repo ${{ github.repository }} \
+          --workflow "$workflow_name" \
+          --branch "${{ github.ref_name }}" \
+          --status "success" \
+          --json databaseId,status,conclusion,headBranch)
+
+        dbid=$(echo "$json" | jq -r '.[0].databaseId')
+
+        echo "Run ID: $dbid"
+        echo "run_id=$dbid" >> $GITHUB_OUTPUT
+        
+    - name: Download All Artifacts
+      uses: actions/download-artifact@v4
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        run-id: ${{ steps.get_run.outputs.run_id }}
+        path: artifact/run-${{ steps.get_run.outputs.run_id }}
+        pattern: ${{ github.event.repository.name }}-*
+        merge-multiple: true
+    
+    - name: Collect binaries
+      id: binaries
+      shell: bash
+      run: |
+        echo "Run id: ${{ steps.get_run.outputs.run_id }}"
+        cd artifact/run-${{ steps.get_run.outputs.run_id }}
+
+        echo "::debug::$(ls -R .)"
+        
+        files=$(find . -type f \( -name "prisma_pp" -o -name "prisma_pp.exe" \))
+        
+        if [ -z "$files" ]; then
+          echo "::error::Missing binaries"
+          exit 1
+        fi
+        
+        echo "Found binaries:"
+        echo "$files"
+        
+        count=$(echo "$files" | grep -c '^')
+        if [ "$count" -ne 3 ]; then
+          echo "::error::Unexpected count of binaries (Windows, macOS, Linux), found: $count/3"
+          exit 1
+        fi
+        
+        files_list=$(echo $files | tr '\n' ' ')
+        echo "files=$files_list" >> $GITHUB_OUTPUT
+  
+    - name: Create Git tag
+      run: |
+        git tag ${{ steps.semver.outputs.next }}
+        git push origin ${{ steps.semver.outputs.next }}
+
+    - name: Create release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release create "${{ steps.semver.outputs.next }}" \
+          --title "${{ steps.semver.outputs.next }}" \
+          ${{ steps.binaries.outputs.files }}
