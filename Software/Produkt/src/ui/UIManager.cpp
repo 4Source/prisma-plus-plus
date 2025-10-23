@@ -63,10 +63,11 @@ void UIManager::run() {
 
         // render
         ImGui::Render();
-        int display_w, display_h;
+        int display_w = 0;
+        int display_h = 0;
         glfwGetFramebufferSize(window, &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);
-        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f); //NOLINT
         glClear(GL_COLOR_BUFFER_BIT);
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 

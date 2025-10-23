@@ -8,8 +8,8 @@ auto main() -> int { // NOLINT(bugprone-exception-escape)
         std::cout << "Hello Prisma++" << "\n";
         std::cout << "Add-Lib: " << add(1,2) << "\n";
         
-        
-        UIManager ui(800, 600, "Prisma++"); // create window
+        //  create window
+        UIManager ui(800, 600, "Prisma++"); // NOLINT
         ui.run();                           // run main UI loop
         return 0;
     }
