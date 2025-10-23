@@ -92,10 +92,11 @@ jobs:
         mkdir release-assets
         for f in $files; do
           # Extract the OS from the parent directory
-          os=$(basename "$(dirname "$f")")
-          os="${os#*-}"
+
+          dir=$(basename "$(dirname "$f")")
+          os=$(echo "$dir" | sed -E 's/prisma-plus-plus-([a-z]+)-latest/\1/')
           filename=$(basename "$f")
-        
+                  
           # Copy and rename 
           cp "$f" "release-assets/${os}_${filename}"
           assets=$(echo "$assets ${os}_${filename}")
