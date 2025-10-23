@@ -6,12 +6,13 @@ void Menubar::draw() {
     ImVec2 viewportSize = ImGui::GetMainViewport()->Size;
 
     // button size
-    ImVec2 buttonSize = ImVec2(150, 50);
+    ImVec2 buttonSize = ImVec2(150, 50); //NOLINT
 
     // calculate center position
+    const float center_factor = 0.5f;
     ImVec2 buttonPos = ImVec2(
-        (viewportSize.x - buttonSize.x) * 0.5f,
-        (viewportSize.y - buttonSize.y) * 0.5f
+        (viewportSize.x - buttonSize.x) * center_factor,
+        (viewportSize.y - buttonSize.y) * center_factor
     );
 
     // invisible window for button

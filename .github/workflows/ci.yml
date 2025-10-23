@@ -145,7 +145,7 @@ jobs:
         # Check only this project: src, include, tests
         $folders = @("Software/Produkt/src","Software/Produkt/include","Software/Produkt/tests")
         foreach ($f in $folders) {
-            Get-ChildItem $f -Recurse -Include *.cpp | ForEach-Object {
+            Get-ChildItem -Path $f -Recurse -Include *.cpp,*.h -File | ForEach-Object {
                 clang-tidy $_.FullName --p=Software/Produkt/build
             }
         }
@@ -154,7 +154,7 @@ jobs:
       if: runner.os != 'Windows'
       shell: bash
       run: |
-        find Software/Produkt/{src,include,tests} -name '*.cpp' -print0 | xargs -0 -n1 clang-tidy --p=Software/Produkt/build || true
+        find Software/Produkt/{src,include,tests} \( -name '*.cpp' -o -name '*.h' \) -print0 | xargs -0 -n1 clang-tidy --p=Software/Produkt/build || true
 
     - name: Build project (Windows)
       shell: powershell
