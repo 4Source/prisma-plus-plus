@@ -72,7 +72,6 @@ jobs:
       shell: bash
       run: |
         echo "Run id: ${{ steps.get_run.outputs.run_id }}"
-        cd artifact/run-${{ steps.get_run.outputs.run_id }}
 
         echo "::debug::$(ls -R .)"
         
