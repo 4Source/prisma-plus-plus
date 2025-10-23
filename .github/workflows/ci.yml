@@ -31,8 +31,15 @@ jobs:
       with:
         submodules: recursive
 
+    - name: Cache dependencies (Windows)
+      id: cache-${{ runner.os }}-dependencies
+      uses: actions/cache@v4
+      with:
+        path: C:\ProgramData\chocolatey\lib
+        key: ${{ runner.os }}-dependencies
+
     - name: Install dependencies (Windows)
-      if: runner.os == 'Windows'
+      if: runner.os == 'Windows' && steps.cache-${{ runner.os }}-dependencies.outputs.cache-hit != 'true'
       shell: powershell
       run: |
         choco feature enable -n allowGlobalConfirmation
@@ -61,8 +68,17 @@ jobs:
         $env:PATH += ";C:\Program Files\LLVM\bin;C:\Program Files\CMake\bin"
         Write-Host "LLVM and CMake installed successfully."
 
+    - name: Cache dependencies (Ubuntu)
+      id: cache-${{ runner.os }}-dependencies
+      uses: actions/cache@v4
+      with:
+        path: |
+          /var/cache/apt/archives
+          /var/lib/apt/lists
+        key: ${{ runner.os }}-dependencies
+
     - name: Install dependencies (Ubuntu)
-      if: runner.os == 'Linux'
+      if: runner.os == 'Linux' && steps.cache-${{ runner.os }}-dependencies.outputs.cache-hit != 'true'
       shell: bash
       run: |
         sudo apt-get update
@@ -103,8 +119,15 @@ jobs:
     
         export PATH="/usr/bin:$PATH"
 
+    - name: Cache dependencies (macOS)
+      id: cache-${{ runner.os }}-dependencies
+      uses: actions/cache@v4
+      with:
+        path: /usr/local/Homebrew/Cellar
+        key: ${{ runner.os }}-dependencies
+
     - name: Install dependencies (macOS)
-      if: runner.os == 'macOS'
+      if: runner.os == 'macOS' && steps.cache-${{ runner.os }}-dependencies.outputs.cache-hit != 'true'
       shell: bash
       run: |
         brew update
