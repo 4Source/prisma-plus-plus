@@ -116,7 +116,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_TOKEN: ${{ secrets.GH_PAT }}
       run: |
-        gh auth login --with-token < $GH_TOKEN
+        echo "$GH_TOKEN" | gh auth login --with-token
         gh release create "${{ steps.semver.outputs.next }}" \
           --title "${{ steps.semver.outputs.next }}" \
           ${{ steps.binaries.outputs.files }}
@@ -137,5 +137,4 @@ jobs:
           notes+="- [$os: $filename](https://github.com/${{ github.repository }}/releases/download/${{ steps.semver.outputs.next }}/$filename)\n"
         done
 
-        gh auth login --with-token < $GH_TOKEN
         gh release edit "${{ steps.semver.outputs.next }}" --notes "$notes"
