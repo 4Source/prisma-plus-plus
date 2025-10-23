@@ -101,3 +101,19 @@ jobs:
         gh release create "${{ steps.semver.outputs.next }}" \
           --title "${{ steps.semver.outputs.next }}" \
           ${{ steps.binaries.outputs.files }}
+
+    - name: Update release notes
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        notes="## Release ${{ steps.semver.outputs.next }}\n\nBinaries:\n"
+
+        for f in ${{ steps.binaries.outputs.files }}; do
+          # Extract the OS from the parent directory
+          os=${$(basename $(dirname "$f"))#*-}
+          filename=$(basename "$f")
+          # Markdown link to the uploaded asset
+          notes+="- [$os: $filename](https://github.com/${{ github.repository }}/releases/download/${{ steps.semver.outputs.next }}/$filename)\n"
+        done
+
+        gh release edit "${{ steps.semver.outputs.next }}" --notes "$notes"
