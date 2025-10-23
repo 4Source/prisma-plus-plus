@@ -32,14 +32,14 @@ jobs:
         submodules: recursive
 
     - name: Cache dependencies (Windows)
-      id: cache-${{ matrix.os }}-dependencies
+      id: cache-windows-dependencies
       uses: actions/cache@v4
       with:
         path: C:\ProgramData\chocolatey\lib
-        key: ${{ matrix.os }}-dependencies
+        key: windows-dependencies
 
     - name: Install dependencies (Windows)
-      if: runner.os == 'Windows' && steps.cache-${{ matrix.os }}-dependencies.outputs.cache-hit != 'true'
+      if: runner.os == 'Windows' && steps.cache-windows-dependencies.outputs.cache-hit != 'true'
       shell: powershell
       run: |
         choco feature enable -n allowGlobalConfirmation
@@ -69,16 +69,16 @@ jobs:
         Write-Host "LLVM and CMake installed successfully."
 
     - name: Cache dependencies (Ubuntu)
-      id: cache-${{ matrix.os }}-dependencies
+      id: cache-ubuntu-dependencies
       uses: actions/cache@v4
       with:
         path: |
           /var/cache/apt/archives
           /var/lib/apt/lists
-        key: ${{ matrix.os }}-dependencies
+        key: ubuntu-dependencies
 
     - name: Install dependencies (Ubuntu)
-      if: runner.os == 'Linux' && steps.cache-${{ matrix.os }}-dependencies.outputs.cache-hit != 'true'
+      if: runner.os == 'Linux' && steps.cache-ubuntu-dependencies.outputs.cache-hit != 'true'
       shell: bash
       run: |
         sudo apt-get update
@@ -120,14 +120,14 @@ jobs:
         export PATH="/usr/bin:$PATH"
 
     - name: Cache dependencies (macOS)
-      id: cache-${{ matrix.os }}-dependencies
+      id: cache-macos-dependencies
       uses: actions/cache@v4
       with:
         path: /usr/local/Homebrew/Cellar
-        key: ${{ matrix.os }}-dependencies
+        key: macos-dependencies
 
     - name: Install dependencies (macOS)
-      if: runner.os == 'macOS' && steps.cache-${{ matrix.os }}-dependencies.outputs.cache-hit != 'true'
+      if: runner.os == 'macOS' && steps.cache-macos-dependencies.outputs.cache-hit != 'true'
       shell: bash
       run: |
         brew update
