@@ -127,7 +127,8 @@ jobs:
 
         for f in ${{ steps.binaries.outputs.files }}; do
           # Extract the OS from the parent directory
-          os=${$(basename $(dirname "$f"))#*-}
+          os=$(basename "$(dirname "$f")")
+          os="${os#*-}"
           filename=$(basename "$f")
           # Markdown link to the uploaded asset
           notes+="- [$os: $filename](https://github.com/${{ github.repository }}/releases/download/${{ steps.semver.outputs.next }}/$filename)\n"
