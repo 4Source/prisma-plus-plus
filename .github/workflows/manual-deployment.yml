@@ -4,9 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       version_bump:
-        description: "Version increment (major, minor, patch)"
+        description: 'Level of changes for new version'
         required: true
-        default: "patch"
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
         
 jobs:
   deploy:
@@ -31,6 +36,7 @@ jobs:
         echo "Latest tag: $latest_tag"
 
         next=$(npx semver $latest_tag -i ${{ github.event.inputs.version_bump }})
+        echo "New tag: $next"
         echo "next=$next" >> $GITHUB_OUTPUT
 
     - name: Get latest successful run ID for a branch
@@ -38,7 +44,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-        workflow_name="Upload"
+        workflow_name="Continuous Integration"
         
         json=$(gh run list \
           --repo ${{ github.repository }} \
