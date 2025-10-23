@@ -26,6 +26,7 @@ jobs:
       # TODO: Have to use this commit because fetch-tags is not working in main till this is merged to main
       uses: actions/checkout@0548471950d86b19eae6c063105707c831fb5c03
       with:
+        ref: ${{ github.event.ref }}
         fetch-tags: true
 
     - name: Determine next version
@@ -72,15 +73,20 @@ jobs:
       shell: bash
       run: |
         echo "Run id: ${{ steps.get_run.outputs.run_id }}"
+        cd artifact/run-${{ steps.get_run.outputs.run_id }}
 
         echo "::debug::$(ls -R .)"
         
         files=$(find . -type f \( -name "prisma++" -o -name "prisma++.exe" \))
+
+        cd ../..
         
         if [ -z "$files" ]; then
           echo "::error::Missing binaries"
           exit 1
         fi
+
+        files=$(echo "$files" | sed "s|^\.|"artifact/run-${{ steps.get_run.outputs.run_id }}/"|")
         
         echo "Found binaries:"
         echo "$files"
