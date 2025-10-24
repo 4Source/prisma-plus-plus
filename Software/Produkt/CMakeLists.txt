@@ -128,6 +128,13 @@ include(GoogleTest)
 
 # Add all your test and related source files (recursively if desired)
 file(GLOB_RECURSE TEST_FILES "${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp")
+
+# Print the resulting list
+message(STATUS "Test files for runTests:")
+foreach(f ${TEST_FILES})
+    message(STATUS "  ${f}")
+endforeach()
+
 add_executable(runTests ${TEST_FILES})
 
 target_link_libraries(runTests PRIVATE gtest_main)
