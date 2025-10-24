@@ -7,3 +7,6 @@
 [submodule "Software/Produkt/external/glfw"]
 	path = Software/Produkt/external/glfw
 	url = https://github.com/glfw/glfw.git
+[submodule "Software/Produkt/external/glm"]
+	path = Software/Produkt/external/glm
+	url = https://github.com/g-truc/glm.git

@@ -53,6 +53,7 @@ endif()
 # ------------------------------------------------------------------------------
 add_subdirectory(external/googletest)
 add_subdirectory(external/glfw)
+add_subdirectory(external/glm)
 
 # Add include and src
 include_directories(include)
@@ -87,24 +88,33 @@ add_executable(prisma-plus-plus
     src/ui/MenuBar.cpp
 )
 
+target_link_libraries(prisma-plus-plus PRIVATE firstcode)
+target_link_libraries(prisma-plus-plus PRIVATE imgui)
+target_link_libraries(prisma-plus-plus PRIVATE glm)
+
 if(APPLE)
-    target_link_libraries(prisma-plus-plus PRIVATE firstcode imgui
-        "-framework OpenGL"
-        "-framework Cocoa"
-        "-framework IOKit"
-        "-framework CoreFoundation"
-    )
+    target_link_libraries(prisma-plus-plus PRIVATE "-framework OpenGL")
+    target_link_libraries(prisma-plus-plus PRIVATE "-framework Cocoa")
+    target_link_libraries(prisma-plus-plus PRIVATE "-framework IOKit")
+    target_link_libraries(prisma-plus-plus PRIVATE "-framework CoreFoundation")
 elseif(WIN32)
-    target_link_libraries(prisma-plus-plus PRIVATE firstcode imgui opengl32)
+    target_link_libraries(prisma-plus-plus PRIVATE opengl32)
 elseif(UNIX)
-    target_link_libraries(prisma-plus-plus PRIVATE firstcode imgui GL X11 pthread dl)
+    target_link_libraries(prisma-plus-plus PRIVATE GL)
+    target_link_libraries(prisma-plus-plus PRIVATE X11)
+    target_link_libraries(prisma-plus-plus PRIVATE pthread)
+    target_link_libraries(prisma-plus-plus PRIVATE dl)
 endif()
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
-add_executable(runTests tests/test_firstcode.cpp)
-target_link_libraries(runTests PRIVATE gtest_main firstcode)
+add_executable(runTests 
+    tests/test_firstcode.cpp
+)
+
+target_link_libraries(runTests PRIVATE gtest_main)
+target_link_libraries(runTests PRIVATE firstcode)
 
 include(GoogleTest)
 enable_testing()
