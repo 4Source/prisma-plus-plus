@@ -17,6 +17,12 @@ public:
       : m_Color{color}, m_Intensity{intensity} {}
   virtual ~Light() = default;
 
+  glm::vec3 GetColor() const { return m_Color; }
+  void SetColor(glm::vec3 color) { m_Color = color; }
+
+  float GetIntensity() const { return m_Intensity; }
+  void SetIntensity(float intensity) { m_Intensity = intensity; }
+
   /**
    * Gets a ray representing a light ray of this light source at a point in
    * world space
@@ -25,16 +31,4 @@ public:
    * @return The Ray from this light source
    */
   virtual Ray GetRay(const glm::vec3 worldPos) const = 0;
-
-  /**
-   * Returns the Color of the light.
-   * @return The Color
-   */
-  virtual glm::vec3 GetColor() { return m_Color; }
-
-  /**
-   * Returns the Intensity of the light.
-   * @return The intensity
-   */
-  virtual float GetIntensity() { return m_Intensity; }
 };
