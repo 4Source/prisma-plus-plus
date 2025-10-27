@@ -51,15 +51,13 @@ endif()
 # ------------------------------------------------------------------------------
 # Dependencies
 # ------------------------------------------------------------------------------
-add_subdirectory(external/googletest)
 add_subdirectory(external/glfw)
 add_subdirectory(external/glm)
+add_subdirectory(external/googletest)
 
-# Add include and src
-include_directories(include)
-add_library(firstcode src/firstcode.cpp)
-
+# ------------------------------------------------------------------------------
 # ImGui setup
+# ------------------------------------------------------------------------------
 set(IMGUI_DIR ${CMAKE_SOURCE_DIR}/external/imgui)
 
 add_library(imgui STATIC
@@ -80,42 +78,67 @@ target_include_directories(imgui PUBLIC
 target_link_libraries(imgui PUBLIC glfw)
 
 # ------------------------------------------------------------------------------
+# Core library from sources
+# ------------------------------------------------------------------------------
+# Grab all .cpp files in src/
+file(GLOB_RECURSE SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+
+# Remove main.cpp from the list
+list(FILTER SRC_FILES EXCLUDE REGEX ".*main\\.cpp$")
+
+# Print the resulting list
+message(STATUS "Source files for prisma-core:")
+foreach(f ${SRC_FILES})
+    message(STATUS "  ${f}")
+endforeach()
+
+add_library(prisma-core STATIC ${SRC_FILES})
+target_include_directories(prisma-core PUBLIC include)
+
+target_link_libraries(prisma-core PUBLIC imgui)
+target_link_libraries(prisma-core PUBLIC glm)
+
+if(APPLE)
+    target_link_libraries(prisma-core PUBLIC "-framework OpenGL")
+    target_link_libraries(prisma-core PUBLIC "-framework Cocoa")
+    target_link_libraries(prisma-core PUBLIC "-framework IOKit")
+    target_link_libraries(prisma-core PUBLIC "-framework CoreFoundation")
+elseif(WIN32)
+    target_link_libraries(prisma-core PUBLIC opengl32)
+elseif(UNIX)
+    target_link_libraries(prisma-core PUBLIC GL)
+    target_link_libraries(prisma-core PUBLIC X11)
+    target_link_libraries(prisma-core PUBLIC pthread)
+    target_link_libraries(prisma-core PUBLIC dl)
+endif()
+
+# ------------------------------------------------------------------------------
 # Main executable
 # ------------------------------------------------------------------------------
 add_executable(prisma-plus-plus 
     src/main.cpp
-    src/ui/UIManager.cpp
-    src/ui/MenuBar.cpp
 )
 
-target_link_libraries(prisma-plus-plus PRIVATE firstcode)
-target_link_libraries(prisma-plus-plus PRIVATE imgui)
-target_link_libraries(prisma-plus-plus PRIVATE glm)
-
-if(APPLE)
-    target_link_libraries(prisma-plus-plus PRIVATE "-framework OpenGL")
-    target_link_libraries(prisma-plus-plus PRIVATE "-framework Cocoa")
-    target_link_libraries(prisma-plus-plus PRIVATE "-framework IOKit")
-    target_link_libraries(prisma-plus-plus PRIVATE "-framework CoreFoundation")
-elseif(WIN32)
-    target_link_libraries(prisma-plus-plus PRIVATE opengl32)
-elseif(UNIX)
-    target_link_libraries(prisma-plus-plus PRIVATE GL)
-    target_link_libraries(prisma-plus-plus PRIVATE X11)
-    target_link_libraries(prisma-plus-plus PRIVATE pthread)
-    target_link_libraries(prisma-plus-plus PRIVATE dl)
-endif()
+target_link_libraries(prisma-plus-plus PRIVATE prisma-core)
 
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
-add_executable(runTests 
-    tests/test_firstcode.cpp
-)
+include(GoogleTest)
+
+# Add all your test and related source files (recursively if desired)
+file(GLOB_RECURSE TEST_FILES "${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp")
+
+# Print the resulting list
+message(STATUS "Test files for runTests:")
+foreach(f ${TEST_FILES})
+    message(STATUS "  ${f}")
+endforeach()
+
+add_executable(runTests ${TEST_FILES})
 
 target_link_libraries(runTests PRIVATE gtest_main)
-target_link_libraries(runTests PRIVATE firstcode)
+target_link_libraries(runTests PRIVATE prisma-core)
 
-include(GoogleTest)
 enable_testing()
 gtest_discover_tests(runTests)
