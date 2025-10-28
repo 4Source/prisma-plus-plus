@@ -1,7 +1,7 @@
 #pragma once
-#include "core/Component.hpp"
+#include "core/HitComponent.hpp"
 
-class Primitive : public Component {
+class Primitive : public HitComponent {
 protected:
 public:
     Primitive() = default;

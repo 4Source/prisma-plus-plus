@@ -1,18 +1,18 @@
 #pragma once
 #include <filesystem>
-#include "core/Component.hpp"
-#include "core/Vertex.hpp"
+#include <memory>
+#include "core/HitComponent.hpp"
+#include "core/Material.hpp"
 
 class Object {
 private:
-  Vertex *m_Vertices = nullptr;
-  size_t m_Size{0};
-  Component &m_Primitive{};
+  std::unique_ptr<HitComponent> m_Component;
+  std::unique_ptr<Material> m_Material;
 
 public:
-  Object() = default;
   Object(std::filesystem::path objectPath);
-  ~Object() { delete[] m_Vertices; };
+  Object(std::filesystem::path objectPath, std::filesystem::path materialPath);
+  virtual ~Object() = default;
 
   Object(const Object &) = delete;
   Object &operator=(const Object &) = delete;

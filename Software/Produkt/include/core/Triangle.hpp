@@ -4,11 +4,13 @@
 
 class Triangle : public Primitive {
 private:
-  size_t *indices = new size_t[3];
+  glm::vec3 *m_Vertices = nullptr;
+  glm::vec3 m_Normal;
 
 public:
-  Triangle() = default;
-  ~Triangle() { delete[] indices; };
+  Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2);
+  Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2, glm::vec3 normal);
+  ~Triangle() { delete[] m_Vertices; };
 
   virtual bool Hit() const override;
 };
