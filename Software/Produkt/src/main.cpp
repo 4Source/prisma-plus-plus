@@ -3,12 +3,16 @@
 #include <iostream>
 #include <stdexcept>
 #include <optionparser.h>
+#include <firstcode.h>
+#include "ui/UIManager.h"
+#include "raytracing.hpp"
 
 int main() { // NOLINT(bugprone-exception-escape)
     try {
         std::cout << "Hello Prisma++" << "\n";
         std::cout << "Add-Lib: " << add(1, 2) << "\n";
 
+		// NOLINTBEGIN
 		//  basic raytracing algorithm example
     	Triangle tri1{{glm::vec3{-3, -3, 0}, glm::vec3{5, 7, 0}, glm::vec3{3, -3, 0}}, {0, 255, 0}};
     	Triangle tri2{{glm::vec3{-3, -3, 0}, glm::vec3{5, 7, 0}, glm::vec3{-4, 5, -2}}, {0, 255, 0}};
@@ -23,6 +27,7 @@ int main() { // NOLINT(bugprone-exception-escape)
     	Camera camera{{0, -0.1, 10}, 5, 12.8, 9.6, 0.01};
     	glm::vec3 light{0, 5, 5};
     	save_ppm(camera.update({triangles}, light), "output.ppm"); //visualize output array
+		// NOLINTEND		
 
         //  create window
         UIManager ui(800, 600, "Prisma++");
