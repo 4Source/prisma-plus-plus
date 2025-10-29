@@ -151,7 +151,7 @@ jobs:
       shell: powershell
       run: |
         Write-Host "Running clang-tidy..." -ForegroundColor Blue
-        $output = & Software\Produkt\run_clang_tidy.ps1 2>&1
+        $output = & .\Software\Produkt\run_clang_tidy.ps1 2>&1
 
         if ($output -match 'error:') {
             $output | Write-Host
