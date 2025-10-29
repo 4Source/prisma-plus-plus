@@ -12,7 +12,9 @@ Checks: >
   -cppcoreguidelines-avoid-magic-numbers,
   -modernize-use-auto,
   -bugprone-easily-swappable-parameters,
-  -modernize-use-trailing-return-type
+  -modernize-use-trailing-return-type,
+  -performance-enum-size
+
 #TODO Activate WarningsAsErrors after building googletest
 WarningsAsErrors: "*"
 # Only check own headers

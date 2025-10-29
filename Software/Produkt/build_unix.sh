@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # -----------------------------------------
 # Build-Script with clang-tidy-Checks
 # Build without tidy:
