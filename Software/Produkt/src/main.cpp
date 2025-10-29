@@ -5,7 +5,7 @@
 
 int main() { // NOLINT(bugprone-exception-escape)
     try {
-        std::cout << "Hello Prisma++" << std::endl;
+        std::cout << "Hello Prisma++" << "\n";
         std::cout << "Add-Lib: " << add(1, 2) << "\n";
 
         //  create window
