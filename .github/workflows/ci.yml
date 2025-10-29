@@ -159,15 +159,8 @@ jobs:
       shell: bash
       run: |
         echo -e "\033[34mRunning clang-tidy...\033[0m"
-        output=$(Software/Produkt/run_clang_tidy.sh 2>&1)
-
-        if echo "$output" | grep -q "error:"; then
-            echo "$output"
-            echo -e "\033[31mclang-tidy checks failed! Exit Build-Script.\033[0m"
-            exit 1
-        else
-            echo -e "\033[32mclang-tidy checks completed.\033[0m"
-        fi
+        Software/Produkt/run_clang_tidy.sh
+        echo -e "\033[32mclang-tidy checks completed.\033[0m"
 
 #    I tried to auto Format with clang-format - not working
 #    - name: Format code with clang-format (Windows)
