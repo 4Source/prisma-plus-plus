@@ -163,7 +163,6 @@ jobs:
     - name: Run clang-tidy (Ubuntu/macOS)
       if: runner.os != 'Windows'
       shell: bash
-      - name: Run clang-tidy (Ubuntu/macOS)
       run: |
         echo -e "\033[34mRunning clang-tidy...\033[0m"
         output=$(Software/Produkt/run_clang_tidy.sh 2>&1)
