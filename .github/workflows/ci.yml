@@ -85,6 +85,7 @@ jobs:
         install_pkg_if_missing "git" "command -v git"
         install_pkg_if_missing "clang" "command -v clang"
         install_pkg_if_missing "clang-tidy" "command -v clang-tidy"
+        install_pkg_if_missing "clang-format" "command -v clang-format"
     
         # X11 / OpenGL dependencies
         install_pkg_if_missing "libx11-dev" "dpkg -s libx11-dev"
@@ -132,7 +133,7 @@ jobs:
         install_brew_if_missing "glew"
         install_brew_if_missing "freetype"
     
-        export PATH="$(brew --prefix llvm)/bin:$PATH"
+        echo "PATH=$(brew --prefix llvm)/bin:$PATH" >> $GITHUB_ENV
 
     - name: Configure with CMake and Ninja (Windows)
       if: runner.os == 'Windows'
@@ -148,18 +149,50 @@ jobs:
       if: runner.os == 'Windows'
       shell: powershell
       run: |
-        # Check only this project: src, include, tests
-        $folders = @("Software/Produkt/src","Software/Produkt/include","Software/Produkt/tests")
-        foreach ($f in $folders) {
-            Get-ChildItem -Path $f -Recurse -Include *.cpp,*.h -File | ForEach-Object {
-                clang-tidy $_.FullName --p=Software/Produkt/build
-            }
+        Write-Host "Running clang-tidy..." -ForegroundColor Blue
+        $output = & Software\Produkt\run_clang_tidy.ps1 2>&1
+
+        if ($output -match 'error:') {
+            $output | Write-Host
+            Write-Host "clang-tidy checks failed! Exit Build-Script" -ForegroundColor Red
+            exit 1
+        } else {
+            Write-Host "clang-tidy checks completed" -ForegroundColor Green
         }
 
     - name: Run clang-tidy (Ubuntu/macOS)
       if: runner.os != 'Windows'
       shell: bash
-      run: find Software/Produkt/{src,include,tests} \( -name '*.cpp' -o -name '*.h' \) -print0 | xargs -0 -n1 clang-tidy --p=Software/Produkt/build || true
+      - name: Run clang-tidy (Ubuntu/macOS)
+      run: |
+        echo -e "\033[34mRunning clang-tidy...\033[0m"
+        output=$(Software/Produkt/run_clang_tidy.sh 2>&1)
+
+        if echo "$output" | grep -q "error:"; then
+            echo "$output"
+            echo -e "\033[31mclang-tidy checks failed! Exit Build-Script.\033[0m"
+            exit 1
+        else
+            echo -e "\033[32mclang-tidy checks completed.\033[0m"
+        fi
+
+    - name: Format code with clang-format (Windows)
+      if: runner.os == 'Windows'
+      shell: powershell
+      run: |
+        $folders = @("Software/Produkt/src", "Software/Produkt/include", "Software/Produkt/tests")
+        foreach ($f in $folders) {
+            Get-ChildItem -Path $f -Recurse -Include *.cpp,*.h -File | ForEach-Object {
+                clang-format -i $_.FullName
+            }
+        }
+
+
+    - name: Format code with clang-format (Ubuntu/macOS)
+      shell: bash
+      run: |
+        find Software/Produkt/src Software/Produkt/include Software/Produkt/tests -type f \( -name "*.cpp" -o -name "*.h" \) -exec clang-format -i {} +
+
 
     - name: Build project (Windows)
       shell: powershell
