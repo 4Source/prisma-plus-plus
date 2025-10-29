@@ -107,19 +107,8 @@ jobs:
     - name: Install dependencies (macOS)
       if: runner.os == 'macOS'
       shell: bash
-      timeout-minutes: 30
       run: |
-        set -e
-        CORE_TAP="/opt/homebrew/Library/Taps/homebrew/homebrew-core"
-        if [ -d "$CORE_TAP/.git" ]; then
-            cd "$CORE_TAP"
-            if git stash list | grep -q 'stash@'; then
-                git stash pop || true
-            fi
-        fi
-
-        # Force update Homebrew
-        brew update --force --quiet
+        brew update
     
         # Helper function to install a package if missing
         install_brew_if_missing() {
@@ -144,6 +133,7 @@ jobs:
         install_brew_if_missing "glew"
         install_brew_if_missing "freetype"
     
+        export PATH="$(brew --prefix llvm)/bin:$PATH"
         echo "PATH=$(brew --prefix llvm)/bin:$PATH" >> $GITHUB_ENV
 
     - name: Configure with CMake and Ninja (Windows)
@@ -186,22 +176,23 @@ jobs:
             echo -e "\033[32mclang-tidy checks completed.\033[0m"
         fi
 
-    - name: Format code with clang-format (Windows)
-      if: runner.os == 'Windows'
-      shell: powershell
-      run: |
-        $folders = @("Software/Produkt/src", "Software/Produkt/include", "Software/Produkt/tests")
-        foreach ($f in $folders) {
-            Get-ChildItem -Path $f -Recurse -Include *.cpp,*.h -File | ForEach-Object {
-                clang-format -i $_.FullName
-            }
-        }
+#    I tried to auto Format with clang-format - not working
+#    - name: Format code with clang-format (Windows)
+#      if: runner.os == 'Windows'
+#      shell: powershell
+#      run: |
+#        $folders = @("Software/Produkt/src", "Software/Produkt/include", "Software/Produkt/tests")
+#        foreach ($f in $folders) {
+#            Get-ChildItem -Path $f -Recurse -Include *.cpp,*.h -File | ForEach-Object {
+#                clang-format -i $_.FullName
+#            }
+#        }
 
+#    - name: Format code with clang-format (Ubuntu/macOS)
+#      shell: bash
+#      run: |
+#        find Software/Produkt/src Software/Produkt/include Software/Produkt/tests -type f \( -name "*.cpp" -o -name "*.h" \) -exec clang-format -i {} +
 
-    - name: Format code with clang-format (Ubuntu/macOS)
-      shell: bash
-      run: |
-        find Software/Produkt/src Software/Produkt/include Software/Produkt/tests -type f \( -name "*.cpp" -o -name "*.h" \) -exec clang-format -i {} +
 
 
     - name: Build project (Windows)
