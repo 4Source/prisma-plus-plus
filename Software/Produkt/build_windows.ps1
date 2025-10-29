@@ -1,22 +1,23 @@
 # -----------------------------------------
-# Build-Script with clang-tidy-Checks
-# Build without tidy:
-# .\build_windows.ps1 -no_tidy
-# Build with tidy:
-# .\build_windows.ps1
+# Build-Script with clang-tidy Checks
+# Usage:
+#   .\build_windows.ps1         -> Build with clang-tidy
+#   .\build_windows.ps1 -no_tidy -> Build without clang-tidy
 # -----------------------------------------
 
 param(
-    [Parameter(HelpMessage="Forces execution without clang-tidy checks")]
     [switch]$no_tidy = $false
 )
+
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+Set-Location $ScriptDir
 
 Write-Host "Configure CMake..." -ForegroundColor Blue
 cmake -S . -B build -G Ninja
 
-if ($no_tidy -eq $false) {
+if (-not $no_tidy) {
     Write-Host "Running clang-tidy..." -ForegroundColor Blue
-    $output = & .\run_clang_tidy.ps1 2>&1
+    $output = & "$ScriptDir\run_clang_tidy.ps1" 2>&1
 
     if ($output -match 'error:') {
         $output | Write-Host
@@ -28,4 +29,4 @@ if ($no_tidy -eq $false) {
 }
 
 Write-Host "Running Build..." -ForegroundColor Blue
-cmake --build build
+cmake --build "$ScriptDir\build"
