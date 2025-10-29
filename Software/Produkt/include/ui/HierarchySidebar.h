@@ -7,6 +7,7 @@
 #include <cstring>
 #include <vector>
 #include <string>
+#include <array>
 
 // ------------------------------------------------------
 // HierarchySidebar
@@ -46,7 +47,7 @@ private:
 
     int renamingIndex = -1;               // Index of the item currently being renamed (-1 = none)
     SelectedType renamingType = SelectedType::None; // Type of item being renamed
-    char renameBuffer[128];               // Temporary buffer for renaming text
+    std::array<char, 128> renameBuffer{};           // Temporary buffer for renaming text
 
     // -------- Hierarchy Data --------
     std::vector<std::string> objectNames; // Names of objects in the hierarchy

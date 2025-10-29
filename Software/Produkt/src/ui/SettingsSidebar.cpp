@@ -2,10 +2,8 @@
 #include <iostream>
 
 SettingsSidebar::SettingsSidebar(float maxWidth_, float slideSpeed_)
-    : sidebarOpen(false), sidebarWidth(0.0f), maxWidth(maxWidth_), slideSpeed(slideSpeed_)
-{
-    lastTime = glfwGetTime();
-}
+    : sidebarOpen(false), sidebarWidth(0.0f), maxWidth(maxWidth_),
+    slideSpeed(slideSpeed_), lastTime(glfwGetTime()){}
 
 void SettingsSidebar::draw(int windowWidth, int windowHeight) {
     // --- Delta time ---
@@ -28,7 +26,8 @@ void SettingsSidebar::draw(int windowWidth, int windowHeight) {
     if (sidebarWidth > 0.0f) {
         float menuBarHeight = ImGui::GetFrameHeight();
         ImGui::SetNextWindowPos(ImVec2(0, menuBarHeight));
-        ImGui::SetNextWindowSize(ImVec2(sidebarWidth, windowHeight - menuBarHeight));
+        ImGui::SetNextWindowSize(ImVec2(sidebarWidth,
+        (static_cast<float>(windowHeight) - static_cast<float>(menuBarHeight))));
 
         ImGuiWindowFlags sidebarFlags = ImGuiWindowFlags_NoResize |
                                         ImGuiWindowFlags_NoMove |

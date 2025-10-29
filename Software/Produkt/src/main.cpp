@@ -3,13 +3,13 @@
 #include <firstcode.h>
 #include "ui/UIManager.h"
 
-auto main() -> int { // NOLINT(bugprone-exception-escape)
+int main() {
     try {
         std::cout << "Hello Prisma++" << "\n";
         std::cout << "Add-Lib: " << add(1,2) << "\n";
         
         //  create window
-        UIManager ui(800, 600, "Prisma++"); // NOLINT
+        UIManager ui(800, 600, "Prisma++");
         ui.run();                           // run main UI loop
         return 0;
     }
@@ -26,7 +26,7 @@ auto main() -> int { // NOLINT(bugprone-exception-escape)
     return 1; 
 }
 
-auto test() -> int
+int test()
 {
     return 1;
 }
