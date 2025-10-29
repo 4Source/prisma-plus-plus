@@ -12,14 +12,14 @@
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
 
-class UIManager { //NOLINT(cppcoreguidelines-special-member-functions)
+class UIManager {
 public:
-    UIManager(int width, int height, const std::string& title); // create window
+    UIManager(int width, int height, const std::string& title); // Create window
     ~UIManager();
 
-    void run();  // start main loop
+    void run();  // Start main loop
     auto getWindow() -> GLFWwindow* { return window; }
 
 private:
-    GLFWwindow* window; // pointer to GLFW window
+    GLFWwindow* window; // Pointer to GLFW window
 };
