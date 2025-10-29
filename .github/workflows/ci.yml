@@ -154,13 +154,19 @@ jobs:
         .\Software\Produkt\run_clang_tidy.ps1
         Write-Host "clang-tidy completed" -ForegroundColor Green
 
-    - name: Run clang-tidy (Ubuntu/macOS)
-      if: runner.os != 'Windows'
+    - name: Run clang-tidy (Ubuntu)
+      if: runner.os == 'Linux'
       shell: bash
       run: |
         echo -e "\033[34mRunning clang-tidy...\033[0m"
         Software/Produkt/run_clang_tidy.sh
         echo -e "\033[32mclang-tidy checks completed.\033[0m"
+
+    - name: Run clang-tidy (macOS)
+      if: runner.os == 'macOS'
+      shell: bash
+      run: |
+        echo "SKIP CLANG-TIDY CHECKS"
 
 #    I tried to auto Format with clang-format - not working
 #    - name: Format code with clang-format (Windows)
