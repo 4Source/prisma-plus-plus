@@ -1,15 +1,15 @@
-<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>684</x><y>486</y><w>189</w><h>72</h></coordinates><panel_attributes>Scene
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>608</x><y>432</y><w>168</w><h>64</h></coordinates><panel_attributes>Scene
 --
 - objects : Object [*]
 - camera : Camera
 - lights : Lights [*]
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1026</x><y>486</y><w>189</w><h>72</h></coordinates><panel_attributes>Object
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>912</x><y>432</y><w>168</w><h>64</h></coordinates><panel_attributes>Object
 --
 - primitive : HitComponent
 - material : Material
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>684</x><y>648</y><w>189</w><h>117</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>608</x><y>576</y><w>168</w><h>104</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
 Light
 --
 - color : vec3
@@ -17,83 +17,83 @@ Light
 --
 + GetRay(hitPos : vec3) : Ray
 + GetColor() : vec3
-+ GetIntensity : float</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>954</x><y>648</y><w>189</w><h>117</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
++ GetIntensity : float</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>848</x><y>576</y><w>168</w><h>104</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
 Camera
 --
 - pos : vec3
 - up : vec3
 - right : vec3
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1458</x><y>450</y><w>252</w><h>117</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1296</x><y>400</y><w>224</w><h>104</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
 HitComponent
 --
-uuid: string
+- uuid: string
 --
 + Hit() : bool
 + Add(in : HitComponent) : void
 + Remove(in : HitComponent) : HitComponent
-+ operator==(other : HitComponent&amp;) : bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1323</x><y>639</y><w>189</w><h>72</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
++ operator==(other : HitComponent&amp;) : bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1176</x><y>568</y><w>168</w><h>64</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
 Primitive
 --
 
 --
-+ Hit() : bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1323</x><y>837</y><w>189</w><h>72</h></coordinates><panel_attributes>Triangle
++ Hit() : bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1176</x><y>744</y><w>168</w><h>64</h></coordinates><panel_attributes>Triangle
 --
 - vertices : vec3 [3]
 - normal : vec3
 --
-+ Hit() : bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1404</x><y>702</y><w>27</w><h>153</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;150</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1548</x><y>639</y><w>252</w><h>108</h></coordinates><panel_attributes>HitComponentList
++ Hit() : bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1248</x><y>624</y><w>24</w><h>136</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;150</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1376</x><y>568</y><w>224</w><h>96</h></coordinates><panel_attributes>HitComponentList
 --
 - children : HitComponent[0..*]
 --
 + Hit() : bool
 + Add(in : HitComponent) : void
-+ Remove(in : HitComponent) : HitComponent</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1413</x><y>558</y><w>144</w><h>99</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>140;10;140;50;10;50;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>1602</x><y>558</y><w>63</w><h>99</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;50;50;50;50;90</additional_attributes></element><element><id>Relation</id><coordinates><x>1206</x><y>522</y><w>270</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>280;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1026</x><y>324</y><w>189</w><h>72</h></coordinates><panel_attributes>Material
++ Remove(in : HitComponent) : HitComponent</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1256</x><y>496</y><w>128</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>140;10;140;50;10;50;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>1424</x><y>496</y><w>56</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;50;50;50;50;90</additional_attributes></element><element><id>Relation</id><coordinates><x>1072</x><y>464</y><w>240</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>280;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>912</x><y>288</y><w>168</w><h>64</h></coordinates><panel_attributes>Material
 --
 + color : vec3
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1107</x><y>387</y><w>27</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>792</x><y>549</y><w>270</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>280;110;280;70;10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>864</x><y>513</y><w>180</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>180;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>774</x><y>549</y><w>27</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;110;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>684</x><y>828</y><w>189</w><h>90</h></coordinates><panel_attributes>PointLight
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>984</x><y>344</y><w>24</w><h>104</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>704</x><y>488</y><w>240</w><h>104</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>280;110;280;70;10;70;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>456</y><w>160</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>180;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>688</x><y>488</y><w>24</w><h>104</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;110;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>608</x><y>736</y><w>168</w><h>80</h></coordinates><panel_attributes>PointLight
 --
 - pos : vec3
 --
 + GetRay(hitPos : vec3) : Ray
 + GetColor() : vec3
-+ GetIntensity : float</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>774</x><y>756</y><w>27</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>954</x><y>828</y><w>189</w><h>72</h></coordinates><panel_attributes>OrthographicCamera
++ GetIntensity : float</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>688</x><y>672</y><w>24</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>848</x><y>736</y><w>168</w><h>64</h></coordinates><panel_attributes>OrthographicCamera
 --
 - near : float
 - far : float
 - 
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1044</x><y>756</y><w>27</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLNote</id><coordinates><x>1665</x><y>414</y><w>126</w><h>27</h></coordinates><panel_attributes>Composite Pattern
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1584</x><y>558</y><w>27</w><h>99</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1557</x><y>558</y><w>27</w><h>99</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>468</x><y>828</y><w>189</w><h>90</h></coordinates><panel_attributes>DirectionalLight
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>928</x><y>672</y><w>24</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLNote</id><coordinates><x>1480</x><y>368</y><w>112</w><h>24</h></coordinates><panel_attributes>Composite Pattern
+bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1408</x><y>496</y><w>24</w><h>88</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1384</x><y>496</y><w>24</w><h>88</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element><element><id>UMLClass</id><coordinates><x>416</x><y>736</y><w>168</w><h>80</h></coordinates><panel_attributes>DirectionalLight
 --
 
 --
 + GetRay(hitPos : vec3) : Ray
 + GetColor() : vec3
-+ GetIntensity : float</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>567</x><y>756</y><w>198</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>200;10;200;50;10;50;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>441</x><y>0</y><w>90</w><h>99</h></coordinates><panel_attributes>Resolution
++ GetIntensity : float</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>504</x><y>672</y><w>176</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>200;10;200;50;10;50;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>392</x><y>0</y><w>80</w><h>88</h></coordinates><panel_attributes>Resolution
 &lt;&lt;Enum&gt;&gt;
 -
 480p
-...</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>261</y><w>360</w><h>108</h></coordinates><panel_attributes>Ray
+...</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>232</y><w>320</w><h>96</h></coordinates><panel_attributes>Ray
 --
 - subrays : Stack&lt;Subray&gt;
 --
-Ray(subray : Subray, component : HitComponent, lights : Light [*]) </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>486</x><y>261</y><w>90</w><h>108</h></coordinates><panel_attributes>Subray
+Ray(subray : Subray, component : HitComponent, lights : Light [*]) </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>432</x><y>232</y><w>80</w><h>96</h></coordinates><panel_attributes>Subray
 --
 - direction : vec3
 - position : vec3
 - color : vec3
---</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1827</x><y>639</y><w>252</w><h>108</h></coordinates><panel_attributes>HitComponentOctree
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1624</x><y>568</y><w>224</w><h>96</h></coordinates><panel_attributes>HitComponentOctree
 --
 - childern: HitComponent[8]
 --
 + Hit() : bool
 + Add(in : HitComponent) : void
-+ Remove(in : HitComponent) : HitComponent</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1701</x><y>486</y><w>297</w><h>171</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;310;10;310;170</additional_attributes></element><element><id>Relation</id><coordinates><x>1701</x><y>513</y><w>243</w><h>144</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>250;140;250;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1701</x><y>540</y><w>216</w><h>117</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;220;10;220;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>207</x><y>63</y><w>126</w><h>108</h></coordinates><panel_attributes>&lt;&lt;external&gt;&gt;
++ Remove(in : HitComponent) : HitComponent</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1512</x><y>432</y><w>264</w><h>152</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;310;10;310;170</additional_attributes></element><element><id>Relation</id><coordinates><x>1512</x><y>456</y><w>216</w><h>128</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>250;140;250;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1512</x><y>480</y><w>192</w><h>104</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;220;10;220;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>184</x><y>56</y><w>112</w><h>96</h></coordinates><panel_attributes>&lt;&lt;external&gt;&gt;
 template=T
 Stack
 --
 
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>270</x><y>162</y><w>27</w><h>117</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>351</x><y>306</y><w>153</w><h>27</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>240</x><y>144</y><w>24</w><h>104</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110</additional_attributes></element><element><id>Relation</id><coordinates><x>312</x><y>272</y><w>136</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element></diagram>
