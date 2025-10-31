@@ -132,7 +132,13 @@ jobs:
         install_brew_if_missing "glfw"
         install_brew_if_missing "glew"
         install_brew_if_missing "freetype"
-    
+        
+        # Ensure Xcode developer path is set correctly
+        if [ ! -d "$(xcode-select -p 2>/dev/null)" ]; then
+            echo "::warning::Xcode path not set, selecting default developer directory..."
+            sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+        fi
+        
         # Configure LLVM/Clang environment
         export LLVM_PREFIX="$(brew --prefix llvm)"
         export PATH="$LLVM_PREFIX/bin:$PATH"
