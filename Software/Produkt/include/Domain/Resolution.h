@@ -1,1 +1,0 @@
-enum struct Resolution { high, medium, low };
