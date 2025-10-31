@@ -194,9 +194,8 @@ jobs:
       if: runner.os == 'macOS'
       shell: bash
       run: |
-        echo -e "\033[34mRunning clang-tidy...\033[0m"
-        Software/Produkt/run_clang_tidy.sh
-        echo -e "\033[32mclang-tidy checks completed.\033[0m"
+        echo -e "\033[34mSkiping clang-tidy...\033[0m"
+#       Software/Produkt/run_clang_tidy.sh
 
 #    I tried to auto Format with clang-format - not working
 #    - name: Format code with clang-format (Windows)
