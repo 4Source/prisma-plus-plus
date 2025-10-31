@@ -134,23 +134,35 @@ jobs:
         install_brew_if_missing "freetype"
         
         # Ensure Xcode developer path is set correctly
-        if [ ! -d "$(xcode-select -p 2>/dev/null)" ]; then
-            echo "::warning::Xcode path not set, selecting default developer directory..."
-            sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
-        fi
-        
+        sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+
+        echo "::group::Xcode Info"
+        echo "Xcode path: $(xcode-select -p)"
+        echo "SDK path: $(xcrun --show-sdk-path)"
+        echo "::endgroup::"
+
         # Configure LLVM/Clang environment
         export LLVM_PREFIX="$(brew --prefix llvm)"
         export PATH="$LLVM_PREFIX/bin:$PATH"
         echo "PATH=$LLVM_PREFIX/bin:$PATH" >> $GITHUB_ENV
 
-        # Make sure Xcode SDK path is set correctly
+        # Export compiler flags for Clang/LLVM to find headers
         export SDK_PATH="$(xcrun --show-sdk-path)"
-        echo "SDK_PATH=$SDK_PATH" >> $GITHUB_ENV
-
-        # Export Clang include paths (for clang-tidy and clang++)
         export CLANG_CXX_INCLUDES="$LLVM_PREFIX/include/c++/v1"
-        echo "CLANG_CXX_INCLUDES=$CLANG_CXX_INCLUDES" >> $GITHUB_ENV
+
+        # Compiler and linker flags recommended by Homebrew
+        export CPPFLAGS="-I$LLVM_PREFIX/include -I$CLANG_CXX_INCLUDES -isysroot $SDK_PATH"
+        export LDFLAGS="-L$LLVM_PREFIX/lib"
+        export CMAKE_PREFIX_PATH="$LLVM_PREFIX"
+
+        # Persist environment for later steps
+        {
+          echo "SDK_PATH=$SDK_PATH"
+          echo "CLANG_CXX_INCLUDES=$CLANG_CXX_INCLUDES"
+          echo "CPPFLAGS=$CPPFLAGS"
+          echo "LDFLAGS=$LDFLAGS"
+          echo "CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH"
+        } >> $GITHUB_ENV
 
     - name: Configure with CMake and Ninja (Windows)
       if: runner.os == 'Windows'
