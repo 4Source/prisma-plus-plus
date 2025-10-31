@@ -133,8 +133,18 @@ jobs:
         install_brew_if_missing "glew"
         install_brew_if_missing "freetype"
     
-        export PATH="$(brew --prefix llvm)/bin:$PATH"
-        echo "PATH=$(brew --prefix llvm)/bin:$PATH" >> $GITHUB_ENV
+        # Configure LLVM/Clang environment
+        export LLVM_PREFIX="$(brew --prefix llvm)"
+        export PATH="$LLVM_PREFIX/bin:$PATH"
+        echo "PATH=$LLVM_PREFIX/bin:$PATH" >> $GITHUB_ENV
+
+        # Make sure Xcode SDK path is set correctly
+        export SDK_PATH="$(xcrun --show-sdk-path)"
+        echo "SDK_PATH=$SDK_PATH" >> $GITHUB_ENV
+
+        # Export Clang include paths (for clang-tidy and clang++)
+        export CLANG_CXX_INCLUDES="$LLVM_PREFIX/include/c++/v1"
+        echo "CLANG_CXX_INCLUDES=$CLANG_CXX_INCLUDES" >> $GITHUB_ENV
 
     - name: Configure with CMake and Ninja (Windows)
       if: runner.os == 'Windows'
@@ -166,7 +176,9 @@ jobs:
       if: runner.os == 'macOS'
       shell: bash
       run: |
-        echo "SKIP CLANG-TIDY CHECKS"
+        echo -e "\033[34mRunning clang-tidy...\033[0m"
+        Software/Produkt/run_clang_tidy.sh
+        echo -e "\033[32mclang-tidy checks completed.\033[0m"
 
 #    I tried to auto Format with clang-format - not working
 #    - name: Format code with clang-format (Windows)
