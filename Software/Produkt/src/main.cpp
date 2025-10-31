@@ -11,10 +11,9 @@ auto main() -> int { // NOLINT(bugprone-exception-escape)
 
     std::cout << "Hello Prisma++" << "\n";
     std::cout << "Add-Lib: " << "\n";
-    Subray s1{};
-    s1.setDirection(glm::vec3(1.0f, 0.0f, 0.0f));
-    s1.setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
-    s1.setColor(glm::vec3(1.0f, 1.0f, 1.0f));
+    Subray s1 = {.direction_ = {1.0f, 0.0f, 0.0f},
+                 .postition_ = {0.0f, 0.0f, 0.0f},
+                 .color_ = {1.0f, 1.0f, 1.0f}};
     Ray r1{s1, test()};
     //  create window
     UIManager ui(800, 600, "Prisma++"); // NOLINT
