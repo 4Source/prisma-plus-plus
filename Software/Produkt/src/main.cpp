@@ -2,6 +2,7 @@
 #include <firstcode.h>
 #include <iostream>
 #include <stdexcept>
+#include <optionparser.h>
 
 int main() { // NOLINT(bugprone-exception-escape)
     try {

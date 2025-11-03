@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 # -----------------------------------------
 # Build-Script with clang-tidy-Checks
 # Build without tidy:
@@ -6,8 +5,6 @@
 # Build with tidy:
 # ./build_unix.sh
 # -----------------------------------------
-
-set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"

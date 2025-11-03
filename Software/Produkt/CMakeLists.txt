@@ -93,8 +93,13 @@ foreach(f ${SRC_FILES})
 endforeach()
 
 add_library(prisma-core STATIC ${SRC_FILES})
-target_include_directories(prisma-core PUBLIC include)
-
+# ------------------------------------------------------------------------------
+# Add Library Folders include and ecternal/optionparser
+# ------------------------------------------------------------------------------
+target_include_directories(prisma-core PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/optionparser
+)
 target_link_libraries(prisma-core PUBLIC imgui)
 target_link_libraries(prisma-core PUBLIC glm)
 
@@ -120,7 +125,6 @@ add_executable(prisma-plus-plus
 )
 
 target_link_libraries(prisma-plus-plus PRIVATE prisma-core)
-
 # ------------------------------------------------------------------------------
 # Tests
 # ------------------------------------------------------------------------------
