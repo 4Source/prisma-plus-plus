@@ -1,12 +1,35 @@
-#include "CliManager.h"
-#include "CliArguments.h"
+#include "cli/CliManager.h"
+#include "cli/CliArguments.h"
 #include <iostream>
+#include "ui/UIManager.h"
+#include <fstream>
+#include <sstream>
 
-bool loadFromString(const std::string &data, tinyobj::attrib_t &attributes, std::vector<tinyobj::shape_t> &shapes, std::string &error) {
+bool CliManager::loadFromFile(const std::string &path, tinyobj::attrib_t &attributes, std::vector<tinyobj::shape_t> &shapes, std::string &error) {
+    std::ifstream file(path);
+    if (!file) {
+        return false;
+    }
+    std::ostringstream ss;
+    ss << file.rdbuf();
+    std::string data = ss.str();
+    
+    tinyobj::ObjReader reader;
+    tinyobj::ObjReaderConfig config;
+    config.triangulate = true;
 
+    if (!reader.ParseFromString(data, "", config)) {
+        std::cout << "OBJ parse error: " << reader.Error() << "\n";
+        return false;
+    }
+
+    attributes = reader.GetAttrib();
+    shapes = reader.GetShapes();
+
+    return true;
 }
 
-bool loadFromStdin(tinyobj::attrib_t &attributes, std::vector<tinyobj::shape_t> &shapes, std::string &error) {
+bool CliManager::loadFromStdin(tinyobj::attrib_t &attributes, std::vector<tinyobj::shape_t> &shapes, std::string &error) {
     std::stringstream buffer;
     buffer << std::cin.rdbuf();
     std::string objData = buffer.str();
@@ -26,30 +49,49 @@ bool loadFromStdin(tinyobj::attrib_t &attributes, std::vector<tinyobj::shape_t> 
     return true;
 }
 
-bool stdinHasData() {
+bool CliManager::stdinHasData() {
     return !isatty(fileno(stdin));
 }
-
-int CliManager::run(int argc, const char *argv[]) {
-    auto args = CliArguments::parse(argc, argv);
-    if (args.helpRequested || !args.valid)
+/// @brief 
+/// @param args 
+/// @return error code 1 - help request, 2 - parser error, 3 - general run error 
+int CliManager::run(std::span<const char* const> args) {
+    auto CliArgs = CliArguments::parse(args);
+    if (CliArgs.helpRequested)
         return 1;
-
-    tinyobj::attrib_t attrib;
-    std::vector<tinyobj::shape_t> shapes;
-    std::string error;
-
-    if (!stdinHasData()) {
-        std::cout << "No STDIN data, exiting.\n";
+    
+    if (CliManager::stdinHasData()) {
+        //Standard input recognized -> use file from stdin
+        std::cout << "STDIN data recognized, possible --file option is ignored!.\n";
+        tinyobj::attrib_t attrib;
+        std::vector<tinyobj::shape_t> shapes;
+        std::string error;
+        if (!CliManager::loadFromStdin(attrib, shapes, error)) {
+            std::cerr << "Parse error: " << error << "\n";
+            return 2;
+        }
+        std::cout << "Loaded OBJ: " << shapes.size() << " shapes, " << attrib.vertices.size() / 3 << " vertices\n";
         return 0;
     }
-
-    if (!loadFromStdin(attrib, shapes, error)) {
-        std::cerr << "Parse error: " << error << "\n";
-        return 2;
+    if(CliArgs.valid){
+        //Run with file parser from --file option
+        std::cout << "File recognized" << "\n";
+        std::cout << "Path:\n" << CliArgs.file << "\n";
+        tinyobj::attrib_t attrib;
+        std::vector<tinyobj::shape_t> shapes;
+        std::string error;
+        if (!CliManager::loadFromFile(CliArgs.file, attrib, shapes, error)) {
+            std::cerr << "Parse error: " << error << "\n";
+            return 2;
+        }
+        std::cout << "Loaded OBJ: " << shapes.size() << " shapes, " << attrib.vertices.size() / 3 << " vertices\n";
+        return 0;
     }
-
-    std::cout << "Loaded OBJ: " << shapes.size() << " shapes, " << attrib.vertices.size() / 3 << " vertices\n";
-
-    return 0;
+    if(!CliArgs.valid){
+        std::cout << "No valid CLI Arguments - Starting UI" << "\n";
+        UIManager ui(800, 600, "Prisma++"); // NOLINT
+        ui.run();                           // run main UI loop
+        return 0;
+    }
+    return 3;
 }

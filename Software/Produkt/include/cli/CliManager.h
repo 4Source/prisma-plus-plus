@@ -5,11 +5,13 @@
 #include "tiny_obj_loader.h"
 #include <cxxopts.hpp>
 #include <unistd.h>
+#include <span>
+
 struct CliArguments;
 
 class CliManager {
 public:
-    static bool loadFromString(const std::string& data,
+    static bool loadFromFile(const std::string& path,
                                tinyobj::attrib_t& attributes,
                                std::vector<tinyobj::shape_t>& shapes,
                                std::string& error);
@@ -20,5 +22,5 @@ public:
 
     static bool stdinHasData();
 
-    static int run(int argc, const char* argv[]);
+    static int run(std::span<const char* const> args);
 };

@@ -1,15 +1,9 @@
 #include "cli/CliManager.h"
-#include "ui/UIManager.h"
 #include <iostream>
 
-int main(int argc, const char* argv[]) { // NOLINT
+int main(int argc, char* argv[]) { // NOLINT
     try {
-        if (/* detect GUI mode */ false) {
-            UIManager
-            return UIManager::run();
-        }
-        return CliManager::run(argc, argv);
-
+        return CliManager::run({argv, static_cast<size_t>(argc)});
     } catch (const std::exception& e) {
         std::cerr << "FATAL: " << e.what() << "\n";
     }

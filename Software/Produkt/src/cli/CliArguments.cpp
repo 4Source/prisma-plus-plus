@@ -1,31 +1,32 @@
-#include "CliArguments.h"
+#include "cli/CliArguments.h"
 #include <cxxopts.hpp>
 #include <iostream>
 
-CliArguments CliArguments::parse(int argc, const char* argv[]) {
-    CliArguments args;
+CliArguments CliArguments::parse(std::span<const char* const> args) {
+    CliArguments cliArgs;
     cxxopts::Options options("Prisma++", "CLI for OBJ input and raytraced output");
 
     options.add_options()
         ("h,help", "./prisma-puls-plus < objectfile.obj > rytracedimg.png\n ./prisma-plus-plus -f objectfile.obj > rytracedimg.png")
         ("f,file", "Input file path", cxxopts::value<std::string>())
-        ("v,verbose", "Verbose output")
         ;
 
-    auto result = options.parse(argc, argv);
+    auto result = options.parse(static_cast<int>(args.size()), args.data());
 
     if (result.count("help")) {
         std::cout << options.help() << "\n";
-        args.helpRequested = true;
-        return args;
+        cliArgs.helpRequested = true;
+        return cliArgs;
     }
 
     if (!result.count("file")) {
-        std::cerr << "Error: --file argument missing\n";
-        return args;
+        std::cout << "--file argument missing\n";
+        return cliArgs;
     }
 
-    args.file = result["file"].as<std::string>();
-    args.valid = true;
-    return args;
+    cliArgs.file = result["file"].as<std::string>();
+    // Check if string is valid path
+    // Convert to path instead of string
+    cliArgs.valid = true;
+    return cliArgs;
 }
