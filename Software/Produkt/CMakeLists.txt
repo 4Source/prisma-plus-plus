@@ -54,6 +54,8 @@ endif()
 add_subdirectory(external/glfw)
 add_subdirectory(external/glm)
 add_subdirectory(external/googletest)
+add_subdirectory(external/optionparser)
+add_subdirectory(external/tinyobjloader)
 
 # ------------------------------------------------------------------------------
 # ImGui setup
@@ -94,14 +96,17 @@ endforeach()
 
 add_library(prisma-core STATIC ${SRC_FILES})
 # ------------------------------------------------------------------------------
-# Add Library Folders include and ecternal/optionparser
+# Add Library Folders
 # ------------------------------------------------------------------------------
 target_include_directories(prisma-core PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/optionparser
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/optionparser/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader
 )
 target_link_libraries(prisma-core PUBLIC imgui)
 target_link_libraries(prisma-core PUBLIC glm)
+target_link_libraries(prisma-core PUBLIC cxxopts)
+target_link_libraries(prisma-core PUBLIC tinyobjloader)
 
 if(APPLE)
     target_link_libraries(prisma-core PUBLIC "-framework OpenGL")
