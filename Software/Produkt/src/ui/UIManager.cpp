@@ -2,6 +2,7 @@
 #include "ui/HierarchySidebar.h"
 #include "ui/MenuBar.h"
 #include "ui/SettingsSidebar.h"
+#include "ui/ScenePreview.h"
 
 UIManager::UIManager(int width, int height, const std::string &title) {
   if (!glfwInit()) {
@@ -29,6 +30,11 @@ UIManager::UIManager(int width, int height, const std::string &title) {
   }
 
   glfwMakeContextCurrent(window); // Make the OpenGL context current
+
+  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+    std::cerr << "Failed to initialize GLAD\n";
+    std::exit(EXIT_FAILURE);
+  }
 }
 
 UIManager::~UIManager() {
@@ -42,6 +48,7 @@ void UIManager::run() {
   Menubar menubar; // Menu bar instance
   HierarchySidebar hierarchySidebar(250.0f, 500.0f); // Sidebar instance (max width 250px, slide speed 500px/s)
   SettingsSidebar settingsSidebar(250.0f, 500.0f); // Settings sidebar
+  ScenePreview scenePreview;
 
   // -------- ImGui Setup --------
   IMGUI_CHECKVERSION();
@@ -90,11 +97,14 @@ void UIManager::run() {
     hierarchySidebar.draw(window_w, window_h);    // Draw the hierarchy sidebar
     settingsSidebar.draw(window_w, window_h);     // Draw settings sidebar
 
-    // -------- Render ImGui --------
-    ImGui::Render();
+    // Draw Scene Preview
     glViewport(0, 0, fb_w, fb_h);
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // Clear screen with dark background
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
+    scenePreview.draw(fb_w, fb_h);
+
+    // Render ImGui overlay on top
+    ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
     glfwSwapBuffers(window); // Swap front/back buffers
