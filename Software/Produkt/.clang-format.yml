@@ -1,7 +1,0 @@
-# LLVM Default
-BasedOnStyle: LLVM
-# No Tab
-IndentWidth: 4
-TabWidth: 4
-UseTab: Never
-ContinuationIndentWidth: 4
