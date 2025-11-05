@@ -48,17 +48,19 @@ bool CliManager::loadFromStdin(tinyobj::attrib_t &attributes, std::vector<tinyob
 
     return true;
 }
+    //TODO: write cli output to standard output
 
 bool CliManager::stdinHasData() {
     return !isatty(fileno(stdin));
 }
-/// @brief 
+/// @brief Main program startup controller
 /// @param args 
-/// @return error code 1 - help request, 2 - parser error, 3 - general run error 
+/// @return error code - 1 - general run error , 2 - parser error, 3 - help request
+//How can errors be handled - for top level with error codes??
 int CliManager::run(std::span<const char* const> args) {
     auto CliArgs = CliArguments::parse(args);
     if (CliArgs.helpRequested)
-        return 1;
+        return 3;
     
     if (CliManager::stdinHasData()) {
         //Standard input recognized -> use file from stdin
@@ -93,5 +95,5 @@ int CliManager::run(std::span<const char* const> args) {
         ui.run();                           // run main UI loop
         return 0;
     }
-    return 3;
+    return 1;
 }

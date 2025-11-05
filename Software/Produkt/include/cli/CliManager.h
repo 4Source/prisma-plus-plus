@@ -23,4 +23,6 @@ public:
     static bool stdinHasData();
 
     static int run(std::span<const char* const> args);
+
+    //TODO: write cli output to standard output
 };

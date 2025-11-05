@@ -25,8 +25,8 @@ CliArguments CliArguments::parse(std::span<const char* const> args) {
     }
 
     cliArgs.file = result["file"].as<std::string>();
-    // Check if string is valid path
-    // Convert to path instead of string
+    //TODO: Check if string is valid path
+    //TODO: Convert to path instead of string
     cliArgs.valid = true;
     return cliArgs;
 }
