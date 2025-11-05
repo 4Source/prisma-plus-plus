@@ -12,9 +12,9 @@
 #include "backends/imgui_impl_opengl3.h"
 #include "imgui.h"
 
-class UIManager { // NOLINT (cppcoreguidelines-special-member-functions)
-  public:
-    UIManager(int width, int height, const std::string &title); // Create window
+class UIManager { //NOLINT (cppcoreguidelines-special-member-functions)
+public:
+    UIManager(int width, int height, const std::string& title); // Create window
     ~UIManager();
 
     void run(); // Start main loop

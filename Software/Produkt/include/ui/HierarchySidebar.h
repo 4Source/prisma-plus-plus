@@ -7,6 +7,7 @@
 #include <imgui.h>
 #include <string>
 #include <vector>
+#include <array>
 
 // ------------------------------------------------------
 // HierarchySidebar

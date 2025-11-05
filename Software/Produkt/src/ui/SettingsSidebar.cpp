@@ -25,7 +25,8 @@ void SettingsSidebar::draw(int windowWidth, int windowHeight) {
     if (sidebarWidth > 0.0f) {
         float menuBarHeight = ImGui::GetFrameHeight();
         ImGui::SetNextWindowPos(ImVec2(0, menuBarHeight));
-        ImGui::SetNextWindowSize(ImVec2(sidebarWidth, (static_cast<float>(windowHeight) - static_cast<float>(menuBarHeight))));
+        ImGui::SetNextWindowSize(ImVec2(sidebarWidth,
+        (static_cast<float>(windowHeight) - static_cast<float>(menuBarHeight))));
 
         ImGuiWindowFlags sidebarFlags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse;
 
