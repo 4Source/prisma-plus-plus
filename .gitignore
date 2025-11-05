@@ -54,5 +54,6 @@
 Software/Produkt/build/*
 Software/Produkt/CMakeFiles/*
 Software/Produkt/CMakeCache.txt
+Software/Produkt/CMakeUserPresets.json
 
 #Googletest
