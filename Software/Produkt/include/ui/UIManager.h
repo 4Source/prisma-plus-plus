@@ -8,18 +8,18 @@
 #include <iostream>
 #include <string>
 
-#include "imgui.h"
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
+#include "imgui.h"
 
-class UIManager { //NOLINT (cppcoreguidelines-special-member-functions)
-public:
-    UIManager(int width, int height, const std::string& title); // Create window
+class UIManager { // NOLINT (cppcoreguidelines-special-member-functions)
+  public:
+    UIManager(int width, int height, const std::string &title); // Create window
     ~UIManager();
 
-    void run();  // Start main loop
-    auto getWindow() -> GLFWwindow* { return window; }
+    void run(); // Start main loop
+    auto getWindow() -> GLFWwindow * { return window; }
 
-private:
-    GLFWwindow* window; // Pointer to GLFW window
+  private:
+    GLFWwindow *window; // Pointer to GLFW window
 };

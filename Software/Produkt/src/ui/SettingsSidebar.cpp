@@ -2,8 +2,7 @@
 #include <iostream>
 
 SettingsSidebar::SettingsSidebar(float maxWidth_, float slideSpeed_)
-    : sidebarOpen(false), sidebarWidth(0.0f), maxWidth(maxWidth_),
-    slideSpeed(slideSpeed_), lastTime(glfwGetTime()){}
+    : sidebarOpen(false), sidebarWidth(0.0f), maxWidth(maxWidth_), slideSpeed(slideSpeed_), lastTime(glfwGetTime()) {}
 
 void SettingsSidebar::draw(int windowWidth, int windowHeight) {
     // --- Delta time ---
@@ -26,12 +25,9 @@ void SettingsSidebar::draw(int windowWidth, int windowHeight) {
     if (sidebarWidth > 0.0f) {
         float menuBarHeight = ImGui::GetFrameHeight();
         ImGui::SetNextWindowPos(ImVec2(0, menuBarHeight));
-        ImGui::SetNextWindowSize(ImVec2(sidebarWidth,
-        (static_cast<float>(windowHeight) - static_cast<float>(menuBarHeight))));
+        ImGui::SetNextWindowSize(ImVec2(sidebarWidth, (static_cast<float>(windowHeight) - static_cast<float>(menuBarHeight))));
 
-        ImGuiWindowFlags sidebarFlags = ImGuiWindowFlags_NoResize |
-                                        ImGuiWindowFlags_NoMove |
-                                        ImGuiWindowFlags_NoCollapse;
+        ImGuiWindowFlags sidebarFlags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse;
 
         ImGui::Begin("Settings", nullptr, sidebarFlags);
 
@@ -60,18 +56,13 @@ void SettingsSidebar::draw(int windowWidth, int windowHeight) {
     float menuBarHeight = ImGui::GetFrameHeight();
     ImVec2 buttonPos(sidebarWidth, menuBarHeight);
 
-    ImDrawList* draw_list = ImGui::GetBackgroundDrawList();
-    draw_list->AddRectFilled(
-        buttonPos, ImVec2(buttonPos.x + buttonSize, buttonPos.y + buttonSize),
-        IM_COL32(38, 46, 56, 255), 6.0f);
+    ImDrawList *draw_list = ImGui::GetBackgroundDrawList();
+    draw_list->AddRectFilled(buttonPos, ImVec2(buttonPos.x + buttonSize, buttonPos.y + buttonSize), IM_COL32(38, 46, 56, 255), 6.0f);
 
     // Manually detect clicks on the button
     ImVec2 mouse = ImGui::GetIO().MousePos;
-    if (!ImGui::GetIO().WantCaptureMouse && 
-        mouse.x >= buttonPos.x && mouse.x <= buttonPos.x + buttonSize &&
-        mouse.y >= buttonPos.y && mouse.y <= buttonPos.y + buttonSize &&
-        ImGui::IsMouseClicked(ImGuiMouseButton_Left))
-    {
+    if (!ImGui::GetIO().WantCaptureMouse && mouse.x >= buttonPos.x && mouse.x <= buttonPos.x + buttonSize && mouse.y >= buttonPos.y &&
+        mouse.y <= buttonPos.y + buttonSize && ImGui::IsMouseClicked(ImGuiMouseButton_Left)) {
         sidebarOpen = !sidebarOpen;
     }
 
@@ -82,17 +73,11 @@ void SettingsSidebar::draw(int windowWidth, int windowHeight) {
 
     if (sidebarOpen) {
         // Left-pointing arrow (close)
-        draw_list->AddTriangleFilled(
-            ImVec2(center.x - halfSize, center.y),
-            ImVec2(center.x + halfSize, center.y - halfSize),
-            ImVec2(center.x + halfSize, center.y + halfSize),
-            arrowColor);
+        draw_list->AddTriangleFilled(ImVec2(center.x - halfSize, center.y), ImVec2(center.x + halfSize, center.y - halfSize),
+                                     ImVec2(center.x + halfSize, center.y + halfSize), arrowColor);
     } else {
         // Right-pointing arrow (open)
-        draw_list->AddTriangleFilled(
-            ImVec2(center.x + halfSize, center.y),
-            ImVec2(center.x - halfSize, center.y - halfSize),
-            ImVec2(center.x - halfSize, center.y + halfSize),
-            arrowColor);
+        draw_list->AddTriangleFilled(ImVec2(center.x + halfSize, center.y), ImVec2(center.x - halfSize, center.y - halfSize),
+                                     ImVec2(center.x - halfSize, center.y + halfSize), arrowColor);
     }
 }

@@ -1,5 +1,3 @@
 #include "firstcode.h"
 
-auto add(int a, int b) -> int {
-    return a + b;
-}
+auto add(int a, int b) -> int { return a + b; }

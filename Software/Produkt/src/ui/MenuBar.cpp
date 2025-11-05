@@ -3,7 +3,7 @@
 
 void Menubar::draw() {
     if (ImGui::BeginMainMenuBar()) {
-        
+
         if (ImGui::BeginMenu("File")) {
             if (ImGui::MenuItem("Import Scene...")) {
                 std::cout << "<<Import Scene...>> called\n"; // ##### IMPLEMENT ACTUAL FUNCTION CALL #####
@@ -11,7 +11,7 @@ void Menubar::draw() {
             if (ImGui::MenuItem("Export Scene...")) {
                 std::cout << "<<Export Scene...>> called\n"; // ##### IMPLEMENT ACTUAL FUNCTION CALL #####
             }
-            ImGui::Separator(); 
+            ImGui::Separator();
             if (ImGui::MenuItem("Import Object...")) {
                 std::cout << "<<Import Object...>> called\n"; // ##### IMPLEMENT ACTUAL FUNCTION CALL #####
             }
@@ -33,10 +33,10 @@ void Menubar::draw() {
                 std::cout << "<<Shortcuts>> called\n"; // ##### IMPLEMENT ACTUAL FUNCTION CALL #####
             }
             ImGui::Separator();
-            if (ImGui::MenuItem("About")) { 
+            if (ImGui::MenuItem("About")) {
                 std::cout << "<<About>> called\n"; // ##### IMPLEMENT ACTUAL FUNCTION CALL #####
             }
-            
+
             ImGui::EndMenu();
         }
 
