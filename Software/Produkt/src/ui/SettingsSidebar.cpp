@@ -2,7 +2,8 @@
 #include <iostream>
 
 SettingsSidebar::SettingsSidebar(float maxWidth_, float slideSpeed_)
-    : sidebarOpen(false), sidebarWidth(0.0f), maxWidth(maxWidth_), slideSpeed(slideSpeed_), lastTime(glfwGetTime()) {}
+    : sidebarOpen(false), sidebarWidth(0.0f), maxWidth(maxWidth_),
+      slideSpeed(slideSpeed_), lastTime(glfwGetTime()) {}
 
 void SettingsSidebar::draw(int windowWidth, int windowHeight) {
   // --- Delta time ---
@@ -21,64 +22,32 @@ void SettingsSidebar::draw(int windowWidth, int windowHeight) {
       sidebarWidth = 0;
   }
 
-    // --- Sidebar window ---
-    if (sidebarWidth > 0.0f) {
-        float menuBarHeight = ImGui::GetFrameHeight();
-        ImGui::SetNextWindowPos(ImVec2(0, menuBarHeight));
-        ImGui::SetNextWindowSize(ImVec2(sidebarWidth,
-        (static_cast<float>(windowHeight) - static_cast<float>(menuBarHeight))));
-
-        ImGuiWindowFlags sidebarFlags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse;
-
-        ImGui::Begin("Settings", nullptr, sidebarFlags);
-
-        // --- Scrollable area ---
-        ImGui::BeginChild("SettingsScroll", ImVec2(0, 0), true);
-
-        // --- Objects Section ---
-        if (ImGui::CollapsingHeader("Objects", ImGuiTreeNodeFlags_DefaultOpen)) {
-            // TODO: Add object settings
-        }
-
-        ImGui::Separator();
-
-        // --- Lights Section ---
-        if (ImGui::CollapsingHeader("Lights", ImGuiTreeNodeFlags_DefaultOpen)) {
-            // TODO: Add light settings
-        }
-
-        ImGui::EndChild();
-
-        ImGui::End();
-    }
-
-    // --- Arrow toggle button ---
-    float buttonSize = 30.0f;
+  // --- Sidebar window ---
+  if (sidebarWidth > 0.0f) {
     float menuBarHeight = ImGui::GetFrameHeight();
     ImGui::SetNextWindowPos(ImVec2(0, menuBarHeight));
     ImGui::SetNextWindowSize(
-        ImVec2(sidebarWidth, windowHeight - menuBarHeight));
+        ImVec2(sidebarWidth, static_cast<float>(windowHeight) - static_cast<float>(menuBarHeight)));
 
-    ImDrawList *draw_list = ImGui::GetBackgroundDrawList();
-    draw_list->AddRectFilled(buttonPos, ImVec2(buttonPos.x + buttonSize, buttonPos.y + buttonSize), IM_COL32(38, 46, 56, 255), 6.0f);
+    ImGuiWindowFlags sidebarFlags = ImGuiWindowFlags_NoResize |
+                                    ImGuiWindowFlags_NoMove |
+                                    ImGuiWindowFlags_NoCollapse;
 
-    // Manually detect clicks on the button
-    ImVec2 mouse = ImGui::GetIO().MousePos;
-    if (!ImGui::GetIO().WantCaptureMouse && mouse.x >= buttonPos.x && mouse.x <= buttonPos.x + buttonSize && mouse.y >= buttonPos.y &&
-        mouse.y <= buttonPos.y + buttonSize && ImGui::IsMouseClicked(ImGuiMouseButton_Left)) {
-        sidebarOpen = !sidebarOpen;
+    ImGui::Begin("Settings", nullptr, sidebarFlags);
+
+    // --- Scrollable area ---
+    ImGui::BeginChild("SettingsScroll", ImVec2(0, 0), true);
+
+    // --- Objects Section ---
+    if (ImGui::CollapsingHeader("Objects", ImGuiTreeNodeFlags_DefaultOpen)) {
+      // TODO: Add object settings
     }
 
     ImGui::Separator();
 
-    if (sidebarOpen) {
-        // Left-pointing arrow (close)
-        draw_list->AddTriangleFilled(ImVec2(center.x - halfSize, center.y), ImVec2(center.x + halfSize, center.y - halfSize),
-                                     ImVec2(center.x + halfSize, center.y + halfSize), arrowColor);
-    } else {
-        // Right-pointing arrow (open)
-        draw_list->AddTriangleFilled(ImVec2(center.x + halfSize, center.y), ImVec2(center.x - halfSize, center.y - halfSize),
-                                     ImVec2(center.x - halfSize, center.y + halfSize), arrowColor);
+    // --- Lights Section ---
+    if (ImGui::CollapsingHeader("Lights", ImGuiTreeNodeFlags_DefaultOpen)) {
+      // TODO: Add light settings
     }
 
     ImGui::EndChild();
