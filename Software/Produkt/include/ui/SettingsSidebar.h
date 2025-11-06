@@ -18,9 +18,9 @@ class SettingsSidebar {
     // slideSpeed: Animation speed (pixels per second)
     SettingsSidebar(float maxWidth, float slideSpeed);
 
-    // -------- Draw & Update --------
-    // Handles rendering and interaction logic each frame
-    void draw(int windowWidth, int windowHeight);
+  // -------- Draw & Update --------
+  // Handles rendering and interaction logic each frame
+  void draw(int windowWidth, int windowHeight);
 
   private:
     // -------- Sidebar State --------

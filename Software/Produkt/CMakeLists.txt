@@ -7,7 +7,7 @@
 # cmake -S Software/Produkt -B Software/Produkt/build -G Ninja -DCHECK_CLANG=ON
 # ------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.16)
-project(prisma-plus-plus LANGUAGES CXX)
+project(prisma-plus-plus LANGUAGES C CXX)
 
 # Always use Ninja and build inside ./build
 if(NOT CMAKE_GENERATOR STREQUAL "Ninja")
@@ -56,6 +56,10 @@ add_subdirectory(external/glm)
 add_subdirectory(external/googletest)
 add_subdirectory(external/optionparser)
 add_subdirectory(external/tinyobjloader)
+
+# --- GLAD ---
+add_library(glad STATIC external/glad/src/glad.c)
+target_include_directories(glad PUBLIC external/glad/include)
 
 # ------------------------------------------------------------------------------
 # ImGui setup
@@ -107,6 +111,7 @@ target_link_libraries(prisma-core PUBLIC imgui)
 target_link_libraries(prisma-core PUBLIC glm)
 target_link_libraries(prisma-core PUBLIC cxxopts)
 target_link_libraries(prisma-core PUBLIC tinyobjloader)
+target_link_libraries(prisma-core PUBLIC glad)
 
 if(APPLE)
     target_link_libraries(prisma-core PUBLIC "-framework OpenGL")

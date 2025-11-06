@@ -3,7 +3,7 @@
 #ifdef __APPLE__
 #define GL_SILENCE_DEPRECATION
 #endif
-
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <string>
@@ -14,8 +14,8 @@
 
 class UIManager { //NOLINT (cppcoreguidelines-special-member-functions)
 public:
-    UIManager(int width, int height, const std::string& title); // Create window
-    ~UIManager();
+  UIManager(int width, int height, const std::string &title); // Create window
+  ~UIManager();
 
     void run(); // Start main loop
     auto getWindow() -> GLFWwindow * { return window; }

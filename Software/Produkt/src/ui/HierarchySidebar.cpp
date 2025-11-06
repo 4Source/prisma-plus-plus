@@ -129,7 +129,8 @@ void HierarchySidebar::draw(int windowWidth, int windowHeight) {
         ImGui::SameLine();
         if (ImGui::Button("X", ImVec2(25, 0))) {
           objectNames.erase(objectNames.begin() + i);
-          objectVisible.erase(objectVisible.begin() + i); // Remove visibility entry
+          objectVisible.erase(objectVisible.begin() +
+                              i); // Remove visibility entry
           if (selectedType == SelectedType::Object && selectedIndex == i)
             selectedIndex = -1;
           ImGui::PopStyleVar();

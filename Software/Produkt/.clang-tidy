@@ -13,7 +13,8 @@ Checks: >
   -modernize-use-auto,
   -bugprone-easily-swappable-parameters,
   -modernize-use-trailing-return-type,
-  -performance-enum-size
+  -performance-enum-size,
+  -cppcoreguidelines-pro-type-union-access
 
 #TODO Activate WarningsAsErrors after building googletest
 WarningsAsErrors: "*"

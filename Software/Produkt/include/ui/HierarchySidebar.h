@@ -12,8 +12,9 @@
 // ------------------------------------------------------
 // HierarchySidebar
 // ------------------------------------------------------
-// A sliding sidebar for displaying a hierarchy list (e.g., scene objects, lights).
-// Appears on the right side of the window and toggles open/closed with animation.
+// A sliding sidebar for displaying a hierarchy list (e.g., scene objects,
+// lights). Appears on the right side of the window and toggles open/closed with
+// animation.
 //
 
 class HierarchySidebar {
@@ -23,9 +24,9 @@ class HierarchySidebar {
     // slideSpeed: Animation speed (pixels per second)
     HierarchySidebar(float maxWidth, float slideSpeed);
 
-    // -------- Draw & Update --------
-    // Handles rendering and interaction logic each frame
-    void draw(int windowWidth, int windowHeight);
+  // -------- Draw & Update --------
+  // Handles rendering and interaction logic each frame
+  void draw(int windowWidth, int windowHeight);
 
   private:
     // -------- Sidebar State --------
@@ -48,10 +49,10 @@ class HierarchySidebar {
     SelectedType renamingType = SelectedType::None; // Type of item being renamed
     std::array<char, 128> renameBuffer{};           // Temporary buffer for renaming text
 
-    // -------- Hierarchy Data --------
-    std::vector<std::string> objectNames; // Names of objects in the hierarchy
-    std::vector<std::string> lightNames;  // Names of lights in the hierarchy
-    std::vector<bool> objectVisible;      // Visibility flags for objects
+  // -------- Hierarchy Data --------
+  std::vector<std::string> objectNames; // Names of objects in the hierarchy
+  std::vector<std::string> lightNames;  // Names of lights in the hierarchy
+  std::vector<bool> objectVisible;      // Visibility flags for objects
 
   public:
     // -------- Hierarchy Management --------

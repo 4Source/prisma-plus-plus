@@ -1,6 +1,7 @@
 #include "ui/UIManager.h"
 #include "ui/HierarchySidebar.h"
 #include "ui/MenuBar.h"
+#include "ui/ScenePreview.h"
 #include "ui/SettingsSidebar.h"
 
 UIManager::UIManager(int width, int height, const std::string &title) {
@@ -28,7 +29,12 @@ UIManager::UIManager(int width, int height, const std::string &title) {
         std::exit(EXIT_FAILURE);
     }
 
-    glfwMakeContextCurrent(window); // Make the OpenGL context current
+  glfwMakeContextCurrent(window); // Make the OpenGL context current
+
+  if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+    std::cerr << "Failed to initialize GLAD\n";
+    std::exit(EXIT_FAILURE);
+  }
 }
 
 UIManager::~UIManager() {
@@ -38,10 +44,13 @@ UIManager::~UIManager() {
 }
 
 void UIManager::run() {
-    // -------- Initialization of UI Components --------
-    Menubar menubar;                                   // Menu bar instance
-    HierarchySidebar hierarchySidebar(250.0f, 500.0f); // Sidebar instance (max width 250px, slide speed 500px/s)
-    SettingsSidebar settingsSidebar(250.0f, 500.0f);   // Settings sidebar
+  // -------- Initialization of UI Components --------
+  Menubar menubar; // Menu bar instance
+  HierarchySidebar hierarchySidebar(
+      250.0f,
+      500.0f); // Sidebar instance (max width 250px, slide speed 500px/s)
+  SettingsSidebar settingsSidebar(250.0f, 500.0f); // Settings sidebar
+  ScenePreview scenePreview;
 
     // -------- ImGui Setup --------
     IMGUI_CHECKVERSION();
@@ -100,8 +109,39 @@ void UIManager::run() {
         glfwSwapBuffers(window); // Swap front/back buffers
     }
 
-    // -------- Cleanup ImGui --------
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplGlfw_Shutdown();
-    ImGui::DestroyContext();
+    // -------- Start ImGui Frame --------
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+
+    // -------- Window & Framebuffer sizes --------
+    int fb_w = 0;
+    int fb_h = 0;
+    glfwGetFramebufferSize(window, &fb_w, &fb_h);
+
+    int window_w = 0, window_h = 0;
+    glfwGetWindowSize(window, &window_w, &window_h);
+
+    // -------- Draw UI Components --------
+    menubar.draw();                            // Draw the menu bar
+    hierarchySidebar.draw(window_w, window_h); // Draw the hierarchy sidebar
+    settingsSidebar.draw(window_w, window_h);  // Draw settings sidebar
+
+    // Draw Scene Preview
+    glViewport(0, 0, fb_w, fb_h);
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+    scenePreview.draw(fb_w, fb_h);
+
+    // Render ImGui overlay on top
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+    glfwSwapBuffers(window); // Swap front/back buffers
+  }
+
+  // -------- Cleanup ImGui --------
+  ImGui_ImplOpenGL3_Shutdown();
+  ImGui_ImplGlfw_Shutdown();
+  ImGui::DestroyContext();
 }
