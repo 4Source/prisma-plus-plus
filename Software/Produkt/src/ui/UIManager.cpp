@@ -1,8 +1,8 @@
 #include "ui/UIManager.h"
 #include "ui/HierarchySidebar.h"
 #include "ui/MenuBar.h"
-#include "ui/SettingsSidebar.h"
 #include "ui/ScenePreview.h"
+#include "ui/SettingsSidebar.h"
 
 UIManager::UIManager(int width, int height, const std::string &title) {
   if (!glfwInit()) {
@@ -46,7 +46,9 @@ UIManager::~UIManager() {
 void UIManager::run() {
   // -------- Initialization of UI Components --------
   Menubar menubar; // Menu bar instance
-  HierarchySidebar hierarchySidebar(250.0f, 500.0f); // Sidebar instance (max width 250px, slide speed 500px/s)
+  HierarchySidebar hierarchySidebar(
+      250.0f,
+      500.0f); // Sidebar instance (max width 250px, slide speed 500px/s)
   SettingsSidebar settingsSidebar(250.0f, 500.0f); // Settings sidebar
   ScenePreview scenePreview;
 
@@ -93,9 +95,9 @@ void UIManager::run() {
     glfwGetWindowSize(window, &window_w, &window_h);
 
     // -------- Draw UI Components --------
-    menubar.draw();                               // Draw the menu bar
-    hierarchySidebar.draw(window_w, window_h);    // Draw the hierarchy sidebar
-    settingsSidebar.draw(window_w, window_h);     // Draw settings sidebar
+    menubar.draw();                            // Draw the menu bar
+    hierarchySidebar.draw(window_w, window_h); // Draw the hierarchy sidebar
+    settingsSidebar.draw(window_w, window_h);  // Draw settings sidebar
 
     // Draw Scene Preview
     glViewport(0, 0, fb_w, fb_h);

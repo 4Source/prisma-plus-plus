@@ -4,5 +4,5 @@
 
 class Menubar {
 public:
-    void draw();  // draw menubar
+  void draw(); // draw menubar
 };

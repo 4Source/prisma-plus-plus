@@ -6,72 +6,46 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 #include <vector>
-
+#include <array>
+#include <cstddef>
+#include <cstdint>
 // -----------------------------------------------
 //  Simple geometry (diamond object)
 // -----------------------------------------------
-float objVertices[] = {
+
+constexpr std::array<float, 108> objVertices = {
     // positions        // colors
-    0.0f,  0.45f, 0.0f,  1.0f, 0.9f, 0.95f, // 0 
-    0.25f,  0.45f, 0.0f,  0.9f, 0.95f, 1.0f, // 1 
-    0.45f,  0.2f,  0.0f,  0.95f, 1.0f, 0.98f, // 2 
+     0.0f,  0.45f, 0.0f,  1.0f, 0.9f, 0.95f, // 0 
+     0.25f,  0.45f, 0.0f,  0.9f, 0.95f, 1.0f, // 1 
+     0.45f,  0.2f,  0.0f,  0.95f, 1.0f, 0.98f, // 2 
     -0.25f, 0.45f, 0.0f,  0.98f, 0.95f, 1.0f, // 3 
     -0.45f, 0.2f,  0.0f,  1.0f, 0.97f, 0.95f, // 4 
-    0.0f,  -0.3f, 0.0f,  0.95f, 0.98f, 1.0f, // 5 
-    -0.35,  0.2,   -0.18, 0.97f, 0.9f, 1.0f, // 6 
-    0.35,   0.2,   -0.18, 0.9f, 0.95f, 1.0f, // 7 
-    -0.35,  0.2,   0.18,  1.0f, 0.92f, 0.95f, // 8 
-    0.35,   0.2,   0.18,  0.95f, 0.96f, 1.0f, // 9 
-    -0.15, 0.2,   -0.3,  0.98f, 0.9f, 0.97f, // 10 
-    0.15,  0.2,   -0.3,  0.9f, 0.95f, 1.0f, // 11 
-    -0.15, 0.2,   0.3,   1.0f, 0.93f, 0.95f, // 12 
-    0.15,  0.2,   0.3,   0.95f, 0.95f, 1.0f, // 13 
-    -0.15, 0.45, -0.15,  1.0f, 0.9f, 0.95f, // 14 
-    0.15,  0.45, -0.15,  0.9f, 0.95f, 1.0f, // 15 
-    -0.15, 0.45, 0.15,   1.0f, 0.92f, 0.95f, // 16 
-    0.15,  0.45, 0.15,   0.95f, 0.95f, 1.0f  // 17 
+     0.0f,  -0.3f, 0.0f,  0.95f, 0.98f, 1.0f, // 5 
+    -0.35f,  0.2f,  -0.18f, 0.97f, 0.9f, 1.0f, // 6 
+     0.35f,   0.2f,  -0.18f, 0.9f, 0.95f, 1.0f, // 7 
+    -0.35f,  0.2f,   0.18f,  1.0f, 0.92f, 0.95f, // 8 
+     0.35f,   0.2f,   0.18f,  0.95f, 0.96f, 1.0f, // 9 
+    -0.15f, 0.2f,   -0.3f,  0.98f, 0.9f, 0.97f, // 10 
+     0.15f,  0.2f,   -0.3f,  0.9f, 0.95f, 1.0f, // 11 
+    -0.15f, 0.2f,   0.3f,   1.0f, 0.93f, 0.95f, // 12 
+     0.15f,  0.2f,   0.3f,   0.95f, 0.95f, 1.0f, // 13 
+    -0.15f, 0.45f, -0.15f,  1.0f, 0.9f, 0.95f, // 14 
+     0.15f,  0.45f, -0.15f,  0.9f, 0.95f, 1.0f, // 15 
+    -0.15f, 0.45f, 0.15f,   1.0f, 0.92f, 0.95f, // 16 
+     0.15f,  0.45f, 0.15f,   0.95f, 0.95f, 1.0f  // 17 
 };
 
-unsigned int objIndices[] = {
-    0, 15, 14, 
-    0, 14, 3,  
-    0, 3,  16, 
-    0, 16,  17,  
-    0, 17,  1, 
-    0, 1,  15,   
-    3, 14, 6, 
-    3, 6, 4,  
-    3, 4,  8, 
-    3, 8,  16, 
-    1, 7,  15, 
-    1, 2,  7,  
-    1, 9,  2, 
-    1, 17,  9, 
-    16, 8, 12, 
-    16, 12, 13,  
-    16, 13,  17, 
-    17, 13,  9, 
-    7, 11,  15, 
-    11, 14,  15,  
-    11, 10,  14, 
-    10, 6,  14, 
-    0, 15, 14, 
-    0, 14, 3,  
-    0, 3,  16, 
-    0, 16,  17,  
-    0, 17,  1, 
-    0, 1,  15,   
-    5, 10, 11, 
-    5, 11, 7,  
-    5, 7,  2, 
-    5, 2,  9, 
-    5, 9,  13, 
-    5, 13,  12,  
-    5, 12,  8, 
-    5, 8,  4, 
-    5, 4, 6, 
-    5, 6, 10
+constexpr std::array<unsigned int, 114> objIndices = {
+     0, 15, 14,  0, 14, 3,   0, 3, 16,   0, 16, 17,   0, 17, 1,   0, 1, 15,
+     3, 14, 6,   3, 6, 4,    3, 4, 8,    3, 8, 16,
+     1, 7, 15,   1, 2, 7,    1, 9, 2,    1, 17, 9,
+    16, 8, 12,  16, 12, 13, 16, 13, 17, 17, 13, 9,
+     7, 11, 15, 11, 14, 15, 11, 10, 14, 10, 6, 14,
+     0, 15, 14,  0, 14, 3,   0, 3, 16,   0, 16, 17,   0, 17, 1,   0, 1, 15,
+     5, 10, 11,  5, 11, 7,   5, 7, 2,    5, 2, 9,    5, 9, 13,   5, 13, 12,
+     5, 12, 8,   5, 8, 4,    5, 4, 6,    5, 6, 10
 };
+
 
 // -----------------------------------------------
 //  ScenePreview implementation
@@ -101,29 +75,34 @@ void ScenePreview::setupPyramid() {
   // Generate vertices with flat normals
   std::vector<float> verticesWithNormals;
   buildFlatVertices(objVertices, objIndices,
-                    sizeof(objIndices) / sizeof(unsigned int),
                     verticesWithNormals);
 
   // Upload vertex data
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
-  glBufferData(GL_ARRAY_BUFFER, verticesWithNormals.size() * sizeof(float),
+  glBufferData(GL_ARRAY_BUFFER, 
+              static_cast<GLsizeiptr>(verticesWithNormals.size() * sizeof(float)),
                verticesWithNormals.data(), GL_STATIC_DRAW);
 
   // Upload index data
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(objIndices), objIndices,
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(objIndices), objIndices.data(),
                GL_STATIC_DRAW);
 
   // Vertex attributes: position, colour, normal
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void *)0);
+  // Set up VAO attributes
+  //
+  // Info for std:bit_cast:
+  // reinterpret_cast<void*>(value); -> unsafe
+  // std::bit_cast<void*>(value); -> safe
+  constexpr GLsizei stride = 9 * sizeof(float);
+
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, nullptr);
   glEnableVertexAttribArray(0);
 
-  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float),
-                        (void *)(3 * sizeof(float)));
+  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, stride, std::bit_cast<void*>(3 * sizeof(float)));
   glEnableVertexAttribArray(1);
 
-  glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float),
-                        (void *)(6 * sizeof(float)));
+  glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, stride, std::bit_cast<void*>(6 * sizeof(float)));
   glEnableVertexAttribArray(2);
 
   // --- Vertex shader ---
@@ -195,12 +174,12 @@ unsigned int ScenePreview::compileShader(const char *source, unsigned int type) 
   glShaderSource(shader, 1, &source, nullptr);
   glCompileShader(shader);
 
-  int success;
-  char infoLog[512];
+  int success = 0;
+  std::array<char, 512> infoLog{};
   glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
   if (!success) {
-    glGetShaderInfoLog(shader, 512, nullptr, infoLog);
-    std::cerr << "Shader compilation error:\n" << infoLog << std::endl;
+    glGetShaderInfoLog(shader, 512, nullptr, infoLog.data());
+    std::cerr << "Shader compilation error:\n" << infoLog.data() << "\n";
   }
   return shader;
 }
@@ -215,12 +194,12 @@ unsigned int ScenePreview::createShaderProgram(const char *vertexSrc,
   glAttachShader(program, fragmentShader);
   glLinkProgram(program);
 
-  int success;
-  char infoLog[512];
+  int success = 0;
+  std::array<char, 512> infoLog{};
   glGetProgramiv(program, GL_LINK_STATUS, &success);
   if (!success) {
-    glGetProgramInfoLog(program, 512, nullptr, infoLog);
-    std::cerr << "Shader linking error:\n" << infoLog << std::endl;
+    glGetProgramInfoLog(program, 512, nullptr, infoLog.data());
+    std::cerr << "Shader linking error:\n" << infoLog.data() << "\n";
   }
 
   glDeleteShader(vertexShader);
@@ -228,37 +207,6 @@ unsigned int ScenePreview::createShaderProgram(const char *vertexSrc,
   return program;
 }
 
-/**
- * Expands indexed geometry into per-face vertices with unique normals.
- */
-void ScenePreview::buildFlatVertices(const float *vertices,
-                                     const unsigned int *indices,
-                                     int indexCount,
-                                     std::vector<float> &outVertices) {
-  for (int i = 0; i < indexCount; i += 3) {
-    unsigned int i0 = indices[i];
-    unsigned int i1 = indices[i + 1];
-    unsigned int i2 = indices[i + 2];
-
-    glm::vec3 v0(vertices[i0 * 6 + 0], vertices[i0 * 6 + 1], vertices[i0 * 6 + 2]);
-    glm::vec3 v1(vertices[i1 * 6 + 0], vertices[i1 * 6 + 1], vertices[i1 * 6 + 2]);
-    glm::vec3 v2(vertices[i2 * 6 + 0], vertices[i2 * 6 + 1], vertices[i2 * 6 + 2]);
-    glm::vec3 normal = glm::cross(v1 - v0, v2 - v0);
-
-    // Same normal for all 3 vertices in this face
-    for (unsigned int idx : {i0, i1, i2}) {
-      outVertices.push_back(vertices[idx * 6 + 0]);
-      outVertices.push_back(vertices[idx * 6 + 1]);
-      outVertices.push_back(vertices[idx * 6 + 2]);
-      outVertices.push_back(vertices[idx * 6 + 3]);
-      outVertices.push_back(vertices[idx * 6 + 4]);
-      outVertices.push_back(vertices[idx * 6 + 5]);
-      outVertices.push_back(normal.x);
-      outVertices.push_back(normal.y);
-      outVertices.push_back(normal.z);
-    }
-  }
-}
 
 /**
  * Draws the object with lighting and rotation controls.
@@ -291,7 +239,7 @@ void ScenePreview::draw(int width, int height) {
                   glm::vec3(0.0f, 0.0f, 0.0f),
                   glm::vec3(0.0f, 1.0f, 0.0f));
   glm::mat4 projection =
-      glm::perspective(glm::radians(45.0f), width / (float)height, 0.1f, 100.0f);
+      glm::perspective(glm::radians(45.0f), static_cast<float>(width) / static_cast<float>(height), 0.1f, 100.0f);
 
   // Send matrices to the shader
   glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "model"), 1, GL_FALSE,

@@ -38,7 +38,8 @@ void HierarchySidebar::draw(int windowWidth, int windowHeight) {
   if (sidebarWidth > 0.0f) {
     float menuBarHeight = ImGui::GetFrameHeight();
     ImGui::SetNextWindowPos(ImVec2(windowWidth - sidebarWidth, menuBarHeight));
-    ImGui::SetNextWindowSize(ImVec2(sidebarWidth, windowHeight - menuBarHeight));
+    ImGui::SetNextWindowSize(
+        ImVec2(sidebarWidth, windowHeight - menuBarHeight));
 
     ImGuiWindowFlags sidebarFlags = ImGuiWindowFlags_NoResize |
                                     ImGuiWindowFlags_NoMove |
@@ -126,7 +127,8 @@ void HierarchySidebar::draw(int windowWidth, int windowHeight) {
         ImGui::SameLine();
         if (ImGui::Button("X", ImVec2(25, 0))) {
           objectNames.erase(objectNames.begin() + i);
-          objectVisible.erase(objectVisible.begin() + i); // Remove visibility entry
+          objectVisible.erase(objectVisible.begin() +
+                              i); // Remove visibility entry
           if (selectedType == SelectedType::Object && selectedIndex == i)
             selectedIndex = -1;
           ImGui::PopStyleVar();
@@ -301,9 +303,8 @@ void HierarchySidebar::draw(int windowWidth, int windowHeight) {
   }
 }
 
-void HierarchySidebar::addLight(const std::string& name) {
-    lightNames.push_back(name);
-    selectedType = SelectedType::Light;
-    selectedIndex = lightNames.size() - 1;
+void HierarchySidebar::addLight(const std::string &name) {
+  lightNames.push_back(name);
+  selectedType = SelectedType::Light;
+  selectedIndex = lightNames.size() - 1;
 }
-
