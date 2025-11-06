@@ -1,6 +1,7 @@
 #pragma once
 #include <glm/glm.hpp>
 #include <vector>
+#include <bit>
 
 /**
  * This class sets up a simple shaded 3D object (a diamond shape),

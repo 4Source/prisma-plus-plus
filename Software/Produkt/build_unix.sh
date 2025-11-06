@@ -5,7 +5,6 @@
 # Build with tidy:
 # ./build_unix.sh
 # -----------------------------------------
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
@@ -33,5 +32,6 @@ if [ "$NO_TIDY" = false ]; then
 fi
 
 echo -e "\033[34mRunning build...\033[0m"
+set -e
 cmake --build "$SCRIPT_DIR/build"
 

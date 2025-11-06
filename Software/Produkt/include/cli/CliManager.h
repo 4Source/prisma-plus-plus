@@ -9,8 +9,14 @@
 #include <span>
 #include <sstream>
 #include <string>
-#include <unistd.h>
 #include <vector>
+
+#ifdef _WIN32
+#include <io.h>
+#include <stdio.h>
+#else
+#include <unistd.h>
+#endif
 
 struct CliArguments;
 

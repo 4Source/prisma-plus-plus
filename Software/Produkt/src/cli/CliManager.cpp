@@ -49,7 +49,13 @@ bool CliManager::writeOutputFile(const std::filesystem::path &path, std::vector<
 
 /// @brief
 /// @return standard input exist - true : flase
-bool CliManager::stdinHasData() { return !isatty(fileno(stdin)); }
+bool CliManager::stdinHasData() { 
+    #ifdef _WIN32
+        return !_isatty(_fileno(stdin));
+    #else
+        return !isatty(fileno(stdin));
+    #endif
+}
 
 /// @brief Main program startup controller
 /// @param args
