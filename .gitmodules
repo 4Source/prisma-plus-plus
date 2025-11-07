@@ -16,3 +16,6 @@
 [submodule "Software/Produkt/external/optionparser"]
 	path = Software/Produkt/external/optionparser
 	url = https://github.com/jarro2783/cxxopts.git
+[submodule "Software/Produkt/external/stduuid"]
+	path = Software/Produkt/external/stduuid
+	url = https://github.com/mariusbancila/stduuid

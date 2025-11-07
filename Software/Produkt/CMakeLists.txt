@@ -63,6 +63,7 @@ add_subdirectory(external/tinyobjloader)
 # --- GLAD ---
 add_library(glad STATIC external/glad/src/glad.c)
 target_include_directories(glad PUBLIC external/glad/include)
+add_subdirectory(external/stduuid)
 
 # ------------------------------------------------------------------------------
 # ImGui setup
@@ -115,6 +116,9 @@ target_link_libraries(prisma-core PUBLIC glm)
 target_link_libraries(prisma-core PUBLIC cxxopts)
 target_link_libraries(prisma-core PUBLIC tinyobjloader)
 target_link_libraries(prisma-core PUBLIC glad)
+target_link_libraries(prisma-core PUBLIC stduuid)
+
+target_compile_definitions(prisma-core PUBLIC UUID_SYSTEM_GENERATOR)
 
 if(APPLE)
     target_link_libraries(prisma-core PUBLIC "-framework OpenGL")
