@@ -2,10 +2,10 @@
 #include "core/HitComponent.hpp"
 
 class Primitive : public HitComponent {
-protected:
-public:
+  protected:
+  public:
     Primitive() = default;
-    ~Primitive() = default;
-    
-  virtual bool Hit() const = 0;
+    virtual ~Primitive() = default;
+
+    virtual bool Hit() const = 0;
 };

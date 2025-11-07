@@ -22,8 +22,8 @@ bool Triangle::Hit() const {
 }
 
 std::string Triangle::toString() {
-    std::string s;
-    s += "vertices: ";
+    std::string s = Primitive::toString();
+    s += " vertices: ";
     for (size_t i = 0; i < m_Vertices.size(); i++) {
         s += glm::to_string(m_Vertices.at(i)) + " ";
     }

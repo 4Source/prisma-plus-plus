@@ -1,8 +1,8 @@
 #include "core/HitComponentOctree.hpp"
 
-bool HitComponentOctree::Hit() const { 
+bool HitComponentOctree::Hit() const {
     // TODO: Implement Hit for Octree
-    return false; 
+    return false;
 }
 
 void HitComponentOctree::Add(HitComponent &in) {
