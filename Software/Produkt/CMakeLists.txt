@@ -158,6 +158,7 @@ endforeach()
 
 add_executable(runTests ${TEST_FILES})
 
+target_include_directories(runTests PRIVATE ${CMAKE_SOURCE_DIR}/tests)
 target_link_libraries(runTests PRIVATE gtest_main)
 target_link_libraries(runTests PRIVATE prisma-core)
 
