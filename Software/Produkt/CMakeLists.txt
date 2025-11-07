@@ -7,7 +7,7 @@
 # cmake -S Software/Produkt -B Software/Produkt/build -G Ninja -DCHECK_CLANG=ON
 # ------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.16)
-project(prisma-plus-plus LANGUAGES CXX)
+project(prisma-plus-plus LANGUAGES C CXX)
 
 # Always use Ninja and build inside ./build
 if(NOT CMAKE_GENERATOR STREQUAL "Ninja")
@@ -22,6 +22,9 @@ endif()
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+message(STATUS "C++ standard: ${CMAKE_CXX_STANDARD}")
+message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 
 # Enable exceptions
 if(MSVC)
@@ -54,6 +57,12 @@ endif()
 add_subdirectory(external/glfw)
 add_subdirectory(external/glm)
 add_subdirectory(external/googletest)
+add_subdirectory(external/optionparser)
+add_subdirectory(external/tinyobjloader)
+
+# --- GLAD ---
+add_library(glad STATIC external/glad/src/glad.c)
+target_include_directories(glad PUBLIC external/glad/include)
 
 # ------------------------------------------------------------------------------
 # ImGui setup
@@ -94,14 +103,18 @@ endforeach()
 
 add_library(prisma-core STATIC ${SRC_FILES})
 # ------------------------------------------------------------------------------
-# Add Library Folders include and ecternal/optionparser
+# Add Library Folders
 # ------------------------------------------------------------------------------
 target_include_directories(prisma-core PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/optionparser
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/optionparser/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader
 )
 target_link_libraries(prisma-core PUBLIC imgui)
 target_link_libraries(prisma-core PUBLIC glm)
+target_link_libraries(prisma-core PUBLIC cxxopts)
+target_link_libraries(prisma-core PUBLIC tinyobjloader)
+target_link_libraries(prisma-core PUBLIC glad)
 
 if(APPLE)
     target_link_libraries(prisma-core PUBLIC "-framework OpenGL")

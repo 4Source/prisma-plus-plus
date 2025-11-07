@@ -30,3 +30,4 @@ if (-not $no_tidy) {
 
 Write-Host "Running Build..." -ForegroundColor Blue
 cmake --build "$ScriptDir\build"
+exit $LASTEXITCODE
