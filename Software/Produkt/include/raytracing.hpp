@@ -1,4 +1,3 @@
-// NOLINTBEGIN
 #include <fstream>
 #include <iostream>
 #define GLM_ENABLE_EXPERIMENTAL
@@ -197,4 +196,3 @@ struct Camera{
 	}
 
 };
-// NOLINTEND
