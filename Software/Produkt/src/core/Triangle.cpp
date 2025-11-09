@@ -2,7 +2,7 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 
-Triangle::Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2) : m_Vertices{vertex0, vertex1, vertex2} {
+Triangle::Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2) : m_Vertices{vertex0, vertex1, vertex2}, m_FaceNormal(NAN) {
     if (!(std::isfinite(vertex0.x) && std::isfinite(vertex0.y) && std::isfinite(vertex0.z))) {
         throw std::invalid_argument("Vertex 0 has NaN or infinite vertex components.");
     }
@@ -63,9 +63,9 @@ bool Triangle::hit() const {
 
 std::string Triangle::toString() {
     std::string s = Primitive::toString();
-    s += " vertices: ";
-    for (size_t i = 0; i < m_Vertices.size(); i++) {
-        s += glm::to_string(m_Vertices.at(i)) + " ";
+    s += " type: 'Triangle' vertices: ";
+    for (const auto &vertex : m_Vertices) {
+        s += glm::to_string(vertex) + " ";
     }
 
     s += "face normal: " + glm::to_string(m_FaceNormal);

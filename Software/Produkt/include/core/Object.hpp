@@ -6,12 +6,12 @@
 
 class Object {
   private:
-    std::unique_ptr<HitComponent> m_Component;
-    std::unique_ptr<Material> m_Material;
+    std::shared_ptr<HitComponent> m_Component;
+    std::shared_ptr<Material> m_Material;
 
   public:
-    Object(std::filesystem::path objectPath);
-    Object(std::filesystem::path objectPath, std::filesystem::path materialPath);
+    Object(const std::filesystem::path& objectPath);
+    Object(const std::filesystem::path& objectPath, const std::filesystem::path& materialPath);
     ~Object() = default;
 
     Object(const Object &) = delete;

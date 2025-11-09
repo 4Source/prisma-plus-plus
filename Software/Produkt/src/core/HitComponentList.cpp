@@ -9,12 +9,29 @@ bool HitComponentList::hit() const {
     return false;
 }
 
-void HitComponentList::add(HitComponent &in) {
-    // TODO: How to solve the slicing with copy/move and derived classes
-    // auto component = std::make_unique<HitComponent>(in);
-    // m_Children.push_back(std::move(component));
+void HitComponentList::add(std::shared_ptr<HitComponent> component) { m_Children.push_back(component); }
+
+void HitComponentList::remove(std::shared_ptr<HitComponent> component) {
+    auto to_remove = std::ranges::remove_if(m_Children, [&](const std::shared_ptr<HitComponent> &c) { return *c == *component; });
+    m_Children.erase(to_remove.begin(), to_remove.end());
 }
 
-void HitComponentList::remove(HitComponent &in) {
-    // m_Children.erase(std::remove(m_Children.begin(), m_Children.end(), in), m_Children.end());
+std::shared_ptr<HitComponent> HitComponentList::getChild(size_t position) { return m_Children.at(position); }
+
+std::shared_ptr<HitComponent> HitComponentList::getChild(uuids::uuid uuid) {
+    for (size_t i = 0; i < size(); i++) {
+        return m_Children.at(i)->getChild(uuid);
+    }
+    return nullptr;
+}
+
+std::string HitComponentList::toString() {
+    std::string s = HitComponent::toString();
+    s += " type: 'HitComponentList' size: " + std::to_string(size()) + " components: [";
+
+    for (size_t i = 0; i < size(); i++) {
+        s += "{" + getChild(i)->toString() + (((i + 1) == size()) ? "}, " : "}");
+    }
+    s += "]";
+    return s;
 }
