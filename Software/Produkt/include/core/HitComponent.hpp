@@ -10,14 +10,11 @@ class HitComponent {
     HitComponent() : m_UUID{uuids::uuid_system_generator{}()} {};
     virtual ~HitComponent() = default;
 
-    HitComponent(const HitComponent &) : m_UUID{uuids::uuid_system_generator{}()} {}
-    HitComponent &operator=(const HitComponent &) {
-        m_UUID = uuids::uuid_system_generator{}();
-        return *this;
-    }
+    HitComponent(const HitComponent &) = delete;
+    HitComponent &operator=(const HitComponent &) = delete;
 
-    HitComponent(HitComponent &&) noexcept = default;
-    HitComponent &operator=(HitComponent &&) noexcept = default;
+    HitComponent(HitComponent &&) noexcept = delete;;
+    HitComponent &operator=(HitComponent &&) noexcept = delete;
 
     uuids::uuid getUUID() const { return m_UUID; }
     std::string getUUIDString() const { return uuids::to_string(m_UUID); }
