@@ -56,7 +56,7 @@ Triangle::Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2, glm:
     }
 }
 
-bool Triangle::Hit() const {
+bool Triangle::hit() const {
     // TODO: Implement Triangle Hit
     return false;
 }

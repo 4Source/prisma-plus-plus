@@ -18,6 +18,5 @@ class Object {
     Object &operator=(const Object &) = delete;
 
     Object(Object &&other) noexcept;
-
     Object &operator=(Object &&other) noexcept;
 };

@@ -18,7 +18,7 @@ class Triangle : public Primitive {
     std::array<glm::vec3, 3> getVertices() const { return m_Vertices; }
     glm::vec3 getFaceNormal() const { return m_FaceNormal; }
 
-    virtual bool Hit() const override;
+    virtual bool hit() const override;
 
     virtual std::string toString() override;
 };

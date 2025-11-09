@@ -7,5 +7,5 @@ class Primitive : public HitComponent {
     Primitive() = default;
     virtual ~Primitive() = default;
 
-    virtual bool Hit() const = 0;
+    virtual bool hit() const = 0;
 };

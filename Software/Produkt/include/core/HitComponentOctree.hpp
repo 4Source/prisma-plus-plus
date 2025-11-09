@@ -12,9 +12,9 @@ class HitComponentOctree : public HitComponent {
     HitComponentOctree() = default;
     virtual ~HitComponentOctree() = default;
 
-    virtual bool Hit() const override;
-    virtual void Add(HitComponent &in) override;
-    virtual void Remove(HitComponent &in) override;
+    virtual bool hit() const override;
+    virtual void add(HitComponent &in) override;
+    virtual void remove(HitComponent &in) override;
 
     virtual std::string toString() override;
 };

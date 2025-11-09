@@ -19,9 +19,9 @@ class HitComponent {
     uuids::uuid getUUID() const { return m_UUID; }
     std::string getUUIDString() const { return uuids::to_string(m_UUID); }
 
-    virtual bool Hit() const = 0;
-    virtual void Add(HitComponent &in) {}
-    virtual void Remove(HitComponent &in) {}
+    virtual bool hit() const = 0;
+    virtual void add(HitComponent &in) {}
+    virtual void remove(HitComponent &in) {}
 
     bool operator==(const HitComponent &other) const { return m_UUID == other.m_UUID; }
     virtual std::string toString() { return "uuid: " + uuids::to_string(m_UUID); };
