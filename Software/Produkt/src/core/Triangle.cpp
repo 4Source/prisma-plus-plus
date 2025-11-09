@@ -33,6 +33,8 @@ Triangle::Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2) : m_
     }
 }
 
+Triangle::Triangle(std::array<glm::vec3, 3> vertices) : Triangle{vertices.at(0), vertices.at(1), vertices.at(2)} {}
+
 Triangle::Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2, glm::vec3 normal)
     : m_Vertices{vertex0, vertex1, vertex2}, m_FaceNormal{glm::normalize(normal)} {
     if (!(std::isfinite(vertex0.x) && std::isfinite(vertex0.y) && std::isfinite(vertex0.z))) {
@@ -55,6 +57,8 @@ Triangle::Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2, glm:
         throw std::invalid_argument("Face Normal has NaN or infinite vertex components.");
     }
 }
+
+Triangle::Triangle(std::array<glm::vec3, 3> vertices, glm::vec3 normal) : Triangle{vertices.at(0), vertices.at(1), vertices.at(2), normal} {}
 
 bool Triangle::hit() const {
     // TODO: Implement Triangle Hit

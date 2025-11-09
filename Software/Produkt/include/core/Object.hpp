@@ -10,15 +10,20 @@ class Object {
     std::shared_ptr<Material> m_Material;
 
   public:
-    Object(const std::filesystem::path& objectPath);
-    Object(const std::filesystem::path& objectPath, const std::filesystem::path& materialPath);
+    /**
+     * Creates an object from an .obj file. Will import the material file if one is provided inside the .obj the .mat file has to be in
+     * same folder as .obj file.
+     *
+     * @param objectPath A relative or absolute path to an .obj file
+     */
+    Object(const std::filesystem::path &objectPath);
     ~Object() = default;
 
     Object(const Object &) = delete;
     Object &operator=(const Object &) = delete;
 
-    Object(Object &&other) noexcept;
-    Object &operator=(Object &&other) noexcept;
+    Object(Object &&other) noexcept = delete;
+    Object &operator=(Object &&other) noexcept = delete;
 
     std::string toString(bool formatted = false, int indentLevel = 0);
 };
