@@ -30,7 +30,7 @@ std::string HitComponentList::toString() {
     s += " type: 'HitComponentList' size: " + std::to_string(size()) + " components: [";
 
     for (size_t i = 0; i < size(); i++) {
-        s += "{" + getChild(i)->toString() + (((i + 1) == size()) ? "}, " : "}");
+        s += "{" + getChild(i)->toString() + (((i + 1) == size()) ? "}" : "}, ");
     }
     s += "]";
     return s;
