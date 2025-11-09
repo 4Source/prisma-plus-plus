@@ -18,5 +18,5 @@ class HitComponentOctree : public HitComponent {
     virtual std::shared_ptr<HitComponent> getChild(size_t position) override;
     virtual std::shared_ptr<HitComponent> getChild(uuids::uuid uuid) override;
 
-    virtual std::string toString() override;
+    virtual std::string toString(bool formatted = false, int indentLevel = 0) override;
 };

@@ -23,13 +23,15 @@ std::shared_ptr<HitComponent> HitComponentOctree::getChild(uuids::uuid uuid) {
     return nullptr;
 }
 
-std::string HitComponentOctree::toString() {
-    std::string s = HitComponent::toString();
-    s += " type: 'HitComponentOctree' components: [";
+std::string HitComponentOctree::toString(bool formatted, int indentLevel) {
+    std::string s = (formatted ? std::string(indentLevel, '\t') : std::string("")) + HitComponent::toString(formatted, indentLevel) + (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "type: 'HitComponentOctree'" + (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "components: [" + (formatted ? std::string("\n") : std::string(" "));
 
     // for (size_t i = 0; i < size(); i++) {
-    //     s += "{" + at(i)->toString() + (((i + 1) == size()) ? "}, " : "}");
+    //     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "{" + getChild(i)->toString(formatted, indentLevel) + (((i + 1) == size()) ? "}" : "}, ") +
+    //          (formatted ? std::string("\n") : std::string(""));
     // }
-    s += "]";
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "]" + (formatted ? std::string("\n") : std::string(""));
     return s;
 }

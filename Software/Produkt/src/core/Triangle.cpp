@@ -61,14 +61,18 @@ bool Triangle::hit() const {
     return false;
 }
 
-std::string Triangle::toString() {
-    std::string s = Primitive::toString();
-    s += " type: 'Triangle' vertices: ";
-    for (const auto &vertex : m_Vertices) {
-        s += glm::to_string(vertex) + " ";
+std::string Triangle::toString(bool formatted, int indentLevel) {
+    std::string s =
+        (formatted ? std::string(indentLevel, '\t') : std::string("")) + Primitive::toString(formatted, indentLevel);
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "type: 'Triangle'" + (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "vertices: [" + (formatted ? std::string("\n") : std::string(""));
+    for (size_t i = 0; i < m_Vertices.size(); i++) {
+        s += (formatted ? std::string(indentLevel + 1, '\t') : std::string("")) + glm::to_string(m_Vertices.at(i)) + (((i + 1) == m_Vertices.size()) ? "" : ", ") +
+             (formatted ? std::string("\n") : std::string(""));
     }
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "]" + (formatted ? std::string("\n") : std::string(" "));
 
-    s += "face normal: " + glm::to_string(m_FaceNormal);
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "face normal: " + glm::to_string(m_FaceNormal);
 
     return s;
 }

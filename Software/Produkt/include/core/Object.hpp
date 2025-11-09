@@ -19,4 +19,6 @@ class Object {
 
     Object(Object &&other) noexcept;
     Object &operator=(Object &&other) noexcept;
+
+    std::string toString(bool formatted = false, int indentLevel = 0);
 };

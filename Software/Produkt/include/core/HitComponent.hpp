@@ -27,5 +27,5 @@ class HitComponent {
     virtual std::shared_ptr<HitComponent> getChild(uuids::uuid uuid) = 0;
 
     bool operator==(const HitComponent &other) const { return m_UUID == other.m_UUID; }
-    virtual std::string toString() { return "uuid: " + uuids::to_string(m_UUID); };
+    virtual std::string toString(bool formatted = false, int indentLevel = 0) { return "uuid: " + uuids::to_string(m_UUID) + (formatted ? std::string("\n") : std::string(" ")); };
 };

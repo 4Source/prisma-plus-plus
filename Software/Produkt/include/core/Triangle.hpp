@@ -20,5 +20,5 @@ class Triangle : public Primitive {
 
     virtual bool hit() const override;
 
-    virtual std::string toString() override;
+    virtual std::string toString(bool formatted = false, int indentLevel = 0) override;
 };
