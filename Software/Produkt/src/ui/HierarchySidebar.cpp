@@ -2,8 +2,8 @@
 
 HierarchySidebar::HierarchySidebar(float maxWidth_, float slideSpeed_)
     : sidebarOpen(false), sidebarWidth(0.0f), maxWidth(maxWidth_),
-      slideSpeed(slideSpeed_), lightsOpen(true), objectsOpen(true) {
-  lastTime = glfwGetTime();
+      slideSpeed(slideSpeed_), lightsOpen(true), objectsOpen(true), 
+      lastTime(glfwGetTime()) {
 
   // Initialize object and light names
   objectNames.resize(5);
@@ -37,8 +37,10 @@ void HierarchySidebar::draw(int windowWidth, int windowHeight) {
   // --- Sidebar window ---
   if (sidebarWidth > 0.0f) {
     float menuBarHeight = ImGui::GetFrameHeight();
-    ImGui::SetNextWindowPos(ImVec2(windowWidth - sidebarWidth, menuBarHeight));
-    ImGui::SetNextWindowSize(ImVec2(sidebarWidth, windowHeight - menuBarHeight));
+    ImGui::SetNextWindowPos(ImVec2(static_cast<float>(windowWidth) - static_cast<float>(sidebarWidth),
+    menuBarHeight));
+    ImGui::SetNextWindowSize(ImVec2(sidebarWidth,
+      static_cast<float>(windowHeight) - static_cast<float>(menuBarHeight)));
 
     ImGuiWindowFlags sidebarFlags = ImGuiWindowFlags_NoResize |
                                     ImGuiWindowFlags_NoMove |
@@ -67,14 +69,15 @@ void HierarchySidebar::draw(int windowWidth, int windowHeight) {
 
         if (renamingType == SelectedType::Object && renamingIndex == i) {
           // Renaming mode input
-          if (ImGui::InputText("##rename", renameBuffer, sizeof(renameBuffer),
-                               ImGuiInputTextFlags_EnterReturnsTrue)) {
-            if (strlen(renameBuffer) > 0) {
-              label = renameBuffer;
-              renamingIndex = -1;
-              renamingType = SelectedType::None;
+          if (ImGui::InputText("##rename", renameBuffer.data(), renameBuffer.size(),
+                     ImGuiInputTextFlags_EnterReturnsTrue)) {
+            if (std::strlen(renameBuffer.data()) > 0) {
+                label = renameBuffer.data();
+                renamingIndex = -1;
+                renamingType = SelectedType::None;
             }
-          }
+        }
+
         } else {
           // Show dimmed when another item is being renamed
           if (isRenaming)
@@ -102,7 +105,7 @@ void HierarchySidebar::draw(int windowWidth, int windowHeight) {
             renamingType = SelectedType::Object;
             selectedIndex = i;
             selectedType = SelectedType::Object;
-            strncpy(renameBuffer, label.c_str(), sizeof(renameBuffer));
+            strncpy(renameBuffer.data(), label.c_str(), renameBuffer.size());
           }
         }
 
@@ -126,7 +129,8 @@ void HierarchySidebar::draw(int windowWidth, int windowHeight) {
         ImGui::SameLine();
         if (ImGui::Button("X", ImVec2(25, 0))) {
           objectNames.erase(objectNames.begin() + i);
-          objectVisible.erase(objectVisible.begin() + i); // Remove visibility entry
+          objectVisible.erase(objectVisible.begin() +
+                              i); // Remove visibility entry
           if (selectedType == SelectedType::Object && selectedIndex == i)
             selectedIndex = -1;
           ImGui::PopStyleVar();
@@ -152,9 +156,9 @@ void HierarchySidebar::draw(int windowWidth, int windowHeight) {
       ImGui::BeginDisabled(isRenaming);
       ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(4, 2));
       if (ImGui::Button("+", ImVec2(25, 0))) {
-        objectNames.push_back("New Object");
+        objectNames.emplace_back("New Object");
         objectVisible.push_back(true);
-        selectedIndex = objectNames.size() - 1;
+        selectedIndex = static_cast<int>(objectNames.size()) - 1;
         selectedType = SelectedType::Object;
       }
       ImGui::PopStyleVar();
@@ -181,14 +185,14 @@ void HierarchySidebar::draw(int windowWidth, int windowHeight) {
         ImGui::PushItemWidth(textWidth);
 
         if (renamingType == SelectedType::Light && renamingIndex == i) {
-          if (ImGui::InputText("##rename", renameBuffer, sizeof(renameBuffer),
-                               ImGuiInputTextFlags_EnterReturnsTrue)) {
-            if (strlen(renameBuffer) > 0) {
-              label = renameBuffer;
-              renamingIndex = -1;
-              renamingType = SelectedType::None;
+          if (ImGui::InputText("##rename", renameBuffer.data(), renameBuffer.size(),
+              ImGuiInputTextFlags_EnterReturnsTrue)) {
+            if (std::strlen(renameBuffer.data()) > 0) {
+                label = renameBuffer.data();
+                renamingIndex = -1;
+                renamingType = SelectedType::None;
             }
-          }
+        }
         } else {
           if (isRenaming)
             ImGui::PushStyleVar(ImGuiStyleVar_Alpha, 0.5f);
@@ -214,7 +218,7 @@ void HierarchySidebar::draw(int windowWidth, int windowHeight) {
             renamingType = SelectedType::Light;
             selectedIndex = i;
             selectedType = SelectedType::Light;
-            strncpy(renameBuffer, label.c_str(), sizeof(renameBuffer));
+            strncpy(renameBuffer.data(), label.c_str(), renameBuffer.size());
           }
         }
 
@@ -304,6 +308,6 @@ void HierarchySidebar::draw(int windowWidth, int windowHeight) {
 void HierarchySidebar::addLight(const std::string& name) {
     lightNames.push_back(name);
     selectedType = SelectedType::Light;
-    selectedIndex = lightNames.size() - 1;
-}
+    selectedIndex = static_cast<int>(lightNames.size()) - 1;
 
+}

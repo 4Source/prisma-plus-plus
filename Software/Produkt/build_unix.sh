@@ -1,12 +1,12 @@
 # -----------------------------------------
 # Build-Script with clang-tidy-Checks
 # Build without tidy:
-# .\build_windows.ps1 --no_tidy
+# ./build_unix.sh --no_tidy
 # Build with tidy:
-# .\build_windows.ps1
+# ./build_unix.sh
 # -----------------------------------------
-
-set -e
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
 
 NO_TIDY=false
 for arg in "$@"; do
@@ -16,11 +16,11 @@ for arg in "$@"; do
 done
 
 echo -e "\033[34mConfigure CMake...\033[0m"
-cmake -S . -B build -G Ninja
+cmake -S "$SCRIPT_DIR" -B "$SCRIPT_DIR/build" -G Ninja
 
 if [ "$NO_TIDY" = false ]; then
     echo -e "\033[34mRunning clang-tidy...\033[0m"
-    output=$(./run_clang_tidy.sh 2>&1)
+    output=$("$SCRIPT_DIR/run_clang_tidy.sh" 2>&1)
 
     if echo "$output" | grep -q "error:"; then
         echo "$output"
@@ -32,4 +32,6 @@ if [ "$NO_TIDY" = false ]; then
 fi
 
 echo -e "\033[34mRunning build...\033[0m"
-cmake --build build
+set -e
+cmake --build "$SCRIPT_DIR/build"
+

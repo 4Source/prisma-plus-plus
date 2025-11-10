@@ -1,32 +1,15 @@
+#include "cli/CliManager.h"
 #include <iostream>
-#include <stdexcept>
-#include <firstcode.h>
-#include "ui/UIManager.h"
 
-auto main() -> int { // NOLINT(bugprone-exception-escape)
+/// @brief
+/// @param argc
+/// @param argv
+/// @return
+int main(int argc, char *argv[]) { // NOLINT
     try {
-        std::cout << "Hello Prisma++" << "\n";
-        std::cout << "Add-Lib: " << add(1,2) << "\n";
-        
-        //  create window
-        UIManager ui(800, 600, "Prisma++"); // NOLINT
-        ui.run();                           // run main UI loop
-        return 0;
+        return CliManager::run({argv, static_cast<size_t>(argc)});
+    } catch (const std::exception &e) {
+        std::cerr << "FATAL: " << e.what() << "\n";
     }
-    catch (const std::exception& e) {
-        // Handle it internally to prevent it from escaping.
-        // Note: I/O itself can still throw, but this is the intent.
-        std::cerr << "ERROR: " << e.what() << "\n";
-    }
-    catch (...) {
-        std::cerr << "ERROR: Unknown exception caught." << "\n";
-    }
-
-    // Since we caught the exception, we can still exit cleanly with an error code.
-    return 1; 
-}
-
-auto test() -> int
-{
     return 1;
 }
