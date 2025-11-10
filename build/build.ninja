@@ -56,8 +56,6 @@ build CMakeFiles/glad.dir/external/glad/src/glad.c.o: C_COMPILER__glad_unscanned
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include
   OBJECT_DIR = CMakeFiles/glad.dir
   OBJECT_FILE_DIR = CMakeFiles/glad.dir/external/glad/src
-  TARGET_COMPILE_PDB = CMakeFiles/glad.dir/glad.pdb
-  TARGET_PDB = libglad.pdb
 
 
 # =============================================================================
@@ -73,9 +71,8 @@ build libglad.a: C_STATIC_LIBRARY_LINKER__glad_Debug CMakeFiles/glad.dir/externa
   OBJECT_DIR = CMakeFiles/glad.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = CMakeFiles/glad.dir/glad.pdb
   TARGET_FILE = libglad.a
-  TARGET_PDB = libglad.pdb
+  TARGET_PDB = glad.a.dbg
 
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target imgui
@@ -93,8 +90,6 @@ build CMakeFiles/imgui.dir/external/imgui/imgui.cpp.o: CXX_COMPILER__imgui_unsca
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include
   OBJECT_DIR = CMakeFiles/imgui.dir
   OBJECT_FILE_DIR = CMakeFiles/imgui.dir/external/imgui
-  TARGET_COMPILE_PDB = CMakeFiles/imgui.dir/imgui.pdb
-  TARGET_PDB = libimgui.pdb
 
 build CMakeFiles/imgui.dir/external/imgui/imgui_draw.cpp.o: CXX_COMPILER__imgui_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/imgui_draw.cpp || cmake_object_order_depends_target_imgui
   CONFIG = Debug
@@ -103,8 +98,6 @@ build CMakeFiles/imgui.dir/external/imgui/imgui_draw.cpp.o: CXX_COMPILER__imgui_
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include
   OBJECT_DIR = CMakeFiles/imgui.dir
   OBJECT_FILE_DIR = CMakeFiles/imgui.dir/external/imgui
-  TARGET_COMPILE_PDB = CMakeFiles/imgui.dir/imgui.pdb
-  TARGET_PDB = libimgui.pdb
 
 build CMakeFiles/imgui.dir/external/imgui/imgui_tables.cpp.o: CXX_COMPILER__imgui_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/imgui_tables.cpp || cmake_object_order_depends_target_imgui
   CONFIG = Debug
@@ -113,8 +106,6 @@ build CMakeFiles/imgui.dir/external/imgui/imgui_tables.cpp.o: CXX_COMPILER__imgu
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include
   OBJECT_DIR = CMakeFiles/imgui.dir
   OBJECT_FILE_DIR = CMakeFiles/imgui.dir/external/imgui
-  TARGET_COMPILE_PDB = CMakeFiles/imgui.dir/imgui.pdb
-  TARGET_PDB = libimgui.pdb
 
 build CMakeFiles/imgui.dir/external/imgui/imgui_widgets.cpp.o: CXX_COMPILER__imgui_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/imgui_widgets.cpp || cmake_object_order_depends_target_imgui
   CONFIG = Debug
@@ -123,8 +114,6 @@ build CMakeFiles/imgui.dir/external/imgui/imgui_widgets.cpp.o: CXX_COMPILER__img
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include
   OBJECT_DIR = CMakeFiles/imgui.dir
   OBJECT_FILE_DIR = CMakeFiles/imgui.dir/external/imgui
-  TARGET_COMPILE_PDB = CMakeFiles/imgui.dir/imgui.pdb
-  TARGET_PDB = libimgui.pdb
 
 build CMakeFiles/imgui.dir/external/imgui/backends/imgui_impl_glfw.cpp.o: CXX_COMPILER__imgui_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends/imgui_impl_glfw.cpp || cmake_object_order_depends_target_imgui
   CONFIG = Debug
@@ -133,8 +122,6 @@ build CMakeFiles/imgui.dir/external/imgui/backends/imgui_impl_glfw.cpp.o: CXX_CO
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include
   OBJECT_DIR = CMakeFiles/imgui.dir
   OBJECT_FILE_DIR = CMakeFiles/imgui.dir/external/imgui/backends
-  TARGET_COMPILE_PDB = CMakeFiles/imgui.dir/imgui.pdb
-  TARGET_PDB = libimgui.pdb
 
 build CMakeFiles/imgui.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o: CXX_COMPILER__imgui_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends/imgui_impl_opengl3.cpp || cmake_object_order_depends_target_imgui
   CONFIG = Debug
@@ -143,8 +130,6 @@ build CMakeFiles/imgui.dir/external/imgui/backends/imgui_impl_opengl3.cpp.o: CXX
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include
   OBJECT_DIR = CMakeFiles/imgui.dir
   OBJECT_FILE_DIR = CMakeFiles/imgui.dir/external/imgui/backends
-  TARGET_COMPILE_PDB = CMakeFiles/imgui.dir/imgui.pdb
-  TARGET_PDB = libimgui.pdb
 
 
 # =============================================================================
@@ -160,9 +145,8 @@ build libimgui.a: CXX_STATIC_LIBRARY_LINKER__imgui_Debug CMakeFiles/imgui.dir/ex
   OBJECT_DIR = CMakeFiles/imgui.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = CMakeFiles/imgui.dir/imgui.pdb
   TARGET_FILE = libimgui.a
-  TARGET_PDB = libimgui.pdb
+  TARGET_PDB = imgui.a.dbg
 
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target prisma-core
@@ -180,8 +164,6 @@ build CMakeFiles/prisma-core.dir/src/cli/CliArguments.cpp.o: CXX_COMPILER__prism
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/cli
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/cli/CliManager.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/cli/CliManager.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -190,8 +172,6 @@ build CMakeFiles/prisma-core.dir/src/cli/CliManager.cpp.o: CXX_COMPILER__prisma-
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/cli
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/core/HitComponent.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/core/HitComponent.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -200,8 +180,6 @@ build CMakeFiles/prisma-core.dir/src/core/HitComponent.cpp.o: CXX_COMPILER__pris
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/core
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/core/HitComponentList.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/core/HitComponentList.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -210,8 +188,6 @@ build CMakeFiles/prisma-core.dir/src/core/HitComponentList.cpp.o: CXX_COMPILER__
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/core
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/core/HitComponentOctree.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/core/HitComponentOctree.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -220,8 +196,6 @@ build CMakeFiles/prisma-core.dir/src/core/HitComponentOctree.cpp.o: CXX_COMPILER
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/core
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/core/Object.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/core/Object.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -230,8 +204,6 @@ build CMakeFiles/prisma-core.dir/src/core/Object.cpp.o: CXX_COMPILER__prisma-cor
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/core
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/core/PointLight.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/core/PointLight.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -240,8 +212,6 @@ build CMakeFiles/prisma-core.dir/src/core/PointLight.cpp.o: CXX_COMPILER__prisma
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/core
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/core/Primitive.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/core/Primitive.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -250,8 +220,6 @@ build CMakeFiles/prisma-core.dir/src/core/Primitive.cpp.o: CXX_COMPILER__prisma-
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/core
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/core/Ray.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/core/Ray.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -260,8 +228,6 @@ build CMakeFiles/prisma-core.dir/src/core/Ray.cpp.o: CXX_COMPILER__prisma-core_u
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/core
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/core/Subray.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/core/Subray.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -270,8 +236,6 @@ build CMakeFiles/prisma-core.dir/src/core/Subray.cpp.o: CXX_COMPILER__prisma-cor
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/core
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/core/Triangle.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/core/Triangle.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -280,8 +244,6 @@ build CMakeFiles/prisma-core.dir/src/core/Triangle.cpp.o: CXX_COMPILER__prisma-c
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/core
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/ui/HierarchySidebar.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/ui/HierarchySidebar.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -290,8 +252,6 @@ build CMakeFiles/prisma-core.dir/src/ui/HierarchySidebar.cpp.o: CXX_COMPILER__pr
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/ui
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/ui/MenuBar.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/ui/MenuBar.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -300,8 +260,6 @@ build CMakeFiles/prisma-core.dir/src/ui/MenuBar.cpp.o: CXX_COMPILER__prisma-core
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/ui
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/ui/ScenePreview.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/ui/ScenePreview.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -310,8 +268,6 @@ build CMakeFiles/prisma-core.dir/src/ui/ScenePreview.cpp.o: CXX_COMPILER__prisma
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/ui
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/ui/SettingsSidebar.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/ui/SettingsSidebar.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -320,8 +276,6 @@ build CMakeFiles/prisma-core.dir/src/ui/SettingsSidebar.cpp.o: CXX_COMPILER__pri
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/ui
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 build CMakeFiles/prisma-core.dir/src/ui/UIManager.cpp.o: CXX_COMPILER__prisma-core_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/src/ui/UIManager.cpp || cmake_object_order_depends_target_prisma-core
   CONFIG = Debug
@@ -330,8 +284,6 @@ build CMakeFiles/prisma-core.dir/src/ui/UIManager.cpp.o: CXX_COMPILER__prisma-co
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-core.dir/src/ui
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
-  TARGET_PDB = libprisma-core.pdb
 
 
 # =============================================================================
@@ -347,9 +299,8 @@ build libprisma-core.a: CXX_STATIC_LIBRARY_LINKER__prisma-core_Debug CMakeFiles/
   OBJECT_DIR = CMakeFiles/prisma-core.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-core.dir/prisma-core.pdb
   TARGET_FILE = libprisma-core.a
-  TARGET_PDB = libprisma-core.pdb
+  TARGET_PDB = prisma-core.a.dbg
 
 # =============================================================================
 # Object build statements for EXECUTABLE target prisma-plus-plus
@@ -367,8 +318,6 @@ build CMakeFiles/prisma-plus-plus.dir/src/main.cpp.o: CXX_COMPILER__prisma-plus-
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid
   OBJECT_DIR = CMakeFiles/prisma-plus-plus.dir
   OBJECT_FILE_DIR = CMakeFiles/prisma-plus-plus.dir/src
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-plus-plus.dir/
-  TARGET_PDB = prisma-plus-plus.pdb
 
 
 # =============================================================================
@@ -387,9 +336,8 @@ build prisma-plus-plus: CXX_EXECUTABLE_LINKER__prisma-plus-plus_Debug CMakeFiles
   OBJECT_DIR = CMakeFiles/prisma-plus-plus.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = CMakeFiles/prisma-plus-plus.dir/
   TARGET_FILE = prisma-plus-plus
-  TARGET_PDB = prisma-plus-plus.pdb
+  TARGET_PDB = prisma-plus-plus.dbg
 
 # =============================================================================
 # Object build statements for EXECUTABLE target runTests
@@ -407,8 +355,6 @@ build CMakeFiles/runTests.dir/tests/core/test_HitComponent.cpp.o: CXX_COMPILER__
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/tests -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/include -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest
   OBJECT_DIR = CMakeFiles/runTests.dir
   OBJECT_FILE_DIR = CMakeFiles/runTests.dir/tests/core
-  TARGET_COMPILE_PDB = CMakeFiles/runTests.dir/
-  TARGET_PDB = runTests.pdb
 
 build CMakeFiles/runTests.dir/tests/core/test_HitComponentList.cpp.o: CXX_COMPILER__runTests_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/tests/core/test_HitComponentList.cpp || cmake_object_order_depends_target_runTests
   CONFIG = Debug
@@ -417,8 +363,6 @@ build CMakeFiles/runTests.dir/tests/core/test_HitComponentList.cpp.o: CXX_COMPIL
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/tests -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/include -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest
   OBJECT_DIR = CMakeFiles/runTests.dir
   OBJECT_FILE_DIR = CMakeFiles/runTests.dir/tests/core
-  TARGET_COMPILE_PDB = CMakeFiles/runTests.dir/
-  TARGET_PDB = runTests.pdb
 
 build CMakeFiles/runTests.dir/tests/core/test_PointLight.cpp.o: CXX_COMPILER__runTests_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/tests/core/test_PointLight.cpp || cmake_object_order_depends_target_runTests
   CONFIG = Debug
@@ -427,8 +371,6 @@ build CMakeFiles/runTests.dir/tests/core/test_PointLight.cpp.o: CXX_COMPILER__ru
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/tests -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/include -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest
   OBJECT_DIR = CMakeFiles/runTests.dir
   OBJECT_FILE_DIR = CMakeFiles/runTests.dir/tests/core
-  TARGET_COMPILE_PDB = CMakeFiles/runTests.dir/
-  TARGET_PDB = runTests.pdb
 
 build CMakeFiles/runTests.dir/tests/core/test_Triangle.cpp.o: CXX_COMPILER__runTests_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/tests/core/test_Triangle.cpp || cmake_object_order_depends_target_runTests
   CONFIG = Debug
@@ -437,8 +379,6 @@ build CMakeFiles/runTests.dir/tests/core/test_Triangle.cpp.o: CXX_COMPILER__runT
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/tests -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/include -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest
   OBJECT_DIR = CMakeFiles/runTests.dir
   OBJECT_FILE_DIR = CMakeFiles/runTests.dir/tests/core
-  TARGET_COMPILE_PDB = CMakeFiles/runTests.dir/
-  TARGET_PDB = runTests.pdb
 
 build CMakeFiles/runTests.dir/tests/test_cli.cpp.o: CXX_COMPILER__runTests_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/tests/test_cli.cpp || cmake_object_order_depends_target_runTests
   CONFIG = Debug
@@ -447,8 +387,6 @@ build CMakeFiles/runTests.dir/tests/test_cli.cpp.o: CXX_COMPILER__runTests_unsca
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/tests -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/imgui/backends -I/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glad/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/include -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest
   OBJECT_DIR = CMakeFiles/runTests.dir
   OBJECT_FILE_DIR = CMakeFiles/runTests.dir/tests
-  TARGET_COMPILE_PDB = CMakeFiles/runTests.dir/
-  TARGET_PDB = runTests.pdb
 
 
 # =============================================================================
@@ -468,9 +406,8 @@ build runTests runTests[1]_tests.cmake | ${cmake_ninja_workdir}runTests[1]_tests
   POST_BUILD = cd /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build && /usr/bin/cmake -D TEST_TARGET=runTests -D TEST_EXECUTABLE=/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/runTests -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_FILTER= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=runTests_TESTS -D CTEST_FILE=/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/runTests[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -D TEST_DISCOVERY_EXTRA_ARGS= -D TEST_XML_OUTPUT_DIR= -P /usr/share/cmake/Modules/GoogleTestAddTests.cmake
   PRE_LINK = :
   RESTAT = 1
-  TARGET_COMPILE_PDB = CMakeFiles/runTests.dir/
   TARGET_FILE = runTests
-  TARGET_PDB = runTests.pdb
+  TARGET_PDB = runTests.dbg
 
 
 #############################################
@@ -668,8 +605,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/context.c.o: C_COMPILER__glfw_unscan
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/init.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/init.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -679,8 +614,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/init.c.o: C_COMPILER__glfw_unscanned
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/input.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/input.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -690,8 +623,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/input.c.o: C_COMPILER__glfw_unscanne
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/monitor.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -701,8 +632,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/monitor.c.o: C_COMPILER__glfw_unscan
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/platform.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/platform.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -712,8 +641,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/platform.c.o: C_COMPILER__glfw_unsca
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/vulkan.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -723,8 +650,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o: C_COMPILER__glfw_unscann
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/window.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/window.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -734,8 +659,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/window.c.o: C_COMPILER__glfw_unscann
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/egl_context.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -745,8 +668,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o: C_COMPILER__glfw_un
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/osmesa_context.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -756,8 +677,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o: C_COMPILER__glfw
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/null_init.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -767,8 +686,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/null_init.c.o: C_COMPILER__glfw_unsc
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/null_monitor.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -778,8 +695,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.o: C_COMPILER__glfw_u
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/null_window.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -789,8 +704,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/null_window.c.o: C_COMPILER__glfw_un
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/null_joystick.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -800,8 +713,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/null_joystick.c.o: C_COMPILER__glfw_
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/posix_module.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -811,8 +722,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/posix_module.c.o: C_COMPILER__glfw_u
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/posix_time.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -822,8 +731,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o: C_COMPILER__glfw_uns
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/posix_thread.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -833,8 +740,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o: C_COMPILER__glfw_u
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/x11_init.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -844,8 +749,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o: C_COMPILER__glfw_unsca
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/x11_monitor.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -855,8 +758,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o: C_COMPILER__glfw_un
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/x11_window.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -866,8 +767,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o: C_COMPILER__glfw_uns
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/xkb_unicode.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -877,8 +776,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o: C_COMPILER__glfw_un
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/glx_context.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -888,8 +785,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o: C_COMPILER__glfw_un
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/wl_init.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/wl_init.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -899,8 +794,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/wl_init.c.o: C_COMPILER__glfw_unscan
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/wl_monitor.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/wl_monitor.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -910,8 +803,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/wl_monitor.c.o: C_COMPILER__glfw_uns
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/wl_window.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/wl_window.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -921,8 +812,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/wl_window.c.o: C_COMPILER__glfw_unsc
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/linux_joystick.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -932,8 +821,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o: C_COMPILER__glfw
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 build external/glfw/src/CMakeFiles/glfw.dir/posix_poll.c.o: C_COMPILER__glfw_unscanned_Debug /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/posix_poll.c || cmake_object_order_depends_target_glfw
   CONFIG = Debug
@@ -943,8 +830,6 @@ build external/glfw/src/CMakeFiles/glfw.dir/posix_poll.c.o: C_COMPILER__glfw_uns
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   OBJECT_FILE_DIR = external/glfw/src/CMakeFiles/glfw.dir
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
 
 
 # =============================================================================
@@ -960,9 +845,8 @@ build external/glfw/src/libglfw3.a: C_STATIC_LIBRARY_LINKER__glfw_Debug external
   OBJECT_DIR = external/glfw/src/CMakeFiles/glfw.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = external/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
   TARGET_FILE = external/glfw/src/libglfw3.a
-  TARGET_PDB = external/glfw/src/libglfw3.pdb
+  TARGET_PDB = glfw3.a.dbg
 
 
 #############################################
@@ -1426,8 +1310,6 @@ build external/glm/glm/CMakeFiles/glm.dir/detail/glm.cpp.o: CXX_COMPILER__glm_un
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm
   OBJECT_DIR = external/glm/glm/CMakeFiles/glm.dir
   OBJECT_FILE_DIR = external/glm/glm/CMakeFiles/glm.dir/detail
-  TARGET_COMPILE_PDB = external/glm/glm/CMakeFiles/glm.dir/glm.pdb
-  TARGET_PDB = external/glm/glm/libglm.pdb
 
 
 # =============================================================================
@@ -1443,9 +1325,8 @@ build external/glm/glm/libglm.a: CXX_STATIC_LIBRARY_LINKER__glm_Debug external/g
   OBJECT_DIR = external/glm/glm/CMakeFiles/glm.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = external/glm/glm/CMakeFiles/glm.dir/glm.pdb
   TARGET_FILE = external/glm/glm/libglm.a
-  TARGET_PDB = external/glm/glm/libglm.pdb
+  TARGET_PDB = glm.a.dbg
 
 
 #############################################
@@ -1629,8 +1510,6 @@ build external/googletest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o: CX
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/include -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest
   OBJECT_DIR = external/googletest/googlemock/CMakeFiles/gmock.dir
   OBJECT_FILE_DIR = external/googletest/googlemock/CMakeFiles/gmock.dir/src
-  TARGET_COMPILE_PDB = lib/libgmockpdb_debug_postfix-NOTFOUND.pdb
-  TARGET_PDB = bin/libgmockpdb_debug_postfix-NOTFOUND.pdb
 
 
 # =============================================================================
@@ -1646,9 +1525,8 @@ build lib/libgmock.a: CXX_STATIC_LIBRARY_LINKER__gmock_Debug external/googletest
   OBJECT_DIR = external/googletest/googlemock/CMakeFiles/gmock.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = lib/libgmockpdb_debug_postfix-NOTFOUND.pdb
   TARGET_FILE = lib/libgmock.a
-  TARGET_PDB = bin/libgmockpdb_debug_postfix-NOTFOUND.pdb
+  TARGET_PDB = gmock.a.dbg
 
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target gmock_main
@@ -1666,8 +1544,6 @@ build external/googletest/googlemock/CMakeFiles/gmock_main.dir/src/gmock_main.cc
   INCLUDES = -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock/include -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/include -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest
   OBJECT_DIR = external/googletest/googlemock/CMakeFiles/gmock_main.dir
   OBJECT_FILE_DIR = external/googletest/googlemock/CMakeFiles/gmock_main.dir/src
-  TARGET_COMPILE_PDB = lib/libgmock_mainpdb_debug_postfix-NOTFOUND.pdb
-  TARGET_PDB = bin/libgmock_mainpdb_debug_postfix-NOTFOUND.pdb
 
 
 # =============================================================================
@@ -1683,9 +1559,8 @@ build lib/libgmock_main.a: CXX_STATIC_LIBRARY_LINKER__gmock_main_Debug external/
   OBJECT_DIR = external/googletest/googlemock/CMakeFiles/gmock_main.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = lib/libgmock_mainpdb_debug_postfix-NOTFOUND.pdb
   TARGET_FILE = lib/libgmock_main.a
-  TARGET_PDB = bin/libgmock_mainpdb_debug_postfix-NOTFOUND.pdb
+  TARGET_PDB = gmock_main.a.dbg
 
 
 #############################################
@@ -1786,8 +1661,6 @@ build external/googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o: CX
   INCLUDES = -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/include -I/home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest
   OBJECT_DIR = external/googletest/googletest/CMakeFiles/gtest.dir
   OBJECT_FILE_DIR = external/googletest/googletest/CMakeFiles/gtest.dir/src
-  TARGET_COMPILE_PDB = lib/libgtestpdb_debug_postfix-NOTFOUND.pdb
-  TARGET_PDB = bin/libgtestpdb_debug_postfix-NOTFOUND.pdb
 
 
 # =============================================================================
@@ -1803,9 +1676,8 @@ build lib/libgtest.a: CXX_STATIC_LIBRARY_LINKER__gtest_Debug external/googletest
   OBJECT_DIR = external/googletest/googletest/CMakeFiles/gtest.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = lib/libgtestpdb_debug_postfix-NOTFOUND.pdb
   TARGET_FILE = lib/libgtest.a
-  TARGET_PDB = bin/libgtestpdb_debug_postfix-NOTFOUND.pdb
+  TARGET_PDB = gtest.a.dbg
 
 # =============================================================================
 # Object build statements for STATIC_LIBRARY target gtest_main
@@ -1823,8 +1695,6 @@ build external/googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc
   INCLUDES = -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/include -isystem /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest
   OBJECT_DIR = external/googletest/googletest/CMakeFiles/gtest_main.dir
   OBJECT_FILE_DIR = external/googletest/googletest/CMakeFiles/gtest_main.dir/src
-  TARGET_COMPILE_PDB = lib/libgtest_mainpdb_debug_postfix-NOTFOUND.pdb
-  TARGET_PDB = bin/libgtest_mainpdb_debug_postfix-NOTFOUND.pdb
 
 
 # =============================================================================
@@ -1840,9 +1710,8 @@ build lib/libgtest_main.a: CXX_STATIC_LIBRARY_LINKER__gtest_main_Debug external/
   OBJECT_DIR = external/googletest/googletest/CMakeFiles/gtest_main.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = lib/libgtest_mainpdb_debug_postfix-NOTFOUND.pdb
   TARGET_FILE = lib/libgtest_main.a
-  TARGET_PDB = bin/libgtest_mainpdb_debug_postfix-NOTFOUND.pdb
+  TARGET_PDB = gtest_main.a.dbg
 
 
 #############################################
@@ -2108,8 +1977,6 @@ build external/tinyobjloader/CMakeFiles/tinyobjloader.dir/tiny_obj_loader.cc.o: 
   FLAGS = -g -std=c++11 -fexceptions
   OBJECT_DIR = external/tinyobjloader/CMakeFiles/tinyobjloader.dir
   OBJECT_FILE_DIR = external/tinyobjloader/CMakeFiles/tinyobjloader.dir
-  TARGET_COMPILE_PDB = external/tinyobjloader/CMakeFiles/tinyobjloader.dir/tinyobjloader.pdb
-  TARGET_PDB = external/tinyobjloader/libtinyobjloader.pdb
 
 
 # =============================================================================
@@ -2125,9 +1992,8 @@ build external/tinyobjloader/libtinyobjloader.a: CXX_STATIC_LIBRARY_LINKER__tiny
   OBJECT_DIR = external/tinyobjloader/CMakeFiles/tinyobjloader.dir
   POST_BUILD = :
   PRE_LINK = :
-  TARGET_COMPILE_PDB = external/tinyobjloader/CMakeFiles/tinyobjloader.dir/tinyobjloader.pdb
   TARGET_FILE = external/tinyobjloader/libtinyobjloader.a
-  TARGET_PDB = external/tinyobjloader/libtinyobjloader.pdb
+  TARGET_PDB = tinyobjloader.a.dbg
 
 
 #############################################
@@ -2434,14 +2300,14 @@ build external/tinyobjloader/all: phony external/tinyobjloader/libtinyobjloader.
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/docs/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glm/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glm/glm/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/googletest/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/googletest/googlemock/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/googletest/googletest/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/optionparser/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/optionparser/include/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/tinyobjloader/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/stduuid/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/CTestTestfile.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/googletest/CTestTestfile.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/googletest/googlemock/CTestTestfile.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/googletest/googletest/CTestTestfile.cmake: RERUN_CMAKE | /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMake/cmake_uninstall.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMake/glfw3.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMake/glfw3Config.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/docs/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/docs/Doxyfile.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm/glm/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock/cmake/gmock.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock/cmake/gmock_main.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/Config.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/gtest.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/gtest_main.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/internal_utils.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/cmake/cxxopts.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindASan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindMSan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindSanitizers.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindTSan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindUBSan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/sanitize-helpers.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/tinyobjloader-config.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/tinyobjloader.pc.in /usr/share/cmake/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in /usr/share/cmake/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /usr/share/cmake/Modules/CMakeCCompiler.cmake.in /usr/share/cmake/Modules/CMakeCCompilerABI.c /usr/share/cmake/Modules/CMakeCInformation.cmake /usr/share/cmake/Modules/CMakeCXXCompiler.cmake.in /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp /usr/share/cmake/Modules/CMakeCXXInformation.cmake /usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake/Modules/CMakeCompilerIdDetection.cmake /usr/share/cmake/Modules/CMakeDependentOption.cmake /usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake /usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake /usr/share/cmake/Modules/CMakeDetermineCompiler.cmake /usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake /usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake /usr/share/cmake/Modules/CMakeDetermineCompilerSupport.cmake /usr/share/cmake/Modules/CMakeDetermineSystem.cmake /usr/share/cmake/Modules/CMakeFindBinUtils.cmake /usr/share/cmake/Modules/CMakeGenericSystem.cmake /usr/share/cmake/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake/Modules/CMakeLanguageInformation.cmake /usr/share/cmake/Modules/CMakeNinjaFindMake.cmake /usr/share/cmake/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake/Modules/CMakeParseImplicitIncludeInfo.cmake /usr/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake /usr/share/cmake/Modules/CMakeParseLibraryArchitecture.cmake /usr/share/cmake/Modules/CMakeSystem.cmake.in /usr/share/cmake/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake/Modules/CMakeTestCCompiler.cmake /usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake /usr/share/cmake/Modules/CMakeTestCompilerCommon.cmake /usr/share/cmake/Modules/CheckCSourceCompiles.cmake /usr/share/cmake/Modules/CheckFunctionExists.cmake /usr/share/cmake/Modules/CheckIncludeFile.cmake /usr/share/cmake/Modules/CheckIncludeFiles.cmake /usr/share/cmake/Modules/CheckLibraryExists.cmake /usr/share/cmake/Modules/Compiler/ADSP-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/ARMCC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/ARMClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/AppleClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Borland-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake/Modules/Compiler/Clang-C.cmake /usr/share/cmake/Modules/Compiler/Clang-CXX-CXXImportStd.cmake /usr/share/cmake/Modules/Compiler/Clang-CXX.cmake /usr/share/cmake/Modules/Compiler/Clang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /usr/share/cmake/Modules/Compiler/Clang-FindBinUtils.cmake /usr/share/cmake/Modules/Compiler/Clang.cmake /usr/share/cmake/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Cray-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/CrayClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Diab-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/GHS-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/GNU-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/GNU.cmake /usr/share/cmake/Modules/Compiler/HP-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/IAR-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /usr/share/cmake/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /usr/share/cmake/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Intel-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/LCC-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/MSVC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/NVHPC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/OrangeC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/PGI-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/PathScale-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Renesas-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/SCO-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/TI-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/TIClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Tasking-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Watcom-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/XL-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/zOS-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/FindDoxygen.cmake /usr/share/cmake/Modules/FindFontconfig.cmake /usr/share/cmake/Modules/FindFreetype.cmake /usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake/Modules/FindPackageMessage.cmake /usr/share/cmake/Modules/FindPkgConfig.cmake /usr/share/cmake/Modules/FindThreads.cmake /usr/share/cmake/Modules/FindX11.cmake /usr/share/cmake/Modules/GNUInstallDirs.cmake /usr/share/cmake/Modules/GoogleTest.cmake /usr/share/cmake/Modules/Internal/CMakeCLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake /usr/share/cmake/Modules/Internal/CMakeInspectCLinker.cmake /usr/share/cmake/Modules/Internal/CMakeInspectCXXLinker.cmake /usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake /usr/share/cmake/Modules/Internal/FeatureTesting.cmake /usr/share/cmake/Modules/Linker/GNU-C.cmake /usr/share/cmake/Modules/Linker/GNU-CXX.cmake /usr/share/cmake/Modules/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU-C.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-Clang-C.cmake /usr/share/cmake/Modules/Platform/Linux-Clang-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-Determine-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake/Modules/Platform/Linux.cmake /usr/share/cmake/Modules/Platform/UnixPaths.cmake /usr/share/cmake/Modules/SelectLibraryConfigurations.cmake /usr/share/cmake/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/4.1.1/CMakeCCompiler.cmake CMakeFiles/4.1.1/CMakeCXXCompiler.cmake CMakeFiles/4.1.1/CMakeSystem.cmake
+build build.ninja /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/src/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glfw/docs/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glm/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/glm/glm/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/googletest/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/googletest/googlemock/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/googletest/googletest/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/optionparser/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/optionparser/include/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/tinyobjloader/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/stduuid/cmake_install.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/CTestTestfile.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/googletest/CTestTestfile.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/googletest/googlemock/CTestTestfile.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/build/external/googletest/googletest/CTestTestfile.cmake: RERUN_CMAKE | /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMake/cmake_uninstall.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMake/glfw3.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMake/glfw3Config.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/docs/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/docs/Doxyfile.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm/glm/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock/cmake/gmock.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock/cmake/gmock_main.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/Config.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/gtest.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/gtest_main.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/internal_utils.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/cmake/cxxopts.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindASan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindMSan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindSanitizers.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindTSan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindUBSan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/sanitize-helpers.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/tinyobjloader-config.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/tinyobjloader.pc.in /usr/share/cmake/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in /usr/share/cmake/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /usr/share/cmake/Modules/CMakeCInformation.cmake /usr/share/cmake/Modules/CMakeCXXInformation.cmake /usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake/Modules/CMakeDependentOption.cmake /usr/share/cmake/Modules/CMakeGenericSystem.cmake /usr/share/cmake/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake/Modules/CMakeLanguageInformation.cmake /usr/share/cmake/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake/Modules/CheckCSourceCompiles.cmake /usr/share/cmake/Modules/CheckFunctionExists.cmake /usr/share/cmake/Modules/CheckIncludeFile.cmake /usr/share/cmake/Modules/CheckIncludeFiles.cmake /usr/share/cmake/Modules/CheckLibraryExists.cmake /usr/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake/Modules/Compiler/Clang-C.cmake /usr/share/cmake/Modules/Compiler/Clang-CXX.cmake /usr/share/cmake/Modules/Compiler/Clang.cmake /usr/share/cmake/Modules/Compiler/GNU.cmake /usr/share/cmake/Modules/FindDoxygen.cmake /usr/share/cmake/Modules/FindFontconfig.cmake /usr/share/cmake/Modules/FindFreetype.cmake /usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake/Modules/FindPackageMessage.cmake /usr/share/cmake/Modules/FindPkgConfig.cmake /usr/share/cmake/Modules/FindThreads.cmake /usr/share/cmake/Modules/FindX11.cmake /usr/share/cmake/Modules/GNUInstallDirs.cmake /usr/share/cmake/Modules/GoogleTest.cmake /usr/share/cmake/Modules/Internal/CMakeCLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake /usr/share/cmake/Modules/Linker/GNU-C.cmake /usr/share/cmake/Modules/Linker/GNU-CXX.cmake /usr/share/cmake/Modules/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU-C.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-Clang-C.cmake /usr/share/cmake/Modules/Platform/Linux-Clang-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake/Modules/Platform/Linux.cmake /usr/share/cmake/Modules/Platform/UnixPaths.cmake /usr/share/cmake/Modules/SelectLibraryConfigurations.cmake /usr/share/cmake/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/4.1.1/CMakeCCompiler.cmake CMakeFiles/4.1.1/CMakeCXXCompiler.cmake CMakeFiles/4.1.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMake/cmake_uninstall.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMake/glfw3.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMake/glfw3Config.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/docs/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/docs/Doxyfile.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm/glm/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock/cmake/gmock.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock/cmake/gmock_main.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/Config.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/gtest.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/gtest_main.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/internal_utils.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/cmake/cxxopts.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindASan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindMSan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindSanitizers.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindTSan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindUBSan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/sanitize-helpers.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/tinyobjloader-config.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/tinyobjloader.pc.in /usr/share/cmake/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in /usr/share/cmake/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /usr/share/cmake/Modules/CMakeCCompiler.cmake.in /usr/share/cmake/Modules/CMakeCCompilerABI.c /usr/share/cmake/Modules/CMakeCInformation.cmake /usr/share/cmake/Modules/CMakeCXXCompiler.cmake.in /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp /usr/share/cmake/Modules/CMakeCXXInformation.cmake /usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake/Modules/CMakeCompilerIdDetection.cmake /usr/share/cmake/Modules/CMakeDependentOption.cmake /usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake /usr/share/cmake/Modules/CMakeDetermineCXXCompiler.cmake /usr/share/cmake/Modules/CMakeDetermineCompiler.cmake /usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake /usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake /usr/share/cmake/Modules/CMakeDetermineCompilerSupport.cmake /usr/share/cmake/Modules/CMakeDetermineSystem.cmake /usr/share/cmake/Modules/CMakeFindBinUtils.cmake /usr/share/cmake/Modules/CMakeGenericSystem.cmake /usr/share/cmake/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake/Modules/CMakeLanguageInformation.cmake /usr/share/cmake/Modules/CMakeNinjaFindMake.cmake /usr/share/cmake/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake/Modules/CMakeParseImplicitIncludeInfo.cmake /usr/share/cmake/Modules/CMakeParseImplicitLinkInfo.cmake /usr/share/cmake/Modules/CMakeParseLibraryArchitecture.cmake /usr/share/cmake/Modules/CMakeSystem.cmake.in /usr/share/cmake/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake/Modules/CMakeTestCCompiler.cmake /usr/share/cmake/Modules/CMakeTestCXXCompiler.cmake /usr/share/cmake/Modules/CMakeTestCompilerCommon.cmake /usr/share/cmake/Modules/CheckCSourceCompiles.cmake /usr/share/cmake/Modules/CheckFunctionExists.cmake /usr/share/cmake/Modules/CheckIncludeFile.cmake /usr/share/cmake/Modules/CheckIncludeFiles.cmake /usr/share/cmake/Modules/CheckLibraryExists.cmake /usr/share/cmake/Modules/Compiler/ADSP-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/ARMCC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/ARMClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/AppleClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Borland-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Bruce-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake/Modules/Compiler/Clang-C.cmake /usr/share/cmake/Modules/Compiler/Clang-CXX-CXXImportStd.cmake /usr/share/cmake/Modules/Compiler/Clang-CXX.cmake /usr/share/cmake/Modules/Compiler/Clang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Clang-DetermineCompilerInternal.cmake /usr/share/cmake/Modules/Compiler/Clang-FindBinUtils.cmake /usr/share/cmake/Modules/Compiler/Clang.cmake /usr/share/cmake/Modules/Compiler/Compaq-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Cray-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/CrayClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Diab-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Embarcadero-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Fujitsu-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/GHS-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/GNU-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/GNU.cmake /usr/share/cmake/Modules/Compiler/HP-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/HP-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/IAR-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake /usr/share/cmake/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake /usr/share/cmake/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Intel-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/LCC-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/MSVC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/NVHPC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/NVIDIA-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/OrangeC-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/PGI-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/PathScale-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Renesas-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/SCO-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/SDCC-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/SunPro-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/TI-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/TIClang-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Tasking-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/Watcom-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/XL-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/XL-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/XLClang-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/zOS-C-DetermineCompiler.cmake /usr/share/cmake/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake /usr/share/cmake/Modules/FindDoxygen.cmake /usr/share/cmake/Modules/FindFontconfig.cmake /usr/share/cmake/Modules/FindFreetype.cmake /usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake/Modules/FindPackageMessage.cmake /usr/share/cmake/Modules/FindPkgConfig.cmake /usr/share/cmake/Modules/FindThreads.cmake /usr/share/cmake/Modules/FindX11.cmake /usr/share/cmake/Modules/GNUInstallDirs.cmake /usr/share/cmake/Modules/GoogleTest.cmake /usr/share/cmake/Modules/Internal/CMakeCLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeDetermineLinkerId.cmake /usr/share/cmake/Modules/Internal/CMakeInspectCLinker.cmake /usr/share/cmake/Modules/Internal/CMakeInspectCXXLinker.cmake /usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake /usr/share/cmake/Modules/Internal/FeatureTesting.cmake /usr/share/cmake/Modules/Linker/GNU-C.cmake /usr/share/cmake/Modules/Linker/GNU-CXX.cmake /usr/share/cmake/Modules/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU-C.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-Clang-C.cmake /usr/share/cmake/Modules/Platform/Linux-Clang-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-Determine-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake/Modules/Platform/Linux.cmake /usr/share/cmake/Modules/Platform/UnixPaths.cmake /usr/share/cmake/Modules/SelectLibraryConfigurations.cmake /usr/share/cmake/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/4.1.1/CMakeCCompiler.cmake CMakeFiles/4.1.1/CMakeCXXCompiler.cmake CMakeFiles/4.1.1/CMakeSystem.cmake: phony
+build /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMake/cmake_uninstall.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMake/glfw3.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMake/glfw3Config.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/docs/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/docs/Doxyfile.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glfw/src/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/glm/glm/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock/cmake/gmock.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googlemock/cmake/gmock_main.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/Config.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/gtest.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/gtest_main.pc.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/googletest/googletest/cmake/internal_utils.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/cmake/cxxopts.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/optionparser/include/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/stduuid/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/CMakeLists.txt /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindASan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindMSan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindSanitizers.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindTSan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/FindUBSan.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/cmake/sanitizers/sanitize-helpers.cmake /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/tinyobjloader-config.cmake.in /home/peterc/Documents/GitRepos/Prisma++/prisma-plus-plus/Software/Produkt/external/tinyobjloader/tinyobjloader.pc.in /usr/share/cmake/Modules/BasicConfigVersion-AnyNewerVersion.cmake.in /usr/share/cmake/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /usr/share/cmake/Modules/CMakeCInformation.cmake /usr/share/cmake/Modules/CMakeCXXInformation.cmake /usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake/Modules/CMakeDependentOption.cmake /usr/share/cmake/Modules/CMakeGenericSystem.cmake /usr/share/cmake/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake/Modules/CMakeLanguageInformation.cmake /usr/share/cmake/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake/Modules/CheckCSourceCompiles.cmake /usr/share/cmake/Modules/CheckFunctionExists.cmake /usr/share/cmake/Modules/CheckIncludeFile.cmake /usr/share/cmake/Modules/CheckIncludeFiles.cmake /usr/share/cmake/Modules/CheckLibraryExists.cmake /usr/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake/Modules/Compiler/Clang-C.cmake /usr/share/cmake/Modules/Compiler/Clang-CXX.cmake /usr/share/cmake/Modules/Compiler/Clang.cmake /usr/share/cmake/Modules/Compiler/GNU.cmake /usr/share/cmake/Modules/FindDoxygen.cmake /usr/share/cmake/Modules/FindFontconfig.cmake /usr/share/cmake/Modules/FindFreetype.cmake /usr/share/cmake/Modules/FindPackageHandleStandardArgs.cmake /usr/share/cmake/Modules/FindPackageMessage.cmake /usr/share/cmake/Modules/FindPkgConfig.cmake /usr/share/cmake/Modules/FindThreads.cmake /usr/share/cmake/Modules/FindX11.cmake /usr/share/cmake/Modules/GNUInstallDirs.cmake /usr/share/cmake/Modules/GoogleTest.cmake /usr/share/cmake/Modules/Internal/CMakeCLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeCXXLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CMakeCommonLinkerInformation.cmake /usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake /usr/share/cmake/Modules/Linker/GNU-C.cmake /usr/share/cmake/Modules/Linker/GNU-CXX.cmake /usr/share/cmake/Modules/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/GNU.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU-C.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linker/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-Clang-C.cmake /usr/share/cmake/Modules/Platform/Linux-Clang-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake/Modules/Platform/Linux-GNU.cmake /usr/share/cmake/Modules/Platform/Linux-Initialize.cmake /usr/share/cmake/Modules/Platform/Linux.cmake /usr/share/cmake/Modules/Platform/UnixPaths.cmake /usr/share/cmake/Modules/SelectLibraryConfigurations.cmake /usr/share/cmake/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/4.1.1/CMakeCCompiler.cmake CMakeFiles/4.1.1/CMakeCXXCompiler.cmake CMakeFiles/4.1.1/CMakeSystem.cmake: phony
 
 
 #############################################

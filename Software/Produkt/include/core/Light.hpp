@@ -26,5 +26,5 @@ class Light {
      * @param worldPos The position in world space of the point on a object.
      * @return The Ray from this light source
      */
-    //virtual Ray getRay(const glm::vec3 worldPos) const = 0;
+    // virtual Ray getRay(const glm::vec3 worldPos) const = 0;
 };

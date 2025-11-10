@@ -1,7 +1,7 @@
 #pragma once
 
-#include <glm/glm.hpp>
 #include "core/Light.hpp"
+#include <glm/glm.hpp>
 
 class PointLight : public Light {
   protected:
@@ -23,5 +23,5 @@ class PointLight : public Light {
      * @return The Ray from this light source which comes from light position
      * and goes to worldPos
      */
-    //virtual Ray getRay(const glm::vec3 worldPos) const override;
+    // virtual Ray getRay(const glm::vec3 worldPos) const override;
 };
