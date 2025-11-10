@@ -105,8 +105,9 @@ jobs:
         install_pkg_if_missing "wayland-protocols libwayland-dev" "command -v wayland-scanner"
         install_pkg_if_missing "libxkbcommon-dev" "dpkg -s libxkbcommon-dev"
         install_pkg_if_missing "pkg-config" "command -v pkg-config"
-    
+
         export PATH="/usr/bin:$PATH"
+        clang --version
 
     - name: Install dependencies (macOS)
       if: runner.os == 'macOS'
