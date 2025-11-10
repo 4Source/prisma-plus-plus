@@ -1,5 +1,5 @@
 #pragma once
-#include <core/Subray.h>
+#include <core/Subray.hpp>
 #include <stack>
 
 class Ray {

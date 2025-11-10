@@ -1,7 +1,7 @@
 #include "ui/UIManager.h"
-#include <core/Ray.h>
-#include <core/Resolution.h>
-#include <core/Subray.h>
+#include <core/Ray.hpp>
+#include <core/Resolution.hpp>
+#include <core/Subray.hpp>
 #include <iostream>
 #include <stdexcept>
 
@@ -12,7 +12,7 @@ auto main() -> int { // NOLINT(bugprone-exception-escape)
     std::cout << "Hello Prisma++" << "\n";
     std::cout << "Add-Lib: " << "\n";
     Subray s1 = {.direction_ = {1.0f, 0.0f, 0.0f},
-                 .postition_ = {0.0f, 0.0f, 0.0f},
+                 .position_ = {0.0f, 0.0f, 0.0f},
                  .color_ = {1.0f, 1.0f, 1.0f}};
     Ray r1{s1, test()};
     //  create window
