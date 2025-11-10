@@ -5,10 +5,11 @@
 
 class HitComponent {
   protected:
+    static uuids::basic_uuid_random_generator<std::ranlux48_base> uuidGen;
     uuids::uuid m_UUID;
-
+    
   public:
-    HitComponent() : m_UUID{uuids::uuid_system_generator{}()} {};
+    HitComponent() : m_UUID{uuidGen()} {};
     virtual ~HitComponent() = default;
 
     HitComponent(const HitComponent &) = delete;
