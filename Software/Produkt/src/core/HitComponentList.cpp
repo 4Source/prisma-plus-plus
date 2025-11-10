@@ -12,8 +12,8 @@ bool HitComponentList::hit() const {
 void HitComponentList::add(std::shared_ptr<HitComponent> component) { m_Children.push_back(component); }
 
 void HitComponentList::remove(std::shared_ptr<HitComponent> component) {
-    auto to_remove = std::remove_if(m_Children, [&](const std::shared_ptr<HitComponent> &c) { return *c == *component; });
-    m_Children.erase(to_remove.begin(), to_remove.end());
+    auto to_remove = std::remove_if(m_Children.begin(), m_Children.end(), [&](const std::shared_ptr<HitComponent> &c) { return *c == *component; });
+    m_Children.erase(to_remove, m_Children.end());
 }
 
 std::shared_ptr<HitComponent> HitComponentList::getChild(size_t position) { return m_Children.at(position); }
