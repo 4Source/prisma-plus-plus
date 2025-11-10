@@ -1,10 +1,12 @@
-#include "core/HitComponent.hpp"
+#pragma once
 #include <algorithm>
 #include <array>
 #include <functional>
 #include <random>
+#include <uuid.h>
 
-HitComponent::HitComponent() : m_UUID{} {
+namespace UUIDGenerator {
+static uuids::uuid gen() {
     // Source: https://github.com/mariusbancila/stduuid?tab=readme-ov-file#using-the-library
     std::random_device rd;
     auto seed_data = std::array<int, 6>{};
@@ -13,5 +15,6 @@ HitComponent::HitComponent() : m_UUID{} {
     std::ranlux48_base generator(seq);
 
     uuids::basic_uuid_random_generator<std::ranlux48_base> gen(&generator);
-    m_UUID = gen();
+    return gen();
 }
+}; // namespace UUIDGenerator
