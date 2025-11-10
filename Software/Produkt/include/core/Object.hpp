@@ -4,8 +4,9 @@
 #include <filesystem>
 #include <glm/glm.hpp>
 #include <memory>
-#include <uuid.h>
+#include <nlohmann/json.hpp>
 #include <tiny_obj_loader.h>
+#include <uuid.h>
 
 class Object {
   private:
@@ -16,6 +17,7 @@ class Object {
     glm::vec3 m_Translation;
     glm::vec3 m_Rotation;
     glm::vec3 m_Scale;
+    const std::filesystem::path m_Path;
 
   public:
     Object(const std::shared_ptr<HitComponent> &c, const std::shared_ptr<Material> &m);
@@ -40,4 +42,7 @@ class Object {
     Object &operator=(Object &&other) noexcept = delete;
 
     std::string toString(bool formatted = false, int indentLevel = 0);
+
+    friend void to_json(nlohmann::json &j, const Object &object);
+    friend void from_json(const nlohmann::json &j, const Object &object);
 };

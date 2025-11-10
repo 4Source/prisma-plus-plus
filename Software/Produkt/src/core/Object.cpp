@@ -7,7 +7,7 @@
 #include <glm/gtx/string_cast.hpp>
 
 Object::Object(const std::shared_ptr<HitComponent> &c, const std::shared_ptr<Material> &m)
-    : m_Component(c), m_Material(m), m_Name{"Unknown"}, m_Translation{glm::vec3{0.0f}}, m_Rotation{glm::vec3{0.0f}}, m_Scale{glm::vec3{1.0f}} {}
+    : m_Component(c), m_Material(m), m_Name{"Unknown"}, m_Translation{glm::vec3{0.0f}}, m_Rotation{glm::vec3{0.0f}}, m_Scale{glm::vec3{1.0f}}, m_Path(std::filesystem::path{}) {}
 
 Object::Object(const std::filesystem::path &objectPath)
     : Object{objectPath, objectPath.filename().string(), glm::vec3{0.0f}, glm::vec3{0.0f}, glm::vec3{1.0f}} {}
@@ -15,7 +15,7 @@ Object::Object(const std::filesystem::path &objectPath)
 Object::Object(const std::filesystem::path &objectPath, std::string name, glm::vec3 translation, glm::vec3 rotation, glm::vec3 scale)
 
     : m_UUID{UUIDGenerator::gen()}, m_Component{std::make_shared<HitComponentList>()}, m_Material{std::make_shared<Material>()},
-      m_Name{std::move(name)}, m_Translation{translation}, m_Rotation{rotation}, m_Scale{scale} {
+      m_Name{std::move(name)}, m_Translation{translation}, m_Rotation{rotation}, m_Scale{scale}, m_Path{objectPath} {
     std::string objFilepath;
     std::string matFilepath;
     if (objectPath.is_relative()) {
@@ -103,7 +103,7 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
 // TODO: remove unnecessary file path
 Object::Object(const tinyobj::attrib_t &attrib, std::vector<tinyobj::shape_t> &shapes)
     : Object{"/", "Load with attributes and shapes", glm::vec3{0.0f}, glm::vec3{0.0f}, glm::vec3{1.0f}} {
-        // Loop over shapes
+    // Loop over shapes
 
     for (const auto &shape : shapes) {
         // Loop over faces(polygon)
@@ -176,4 +176,11 @@ std::string Object::toString(bool formatted, int indentLevel) {
          (formatted ? std::string("\n") : std::string(""));
 
     return s;
+}
+
+void to_json(nlohmann::json &j, const Object &object) {
+    // TODO: Object to json
+}
+void from_json(const nlohmann::json &j, const Object &object) {
+    // TODO: Object from json
 }

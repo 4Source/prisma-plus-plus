@@ -3,6 +3,7 @@
 #include "core/Light.hpp"
 #include "core/Object.hpp"
 #include <memory>
+#include <nlohmann/json.hpp>
 #include <vector>
 
 class Scene {
@@ -30,4 +31,6 @@ class Scene {
     // Scene &operator=(Scene &&) noexcept = delete;
 
     void exportScene(const std::filesystem::path &scenePath);
+    friend void to_json(nlohmann::json &j, const Scene &scene);
+    friend void from_json(const nlohmann::json &j, const Scene &scene);
 };
