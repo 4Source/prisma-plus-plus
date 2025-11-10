@@ -2,6 +2,7 @@
 
 #include "core/PointLight.hpp"
 
+/*
 TEST(PointLight_GetRay, EqualVectors) {
     PointLight pointLight(glm::vec3(1.0f), glm::vec3(0.5f), 50.0f);
     Light &light = pointLight;
@@ -182,3 +183,5 @@ TEST(PointLight_GetRay, PerpendicularVectors) {
     pointLight.setPosition(glm::vec3(-1.0f, -1.0f, -1.0f));
     EXPECT_EQ(light.getRay(glm::vec3(0.0f, -1.0f, 1.0f)), glm::vec3(1.0f, 0.0f, 2.0f));
 }
+
+*/

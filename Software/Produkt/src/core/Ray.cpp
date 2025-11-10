@@ -1,3 +1,3 @@
 #include "core/Ray.hpp"
 
-Ray::Ray(Subray s1, int i) {}
+Ray::Ray(Subray subray, HitComponent& component, std::span<Light> lights) {}

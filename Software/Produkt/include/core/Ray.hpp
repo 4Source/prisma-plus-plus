@@ -2,11 +2,12 @@
 #include <core/Subray.hpp>
 #include <stack>
 #include <core/HitComponent.hpp>
+#include <core/Light.hpp>
 
 class Ray {
   std::stack<Subray> subrays;
 
 public:
-  // Types must be changed
-  Ray(Subray, HitComponent);
+// Call by referece for HitComponent and Light objects
+  Ray(Subray, HitComponent&, std::span<Light>);
 };
