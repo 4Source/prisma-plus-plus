@@ -54,16 +54,16 @@ endif()
 # ------------------------------------------------------------------------------
 # Dependencies
 # ------------------------------------------------------------------------------
-add_subdirectory(external/glfw)
-add_subdirectory(external/glm)
-add_subdirectory(external/googletest)
-add_subdirectory(external/optionparser)
-add_subdirectory(external/tinyobjloader)
-add_subdirectory(external/stduuid)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/glfw)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/glm)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/googletest)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/optionparser)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/stduuid)
 
 # --- GLAD ---
-add_library(glad STATIC external/glad/src/glad.c)
-target_include_directories(glad PUBLIC external/glad/include)
+add_library(glad STATIC ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/src/glad.c)
+target_include_directories(glad PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/include)
 
 # ------------------------------------------------------------------------------
 # ImGui setup
@@ -110,7 +110,6 @@ target_include_directories(prisma-core PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/external/optionparser/include
     ${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/stduuid/include
 )
 target_link_libraries(prisma-core PUBLIC imgui)
 target_link_libraries(prisma-core PUBLIC glm)
@@ -118,8 +117,6 @@ target_link_libraries(prisma-core PUBLIC cxxopts)
 target_link_libraries(prisma-core PUBLIC tinyobjloader)
 target_link_libraries(prisma-core PUBLIC glad)
 target_link_libraries(prisma-core PUBLIC stduuid)
-
-target_compile_definitions(prisma-core PUBLIC UUID_SYSTEM_GENERATOR)
 
 if(APPLE)
     target_link_libraries(prisma-core PUBLIC "-framework OpenGL")

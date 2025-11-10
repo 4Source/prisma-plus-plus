@@ -8,7 +8,7 @@ class HitComponent {
     uuids::uuid m_UUID;
 
   public:
-    HitComponent() : m_UUID{uuids::uuid_system_generator{}()} {};
+    HitComponent();
     virtual ~HitComponent() = default;
 
     HitComponent(const HitComponent &) = delete;
