@@ -1,5 +1,22 @@
 # Checks
-Checks: '-*,cppcoreguidelines-*,modernize-*,bugprone-*,performance-*,cert-*,gsl-*,clang-analyzer-*'
+# Ausschlüsse können mit - vorgenommen werden
+Checks: >
+  -*,
+  cppcoreguidelines-*,
+  modernize-*,
+  bugprone-*,
+  performance-*,
+  cert-*,
+  gsl-*,
+  clang-analyzer-*,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -modernize-use-auto,
+  -bugprone-easily-swappable-parameters,
+  -modernize-use-trailing-return-type,
+  -performance-enum-size,
+  -cppcoreguidelines-pro-type-union-access,
+  -modernize-use-ranges
+
 #TODO Activate WarningsAsErrors after building googletest
 WarningsAsErrors: "*"
 # Only check own headers

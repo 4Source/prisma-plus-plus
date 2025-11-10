@@ -3,6 +3,6 @@
 #include <iostream>
 
 class Menubar {
-public:
-    void draw();  // draw menubar
+  public:
+    void draw(); // draw menubar
 };

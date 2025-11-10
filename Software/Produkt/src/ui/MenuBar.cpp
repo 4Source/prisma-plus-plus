@@ -1,36 +1,54 @@
 #include "ui/MenuBar.h"
+#include <iostream>
 
 void Menubar::draw() {
-    // ---- Test ----
-    // get the main viewport (GLFW window size)
-    ImVec2 viewportSize = ImGui::GetMainViewport()->Size;
+  if (ImGui::BeginMainMenuBar()) {
 
-    // button size
-    ImVec2 buttonSize = ImVec2(150, 50); //NOLINT
+    if (ImGui::BeginMenu("File")) {
+      if (ImGui::MenuItem("Import Scene...")) {
+        std::cout << "<<Import Scene...>> called\n"; // ##### IMPLEMENT ACTUAL
+                                                     // FUNCTION CALL #####
+      }
+      if (ImGui::MenuItem("Export Scene...")) {
+        std::cout << "<<Export Scene...>> called\n"; // ##### IMPLEMENT ACTUAL
+                                                     // FUNCTION CALL #####
+      }
+      ImGui::Separator();
+      if (ImGui::MenuItem("Import Object...")) {
+        std::cout << "<<Import Object...>> called\n"; // ##### IMPLEMENT ACTUAL
+                                                      // FUNCTION CALL #####
+      }
+      ImGui::Separator();
+      if (ImGui::MenuItem("Save Image")) {
+        std::cout << "<<Save Image>> called\n"; // ##### IMPLEMENT ACTUAL
+                                                // FUNCTION CALL #####
+      }
 
-    // calculate center position
-    const float center_factor = 0.5f;
-    ImVec2 buttonPos = ImVec2(
-        (viewportSize.x - buttonSize.x) * center_factor,
-        (viewportSize.y - buttonSize.y) * center_factor
-    );
-
-    // invisible window for button
-    ImGui::SetNextWindowPos(ImVec2(0, 0)); // start at top-left
-    ImGui::SetNextWindowSize(viewportSize); // cover entire viewport
-
-    ImGui::Begin("##root", nullptr,
-                 ImGuiWindowFlags_NoTitleBar |
-                 ImGuiWindowFlags_NoResize |
-                 ImGuiWindowFlags_NoMove |
-                 ImGuiWindowFlags_NoScrollbar |
-                 ImGuiWindowFlags_NoBackground |
-                 ImGuiWindowFlags_NoCollapse);
-
-    ImGui::SetCursorPos(buttonPos);
-    if (ImGui::Button("Click Me!", buttonSize)) {
-        std::cout << "[Button] Clicked!\n";
+      ImGui::EndMenu();
     }
 
-    ImGui::End();
+    ImGui::Separator();
+
+    if (ImGui::BeginMenu("Help")) {
+      if (ImGui::MenuItem("How to use")) {
+        std::cout << "<<How to use>> called\n"; // ##### IMPLEMENT ACTUAL
+                                                // FUNCTION CALL #####
+      }
+      if (ImGui::MenuItem("Shortcuts", "Shift+S")) {
+        std::cout << "<<Shortcuts>> called\n"; // ##### IMPLEMENT ACTUAL
+                                               // FUNCTION CALL #####
+      }
+      ImGui::Separator();
+      if (ImGui::MenuItem("About")) {
+        std::cout << "<<About>> called\n"; // ##### IMPLEMENT ACTUAL FUNCTION
+                                           // CALL #####
+      }
+
+      ImGui::EndMenu();
+    }
+
+    ImGui::Separator();
+
+    ImGui::EndMainMenuBar();
+  }
 }
