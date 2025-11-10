@@ -25,7 +25,7 @@ std::shared_ptr<HitComponent> HitComponentOctree::getChild(uuids::uuid uuid) {
 
 std::string HitComponentOctree::toString(bool formatted, int indentLevel) {
     std::string s = (formatted ? std::string(indentLevel, '\t') : std::string("")) + HitComponent::toString(formatted, indentLevel) + (formatted ? std::string("\n") : std::string(" "));
-    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "type: 'HitComponentOctree'" + (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "componentType: 'HitComponentOctree'" + (formatted ? std::string("\n") : std::string(" "));
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "components: [" + (formatted ? std::string("\n") : std::string(" "));
 
     // for (size_t i = 0; i < size(); i++) {

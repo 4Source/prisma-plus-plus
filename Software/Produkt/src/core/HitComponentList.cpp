@@ -27,7 +27,7 @@ std::shared_ptr<HitComponent> HitComponentList::getChild(uuids::uuid uuid) {
 
 std::string HitComponentList::toString(bool formatted, int indentLevel) {
     std::string s = (formatted ? std::string(indentLevel, '\t') : std::string("")) + HitComponent::toString(formatted, indentLevel);
-    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "type: 'HitComponentList'" + (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "componentType: 'HitComponentList'" + (formatted ? std::string("\n") : std::string(" "));
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "size: " + std::to_string(size()) + (formatted ? std::string("\n") : std::string(" "));
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "components: [" + (formatted ? std::string("\n") : std::string(""));
 
