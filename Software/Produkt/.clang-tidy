@@ -14,7 +14,8 @@ Checks: >
   -bugprone-easily-swappable-parameters,
   -modernize-use-trailing-return-type,
   -performance-enum-size,
-  -cppcoreguidelines-pro-type-union-access
+  -cppcoreguidelines-pro-type-union-access,
+  -modernize-use-ranges
 
 #TODO Activate WarningsAsErrors after building googletest
 WarningsAsErrors: "*"
