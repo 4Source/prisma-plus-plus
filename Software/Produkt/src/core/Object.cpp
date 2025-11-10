@@ -5,7 +5,7 @@
 #include <tiny_obj_loader.h>
 
 Object::Object(const std::filesystem::path &objectPath)
-    : m_Component{std::make_shared<HitComponentList>()}, m_Material{std::make_shared<Material>()} {
+    : m_Component{std::make_shared<HitComponentList>()}, m_Material{std::make_shared<Material>()}, m_Name{objectPath.filename().string()} {
     std::string objFilepath;
     std::string matFilepath;
     if (objectPath.is_relative()) {
@@ -86,14 +86,14 @@ Object::Object(const std::filesystem::path &objectPath)
 
             // per-face material
             int mat = shapes.at(shapeIndex).mesh.material_ids.at(faceIndex);
-            std::cout << mat;
         }
     }
 }
 
 std::string Object::toString(bool formatted, int indentLevel) {
     std::string s =
-        (formatted ? std::string(indentLevel, '\t') : std::string("")) + "material: " + (formatted ? std::string("\n") : std::string(" "));
+        (formatted ? std::string(indentLevel, '\t') : std::string("")) + "name: " + m_Name + (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "material: " + (formatted ? std::string("\n") : std::string(" "));
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + m_Material->toString(formatted, indentLevel + 1) +
          (formatted ? std::string("\n") : std::string(" "));
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "component: " + (formatted ? std::string("\n") : std::string(""));

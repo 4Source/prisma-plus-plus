@@ -8,6 +8,7 @@ class Object {
   private:
     std::shared_ptr<HitComponent> m_Component;
     std::shared_ptr<Material> m_Material;
+    std::string m_Name;
 
   public:
     /**
