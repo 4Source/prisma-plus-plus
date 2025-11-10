@@ -2,13 +2,19 @@
 #include "core/HitComponent.hpp"
 #include "core/Material.hpp"
 #include <filesystem>
+#include <glm/glm.hpp>
 #include <memory>
+#include <uuid.h>
 
 class Object {
   private:
+    uuids::uuid m_UUID;
     std::shared_ptr<HitComponent> m_Component;
     std::shared_ptr<Material> m_Material;
     std::string m_Name;
+    glm::vec3 m_Translation;
+    glm::vec3 m_Rotation;
+    glm::vec3 m_Scale;
 
   public:
     /**
@@ -18,6 +24,7 @@ class Object {
      * @param objectPath A relative or absolute path to an .obj file
      */
     Object(const std::filesystem::path &objectPath);
+    Object(const std::filesystem::path &objectPath, std::string name, glm::vec3 translation, glm::vec3 rotation, glm::vec3 scale);
     ~Object() = default;
 
     Object(const Object &) = delete;

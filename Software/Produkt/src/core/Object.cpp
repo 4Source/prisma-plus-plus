@@ -1,11 +1,18 @@
 #include "core/Object.hpp"
+#include "UUIDGenerator.hpp"
 #include "core/HitComponentList.hpp"
 #include "core/Triangle.hpp"
 #include <iostream>
 #include <tiny_obj_loader.h>
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtx/string_cast.hpp>
 
 Object::Object(const std::filesystem::path &objectPath)
-    : m_Component{std::make_shared<HitComponentList>()}, m_Material{std::make_shared<Material>()}, m_Name{objectPath.filename().string()} {
+    : Object{objectPath, objectPath.filename().string(), glm::vec3{0.0f}, glm::vec3{0.0f}, glm::vec3{1.0f}} {}
+
+Object::Object(const std::filesystem::path &objectPath, std::string name, glm::vec3 translation, glm::vec3 rotation, glm::vec3 scale)
+    : m_UUID{UUIDGenerator::gen()}, m_Component{std::make_shared<HitComponentList>()}, m_Material{std::make_shared<Material>()}, m_Name{name},
+      m_Translation{translation}, m_Rotation{rotation}, m_Scale{scale} {
     std::string objFilepath;
     std::string matFilepath;
     if (objectPath.is_relative()) {
@@ -91,8 +98,12 @@ Object::Object(const std::filesystem::path &objectPath)
 }
 
 std::string Object::toString(bool formatted, int indentLevel) {
-    std::string s =
-        (formatted ? std::string(indentLevel, '\t') : std::string("")) + "name: " + m_Name + (formatted ? std::string("\n") : std::string(" "));
+    std::string s = (formatted ? std::string(indentLevel, '\t') : std::string("")) + "uuid: " + uuids::to_string(m_UUID) +
+                    (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "name: " + m_Name + (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "translation: " + glm::to_string(m_Translation) + (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "rotation: " + glm::to_string(m_Rotation) + (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "scale: " + glm::to_string(m_Scale) + (formatted ? std::string("\n") : std::string(" "));
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "material: " + (formatted ? std::string("\n") : std::string(" "));
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + m_Material->toString(formatted, indentLevel + 1) +
          (formatted ? std::string("\n") : std::string(" "));
