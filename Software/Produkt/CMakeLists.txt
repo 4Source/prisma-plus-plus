@@ -59,11 +59,11 @@ add_subdirectory(external/glm)
 add_subdirectory(external/googletest)
 add_subdirectory(external/optionparser)
 add_subdirectory(external/tinyobjloader)
+add_subdirectory(external/stduuid)
 
 # --- GLAD ---
 add_library(glad STATIC external/glad/src/glad.c)
 target_include_directories(glad PUBLIC external/glad/include)
-add_subdirectory(external/stduuid)
 
 # ------------------------------------------------------------------------------
 # ImGui setup
@@ -110,6 +110,7 @@ target_include_directories(prisma-core PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/external/optionparser/include
     ${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/stduuid/include
 )
 target_link_libraries(prisma-core PUBLIC imgui)
 target_link_libraries(prisma-core PUBLIC glm)
