@@ -60,6 +60,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/googletest)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/optionparser)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/stduuid)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/json)
 
 # --- GLAD ---
 add_library(glad STATIC ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/src/glad.c)
@@ -118,6 +119,7 @@ target_link_libraries(prisma-core PUBLIC cxxopts)
 target_link_libraries(prisma-core PUBLIC tinyobjloader)
 target_link_libraries(prisma-core PUBLIC glad)
 target_link_libraries(prisma-core PUBLIC stduuid)
+target_link_libraries(prisma-core PUBLIC nlohmann_json::nlohmann_json)
 
 if(APPLE)
     target_link_libraries(prisma-core PUBLIC "-framework OpenGL")
