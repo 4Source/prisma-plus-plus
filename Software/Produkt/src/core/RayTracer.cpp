@@ -4,13 +4,13 @@
 #include <glm/gtx/string_cast.hpp>
 #include <iostream>
 
-RayTracer::RayTracer(Scene s) : scene(std::move(s)) { std::vector<std::vector<glm::vec3>> view{}; }
+RayTracer::RayTracer(Scene s) : scene(s) { std::vector<std::vector<glm::vec3>> view{}; }
 
 void RayTracer::start() {
     // initialize view
 
-    int pixels_v = std::floor(scene.camera->height() / scene.camera->getResolution());
-    int pixels_h = std::floor(scene.camera->width() / scene.camera->getResolution());
+    int pixels_v = std::floor(scene.getCamera()->height() / scene.getCamera()->getResolution());
+    int pixels_h = std::floor(scene.getCamera()->width() / scene.getCamera()->getResolution());
 
     for (int i = 0; i < pixels_v; i++) {
         view.emplace_back();
@@ -21,16 +21,18 @@ void RayTracer::start() {
 
     // trace rays
 
-    glm::vec3 top_left = scene.camera->getPos() + scene.camera->normal() * DISTANCE - 0.5f * scene.camera->getTop() - 0.5f * scene.camera->getLeft();
-    glm::vec3 top_norm = glm::normalize(scene.camera->getTop());
-    glm::vec3 left_norm = glm::normalize(scene.camera->getLeft());
+    glm::vec3 top_left = scene.getCamera()->getPos() + scene.getCamera()->normal() * DISTANCE - 0.5f * scene.getCamera()->getTop() -
+                         0.5f * scene.getCamera()->getLeft();
+    glm::vec3 top_norm = glm::normalize(scene.getCamera()->getTop());
+    glm::vec3 left_norm = glm::normalize(scene.getCamera()->getLeft());
 
     for (int i = 0; i < pixels_v; i++) {
         for (int j = 0; j < pixels_h; j++) {
-            glm::vec3 point = top_left + float(i) * scene.camera->getResolution() * left_norm + float(j) * scene.camera->getResolution() * top_norm;
-            glm::vec3 eye_to_point = point - scene.camera->getPos();
-            Subray s{eye_to_point, scene.camera->getPos(), glm::vec3{255, 255, 255}, glm::vec3{0, 0, 0}};
-            Ray r{s, scene.objects.at(0), scene.light}; // later whole object array
+            glm::vec3 point =
+                top_left + float(i) * scene.getCamera()->getResolution() * left_norm + float(j) * scene.getCamera()->getResolution() * top_norm;
+            glm::vec3 eye_to_point = point - scene.getCamera()->getPos();
+            Subray s{eye_to_point, scene.getCamera()->getPos(), glm::vec3{255, 255, 255}, glm::vec3{0, 0, 0}};
+            Ray r{s, scene.getObject(0), scene.getLight(0)}; // later whole object array
             view.at(i).at(j) = r.backward();
         }
     }
