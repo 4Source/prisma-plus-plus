@@ -48,7 +48,16 @@ Googletests wird beim clonen mit folgendem Aufruf automatisch als Submodul hinzu
 git clone --recurse-submodules https://github.com/4Source/prisma-plus-plus.git
 ```
 
+## Submodules
 To update the submodules in already cloned repositories use:
 ```bash
 git submodule update --recursive --remote
+```
+If the submodule gets not pulled check with 
+```bash
+git submodule status
+```
+if one submodule starts with ``-`` than do the following command to clone it
+```bash
+git submodule update --init path/to/submodule
 ```

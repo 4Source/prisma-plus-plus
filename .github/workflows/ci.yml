@@ -31,6 +31,10 @@ jobs:
       with:
         submodules: recursive
 
+    - name: Check the state of submodules
+      run: | 
+        git submodule status
+
     - name: Install dependencies (Windows)
       if: runner.os == 'Windows' 
       shell: powershell

@@ -7,7 +7,7 @@
 # cmake -S Software/Produkt -B Software/Produkt/build -G Ninja -DCHECK_CLANG=ON
 # ------------------------------------------------------------------------------
 cmake_minimum_required(VERSION 3.16)
-project(prisma-plus-plus LANGUAGES CXX)
+project(prisma-plus-plus LANGUAGES C CXX)
 
 # Always use Ninja and build inside ./build
 if(NOT CMAKE_GENERATOR STREQUAL "Ninja")
@@ -22,6 +22,9 @@ endif()
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+message(STATUS "C++ standard: ${CMAKE_CXX_STANDARD}")
+message(STATUS "Compiler: ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 
 # Enable exceptions
 if(MSVC)
@@ -51,9 +54,16 @@ endif()
 # ------------------------------------------------------------------------------
 # Dependencies
 # ------------------------------------------------------------------------------
-add_subdirectory(external/glfw)
-add_subdirectory(external/glm)
-add_subdirectory(external/googletest)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/glfw)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/glm)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/googletest)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/optionparser)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/stduuid)
+
+# --- GLAD ---
+add_library(glad STATIC ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/src/glad.c)
+target_include_directories(glad PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/include)
 
 # ------------------------------------------------------------------------------
 # ImGui setup
@@ -94,14 +104,19 @@ endforeach()
 
 add_library(prisma-core STATIC ${SRC_FILES})
 # ------------------------------------------------------------------------------
-# Add Library Folders include and ecternal/optionparser
+# Add Library Folders
 # ------------------------------------------------------------------------------
 target_include_directories(prisma-core PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/external/optionparser
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/optionparser/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader
 )
 target_link_libraries(prisma-core PUBLIC imgui)
 target_link_libraries(prisma-core PUBLIC glm)
+target_link_libraries(prisma-core PUBLIC cxxopts)
+target_link_libraries(prisma-core PUBLIC tinyobjloader)
+target_link_libraries(prisma-core PUBLIC glad)
+target_link_libraries(prisma-core PUBLIC stduuid)
 
 if(APPLE)
     target_link_libraries(prisma-core PUBLIC "-framework OpenGL")
@@ -141,6 +156,7 @@ endforeach()
 
 add_executable(runTests ${TEST_FILES})
 
+target_include_directories(runTests PRIVATE ${CMAKE_SOURCE_DIR}/tests)
 target_link_libraries(runTests PRIVATE gtest_main)
 target_link_libraries(runTests PRIVATE prisma-core)
 
