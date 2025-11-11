@@ -28,6 +28,25 @@ void Menubar::draw() {
     }
 
     ImGui::Separator();
+    
+    if (ImGui::BeginMenu("Render")) {
+      if (ImGui::MenuItem("Start")) {
+        std::cout << "<<Start Rendering>> called\n"; // ##### IMPLEMENT ACTUAL
+                                                  // FUNCTION CALL #####
+      }
+      if (ImGui::MenuItem("Pause")) {
+        std::cout << "<<Pause Rendering>> called\n"; // ##### IMPLEMENT ACTUAL
+                                                  // FUNCTION CALL #####
+      }
+      if (ImGui::MenuItem("Stop")) {
+        std::cout << "<<Stop Rendering>> called\n"; // ##### IMPLEMENT ACTUAL
+                                                  // FUNCTION CALL #####
+      }
+
+      ImGui::EndMenu();
+    }
+
+    ImGui::Separator();
 
     if (ImGui::BeginMenu("Help")) {
       if (ImGui::MenuItem("How to use")) {
@@ -40,8 +59,8 @@ void Menubar::draw() {
       }
       ImGui::Separator();
       if (ImGui::MenuItem("About")) {
-        std::cout << "<<About>> called\n"; // ##### IMPLEMENT ACTUAL FUNCTION
-                                           // CALL #####
+        std::cout << "<<About>> called\n"; // ##### IMPLEMENT ACTUAL
+                                           // FUNCTION CALL #####
       }
 
       ImGui::EndMenu();
