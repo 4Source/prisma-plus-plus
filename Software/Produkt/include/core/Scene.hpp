@@ -8,7 +8,7 @@
 
 class Scene{
 	public:
-		Light light;
+		std::shared_ptr<Light> light;
 		std::vector<std::shared_ptr<Object>> objects;
 		Camera camera;
 

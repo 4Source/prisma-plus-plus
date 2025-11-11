@@ -9,8 +9,8 @@ class HitComponentOctree : public HitComponent {
     std::array<std::shared_ptr<HitComponent>, 8> m_Children;
 
   public:
-    HitComponentOctree() = default;
-	  HitComponentOctree(HitComponentOctree&&) noexcept = default;
+    HitComponentOctree() = delete;
+	  HitComponentOctree(HitComponentOctree&&) noexcept = delete;
     HitComponentOctree& operator=(HitComponentOctree&&) noexcept = default;
     HitComponentOctree(const HitComponentOctree&) = delete;
     HitComponentOctree& operator=(const HitComponentOctree&) = delete;

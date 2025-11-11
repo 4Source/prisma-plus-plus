@@ -2,20 +2,20 @@
 #include <glm/gtx/vector_angle.hpp>
 constexpr float PI=3.14159265359f;
 
-Ray::Ray(const Subray& subray, const std::shared_ptr<Object>& obj, const Light& light){
+Ray::Ray(const Subray& subray, const std::shared_ptr<Object>& obj, const std::shared_ptr<Light>& light){
 	Ray::forward(subray, obj, light);
 }
 
-void Ray::forward(const Subray& s, const std::shared_ptr<Object>& o, const Light& l){
+void Ray::forward(const Subray& s, const std::shared_ptr<Object>& o, const std::shared_ptr<Light>& l){
 	this->subray_stack.push(s);
 	// later while loop for further subrays (reflection etc.)
 	// diffuse reflection
 	Hit h = o->getComponent()->hit(s);
    	if(h.hit){
-		Subray next = Subray{l.pos - h.intersect, h.intersect, o->getMaterial()->get_color(), h.normal};
+		Subray next = Subray{l->getPosition() - h.intersect, h.intersect, o->getMaterial()->get_color(), h.normal};
         this->subray_stack.push(next);
 	
-		Subray last = Subray{glm::vec3{0,0,0}, l.pos, next.color, glm::vec3{0,0,0}};
+		Subray last = Subray{glm::vec3{0,0,0}, l->getPosition(), next.color, glm::vec3{0,0,0}};
 		this->subray_stack.push(last);
 			
         return;

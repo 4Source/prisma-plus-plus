@@ -13,7 +13,7 @@ class Light {
   public:
     Light() = default;
 
-    Light(glm::vec3 color, float intensity, glm::vec3 pos) : m_Color{color}, m_Intensity{intensity}, m_Position{pos} {}
+    Light(glm::vec3 color, float intensity) : m_Color{color}, m_Intensity{intensity} {}
     virtual ~Light() = default;
 
     glm::vec3 getColor() const { return m_Color; }
