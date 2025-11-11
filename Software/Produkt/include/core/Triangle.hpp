@@ -11,7 +11,9 @@ class Triangle : public Primitive {
 
   public:
     Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2);
+    Triangle(std::array<glm::vec3, 3> vertices);
     Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2, glm::vec3 normal);
+    Triangle(std::array<glm::vec3, 3> vertices, glm::vec3 normal);
     virtual ~Triangle() = default;
 
     glm::vec3 getVertex(int index) const { return m_Vertices.at(index); }
@@ -20,5 +22,5 @@ class Triangle : public Primitive {
 
     virtual bool hit() const override;
 
-    virtual std::string toString() override;
+    virtual std::string toString(bool formatted = false, int indentLevel = 0) override;
 };

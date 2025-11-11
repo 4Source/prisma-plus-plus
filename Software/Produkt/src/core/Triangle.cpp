@@ -33,6 +33,8 @@ Triangle::Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2) : m_
     }
 }
 
+Triangle::Triangle(std::array<glm::vec3, 3> vertices) : Triangle{vertices.at(0), vertices.at(1), vertices.at(2)} {}
+
 Triangle::Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2, glm::vec3 normal)
     : m_Vertices{vertex0, vertex1, vertex2}, m_FaceNormal{glm::normalize(normal)} {
     if (!(std::isfinite(vertex0.x) && std::isfinite(vertex0.y) && std::isfinite(vertex0.z))) {
@@ -56,19 +58,25 @@ Triangle::Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2, glm:
     }
 }
 
+Triangle::Triangle(std::array<glm::vec3, 3> vertices, glm::vec3 normal) : Triangle{vertices.at(0), vertices.at(1), vertices.at(2), normal} {}
+
 bool Triangle::hit() const {
     // TODO: Implement Triangle Hit
     return false;
 }
 
-std::string Triangle::toString() {
-    std::string s = Primitive::toString();
-    s += " type: 'Triangle' vertices: ";
-    for (const auto &vertex : m_Vertices) {
-        s += glm::to_string(vertex) + " ";
+std::string Triangle::toString(bool formatted, int indentLevel) {
+    std::string s =
+        (formatted ? std::string(indentLevel, '\t') : std::string("")) + Primitive::toString(formatted, indentLevel);
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "componentType: 'Triangle'" + (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "vertices: [" + (formatted ? std::string("\n") : std::string(""));
+    for (size_t i = 0; i < m_Vertices.size(); i++) {
+        s += (formatted ? std::string(indentLevel + 1, '\t') : std::string("")) + glm::to_string(m_Vertices.at(i)) + (((i + 1) == m_Vertices.size()) ? "" : ", ") +
+             (formatted ? std::string("\n") : std::string(""));
     }
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "]" + (formatted ? std::string("\n") : std::string(" "));
 
-    s += "face normal: " + glm::to_string(m_FaceNormal);
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "face normal: " + glm::to_string(m_FaceNormal);
 
     return s;
 }
