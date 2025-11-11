@@ -19,7 +19,7 @@ bool CliManager::save_png(const std::vector<std::vector<std::array<uint8_t, 3>>>
 
     // Flatten the image data into a single contiguous buffer
     std::vector<uint8_t> data;
-    data.reserve(width * height * 3);
+    data.reserve(static_cast<size_t>(width) * height * 3);
 
     for (int y = 0; y < height; ++y) {
         for (int x = 0; x < width; ++x) {

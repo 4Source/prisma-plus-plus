@@ -1,7 +1,7 @@
 #include "core/Object.hpp"
 #include "core/HitComponentList.hpp"
 
-Object::Object(std::shared_ptr<HitComponent> c, std::shared_ptr<Material> m) : m_Component(c), m_Material(m) {}
+Object::Object(const std::shared_ptr<HitComponent>& c, const std::shared_ptr<Material>& m) : m_Component(c), m_Material(m) {}
 
 Object::Object(const std::filesystem::path& objectPath) {
     // TODO: Import Object file

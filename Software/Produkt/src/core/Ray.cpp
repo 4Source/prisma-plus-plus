@@ -1,12 +1,12 @@
 #include "core/Ray.hpp"
 #include <glm/gtx/vector_angle.hpp>
-#define PI 3.14159265359f
+constexpr float PI=3.14159265359f;
 
-Ray::Ray(const Subray& subray, std::shared_ptr<Object> obj, const Light& light){
+Ray::Ray(const Subray& subray, const std::shared_ptr<Object>& obj, const Light& light){
 	Ray::forward(subray, obj, light);
 }
 
-void Ray::forward(const Subray& s, std::shared_ptr<Object> o, const Light& l){
+void Ray::forward(const Subray& s, const std::shared_ptr<Object>& o, const Light& l){
 	this->subray_stack.push(s);
 	// later while loop for further subrays (reflection etc.)
 	// diffuse reflection
@@ -37,7 +37,7 @@ glm::vec3 Ray::backward(){
 			float angle_light_primitive = glm::angle(glm::normalize(from_light.direction), from_light.hit_normal);
              if(angle_light_primitive > PI / 2) {angle_light_primitive = PI - angle_light_primitive;}
  
-			float angle_camera_primitive = glm::angle(glm::normalize(to_camera.direction), from_light.hit_normal);
+//			float angle_camera_primitive = glm::angle(glm::normalize(to_camera.direction), from_light.hit_normal);
              float intensity = std::cos(angle_light_primitive);
  
              return from_light.color * intensity;

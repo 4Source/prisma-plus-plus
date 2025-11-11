@@ -6,7 +6,7 @@ class RayTracer{
 		Scene scene;
 		std::vector<std::vector<glm::vec3>> view;		
 
-		RayTracer(const Scene& s);
+		RayTracer(Scene s);
 		void start();
 		std::vector<std::vector<std::array<uint8_t, 3>>> view_to_rgb();
 };
