@@ -2,7 +2,7 @@
 
 Hit HitComponentList::hit(const Subray& s) const {
     float closest_distance = 10000.0;
-    Hit closest_hit = {false, glm::vec3{}, glm::vec3{}};
+    Hit closest_hit = {false, glm::vec3{}, glm::vec3{}, glm::vec3{}};
 
     for(auto&& child: m_Children){
         Hit hit = child->hit(s); 
