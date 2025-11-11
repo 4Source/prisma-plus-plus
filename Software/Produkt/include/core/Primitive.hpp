@@ -6,8 +6,8 @@ class Primitive : public HitComponent, public std::enable_shared_from_this<Primi
   protected:
   public:
     Primitive() = default;
-	Primitive(Primitive&&) noexcept = default;
-	Primitive& operator=(Primitive&&) noexcept = default;
+	Primitive(Primitive&&) noexcept = delete;
+	Primitive& operator=(Primitive&&) noexcept = delete;
 	Primitive(const Primitive&) = delete;
 	Primitive& operator=(const Primitive&) = delete;
     virtual ~Primitive() = default;

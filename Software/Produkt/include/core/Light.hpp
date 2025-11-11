@@ -9,7 +9,6 @@ class Light {
   protected:
     glm::vec3 m_Color{1.0};
     float m_Intensity{1.0};
-    glm::vec3 m_Position;
 
   public:
     Light() = default;
@@ -23,9 +22,6 @@ class Light {
     float getIntensity() const { return m_Intensity; }
     void setIntensity(float intensity) { m_Intensity = intensity; }
   
-    glm::vec3 getPosition() const { return m_Position; }
-    void setPosition(glm::vec3 pos) { m_Position = pos; }
-
     /**
      * Gets a ray representing a light ray of this light source at a point in
      * world space
@@ -33,5 +29,5 @@ class Light {
      * @param worldPos The position in world space of the point on a object.
      * @return The Ray from this light source
      */
-    virtual Ray getRay(const glm::vec3 worldPos) const = 0;
+    virtual Ray getRay(const glm::vec3 worldPos) const = 0 ;
 };

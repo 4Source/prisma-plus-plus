@@ -10,8 +10,8 @@ class HitComponentList : public HitComponent {
 
   public:
     HitComponentList() = default;
-	  HitComponentList(HitComponentList&&) noexcept = default;
-    HitComponentList& operator=(HitComponentList&&) noexcept = default;
+	HitComponentList(HitComponentList&&) noexcept = delete;
+    HitComponentList& operator=(HitComponentList&&) noexcept = delete;
     HitComponentList(const HitComponentList&) = delete;
     HitComponentList& operator=(const HitComponentList&) = delete;
     virtual ~HitComponentList() = default;

@@ -15,8 +15,8 @@ class Triangle : public Primitive {
     Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2);
     Triangle(std::array<glm::vec3, 3> vertices);
     Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2, glm::vec3 normal);
-	  Triangle(Triangle&&) noexcept = default;
-    Triangle& operator=(Triangle&&) noexcept = default;
+	Triangle(Triangle&&) noexcept = delete;
+    Triangle& operator=(Triangle&&) noexcept = delete;
     Triangle(const Triangle&) = delete;
     Triangle& operator=(const Triangle&) = delete;	
     Triangle(std::array<glm::vec3, 3> vertices, glm::vec3 normal);

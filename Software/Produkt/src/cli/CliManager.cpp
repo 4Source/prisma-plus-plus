@@ -128,7 +128,7 @@ int CliManager::run(std::span<const char *const> args) {
 		std::shared_ptr<Object> object_p = std::make_shared<Object>(list, material_p);
 
         Camera camera{glm::vec3{0, -0.1, 10}, glm::vec3{0, 12.8, 0}, glm::vec3{9.6, 0, 0}, 0.01};
-        Light light{glm::vec3{255, 255, 255}, 1.0, glm::vec3{0, 5, 5}};
+        PointLight light{glm::vec3{255, 255, 255}, 1.0, glm::vec3{0, 5, 5}};
 
         Scene scene{light, std::vector<std::shared_ptr<Object>>{object_p}, camera};
         RayTracer raytracer{scene};
