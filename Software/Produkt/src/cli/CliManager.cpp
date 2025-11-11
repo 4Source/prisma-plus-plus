@@ -1,10 +1,10 @@
 #include "cli/CliManager.h"
 #include "cli/CliArguments.h"
-#include "ui/UIManager.h"
-#include "core/RayTracer.hpp"
-#include "core/Triangle.hpp"
 #include "core/HitComponentList.hpp"
 #include "core/PointLight.hpp"
+#include "core/RayTracer.hpp"
+#include "core/Triangle.hpp"
+#include "ui/UIManager.h"
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #pragma GCC diagnostic push
@@ -12,12 +12,11 @@
 #include "stb_image_write.h"
 #pragma GCC diagnostic pop
 
-#include <vector>
 #include <array>
 #include <string>
+#include <vector>
 
-bool CliManager::save_png(const std::vector<std::vector<std::array<uint8_t, 3>>>& img,
-              const std::string& filename) {
+bool CliManager::save_png(const std::vector<std::vector<std::array<uint8_t, 3>>> &img, const std::string &filename) {
     int height = static_cast<int>(img.size());
     int width = static_cast<int>(img[0].size());
 
@@ -67,7 +66,8 @@ bool CliManager::loadFromStdin(tinyobj::attrib_t &attributes, std::vector<tinyob
 /// @param height
 /// @param width
 /// @return
-bool CliManager::writeOutputFile(const std::filesystem::path &path, const std::vector<std::vector<std::array<uint8_t, 3>>> &data, const int height, const int width) {
+bool CliManager::writeOutputFile(const std::filesystem::path &path, const std::vector<std::vector<std::array<uint8_t, 3>>> &data, const int height,
+                                 const int width) {
     std::ofstream file(path, std::ios::binary);
 
     if (!file) {
@@ -76,20 +76,20 @@ bool CliManager::writeOutputFile(const std::filesystem::path &path, const std::v
     }
 
     // Write image data here
-    //file << "Write Image here...\n";
-	return save_png(data, path.string()); 
-    //file.close();
-    //return true;
+    // file << "Write Image here...\n";
+    return save_png(data, path.string());
+    // file.close();
+    // return true;
 }
 
 /// @brief
 /// @return standard input exist - true : flase
-bool CliManager::stdinHasData() { 
-    #ifdef _WIN32
-        return !_isatty(_fileno(stdin));
-    #else
-        return !isatty(fileno(stdin));
-    #endif
+bool CliManager::stdinHasData() {
+#ifdef _WIN32
+    return !_isatty(_fileno(stdin));
+#else
+    return !isatty(fileno(stdin));
+#endif
 }
 
 /// @brief Main program startup controller
@@ -113,7 +113,7 @@ int CliManager::run(std::span<const char *const> args) {
         }
         std::cout << "Loaded OBJ: " << shapes.size() << " shapes, " << attrib.vertices.size() / 3 << " vertices\n";
 
-		//  basic raytracing algorithm example
+        //  basic raytracing algorithm example
         std::shared_ptr<Triangle> tri1_p = std::make_shared<Triangle>(glm::vec3{-3, -3, 0}, glm::vec3{5, 7, 0}, glm::vec3{3, -3, 0});
         std::shared_ptr<Triangle> tri2_p = std::make_shared<Triangle>(glm::vec3{-3, -3, 0}, glm::vec3{5, 7, 0}, glm::vec3{-4, 5, -2});
         std::shared_ptr<Triangle> tri3_p = std::make_shared<Triangle>(glm::vec3{-4, 5, -2}, glm::vec3{5, 7, 0}, glm::vec3{-2, 9, -3});
@@ -128,8 +128,8 @@ int CliManager::run(std::span<const char *const> args) {
         list->add(tri5_p);
 
         Material material{glm::vec3{0, 255, 255}};
-		std::shared_ptr<Material> material_p = std::make_shared<Material>(material);
-		std::shared_ptr<Object> object_p = std::make_shared<Object>(list, material_p);
+        std::shared_ptr<Material> material_p = std::make_shared<Material>(material);
+        std::shared_ptr<Object> object_p = std::make_shared<Object>(list, material_p);
 
         Camera camera{glm::vec3{0, -0.1, 10}, glm::vec3{0, 12.8, 0}, glm::vec3{9.6, 0, 0}, 0.01};
         std::shared_ptr<PointLight> light = std::make_shared<PointLight>(glm::vec3{0, 5, 5}, glm::vec3{255, 255, 255}, 1.0);
@@ -155,7 +155,6 @@ int CliManager::run(std::span<const char *const> args) {
         }
 
         return CliManager::writeOutputFile(output_path, raytracer.view_to_rgb(), 960, 1280);
-            
     }
 
     // If no Standard input is passed run UI

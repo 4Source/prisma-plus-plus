@@ -17,7 +17,7 @@ class Object {
     glm::vec3 m_Scale;
 
   public:
-	  Object(const std::shared_ptr<HitComponent>& c, const std::shared_ptr<Material>& m);
+    Object(const std::shared_ptr<HitComponent> &c, const std::shared_ptr<Material> &m);
     /**
      * Creates an object from an .obj file. Will import the material file if one is provided inside the .obj the .mat file has to be in
      * same folder as .obj file.
@@ -31,10 +31,9 @@ class Object {
     Object(const Object &) = delete;
     Object &operator=(const Object &) = delete;
 
+    std::shared_ptr<HitComponent> getComponent() const { return m_Component; };
+    std::shared_ptr<Material> getMaterial() const { return m_Material; };
 
-	  std::shared_ptr<HitComponent> getComponent() const {return m_Component;};
-	  std::shared_ptr<Material> getMaterial() const {return m_Material;} ;
-    
     Object(Object &&other) noexcept = delete;
     Object &operator=(Object &&other) noexcept = delete;
 

@@ -1,6 +1,6 @@
 #pragma once
-#include "core/Primitive.hpp"
 #include "core/Material.hpp"
+#include "core/Primitive.hpp"
 #include <array>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/glm.hpp>
@@ -15,10 +15,10 @@ class Triangle : public Primitive {
     Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2);
     Triangle(std::array<glm::vec3, 3> vertices);
     Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2, glm::vec3 normal);
-	Triangle(Triangle&&) noexcept = delete;
-    Triangle& operator=(Triangle&&) noexcept = delete;
-    Triangle(const Triangle&) = delete;
-    Triangle& operator=(const Triangle&) = delete;	
+    Triangle(Triangle &&) noexcept = delete;
+    Triangle &operator=(Triangle &&) noexcept = delete;
+    Triangle(const Triangle &) = delete;
+    Triangle &operator=(const Triangle &) = delete;
     Triangle(std::array<glm::vec3, 3> vertices, glm::vec3 normal);
     virtual ~Triangle() = default;
 
@@ -26,7 +26,7 @@ class Triangle : public Primitive {
     std::array<glm::vec3, 3> getVertices() const { return m_Vertices; }
     glm::vec3 getFaceNormal() const { return m_FaceNormal; }
 
-    virtual Hit hit(const Subray& s) const override;
+    virtual Hit hit(const Subray &s) const override;
 
     virtual std::string toString(bool formatted = false, int indentLevel = 0) override;
 };

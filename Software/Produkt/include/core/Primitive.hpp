@@ -6,10 +6,10 @@ class Primitive : public HitComponent, public std::enable_shared_from_this<Primi
   protected:
   public:
     Primitive() = default;
-	Primitive(Primitive&&) noexcept = delete;
-	Primitive& operator=(Primitive&&) noexcept = delete;
-	Primitive(const Primitive&) = delete;
-	Primitive& operator=(const Primitive&) = delete;
+    Primitive(Primitive &&) noexcept = delete;
+    Primitive &operator=(Primitive &&) noexcept = delete;
+    Primitive(const Primitive &) = delete;
+    Primitive &operator=(const Primitive &) = delete;
     virtual ~Primitive() = default;
 
     virtual void add(std::shared_ptr<HitComponent> component) override;

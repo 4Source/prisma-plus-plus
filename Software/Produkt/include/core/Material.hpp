@@ -1,6 +1,7 @@
 #pragma once
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/glm.hpp>
+#include <string>
 
 class Material {
   private:
@@ -11,7 +12,7 @@ class Material {
     Material(glm::vec3 color) : m_Color(color) {};
 
     glm::vec3 get_color() const { return m_Color; };
-    
+
     std::string toString(bool formatted = false, int indentLevel = 0) {
         // TODO: toString Material
         return "TODO: Material";

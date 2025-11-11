@@ -58,6 +58,8 @@ Triangle::Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2, glm:
     }
 }
 
+Triangle::Triangle(std::array<glm::vec3, 3> vertices, glm::vec3 normal) : Triangle{vertices.at(0), vertices.at(1), vertices.at(2), normal} {}
+
 Hit Triangle::hit(const Subray& s) const {
     float dot_startpoint = glm::dot(m_FaceNormal, s.position);
     float dot_direction = glm::dot(m_FaceNormal, s.direction);
