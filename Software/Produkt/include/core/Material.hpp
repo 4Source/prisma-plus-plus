@@ -7,6 +7,10 @@ class Material {
     glm::vec3 color;
     // TODO: Add material attributes
   public:
-	Material(glm::vec3 c) : color(c){};
-	glm::vec3 get_color() const {return color;};
+	  Material(glm::vec3 c) : color(c){};
+	  glm::vec3 get_color() const {return color;};
+    std::string toString(bool formatted = false, int indentLevel = 0) {
+      // TODO: toString Material
+      return "TODO: Material";
+    };
 };

@@ -11,7 +11,7 @@
 *.slo
 *.lo
 *.o
-*.obj
+# *.obj
 
 # Linker files
 *.ilk
@@ -43,6 +43,9 @@
 # Debugger Files
 *.pdb
 *.dwo
+
+# ImGui Files
+Software/Produkt/imgui.ini
 
 ### macOS ###
 # General

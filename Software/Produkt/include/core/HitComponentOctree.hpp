@@ -10,7 +10,7 @@ class HitComponentOctree : public HitComponent {
 
   public:
     HitComponentOctree() = default;
-	HitComponentOctree(HitComponentOctree&&) noexcept = default;
+	  HitComponentOctree(HitComponentOctree&&) noexcept = default;
     HitComponentOctree& operator=(HitComponentOctree&&) noexcept = default;
     HitComponentOctree(const HitComponentOctree&) = delete;
     HitComponentOctree& operator=(const HitComponentOctree&) = delete;
@@ -22,5 +22,5 @@ class HitComponentOctree : public HitComponent {
     virtual std::shared_ptr<HitComponent> getChild(size_t position) override;
     virtual std::shared_ptr<HitComponent> getChild(uuids::uuid uuid) override;
 
-    virtual std::string toString() override;
+    virtual std::string toString(bool formatted = false, int indentLevel = 0) override;
 };

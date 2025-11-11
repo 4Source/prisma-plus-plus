@@ -32,13 +32,17 @@ std::shared_ptr<HitComponent> HitComponentList::getChild(uuids::uuid uuid) {
     return nullptr;
 }
 
-std::string HitComponentList::toString() {
-    std::string s = HitComponent::toString();
-    s += " type: 'HitComponentList' size: " + std::to_string(size()) + " components: [";
+std::string HitComponentList::toString(bool formatted, int indentLevel) {
+    std::string s = (formatted ? std::string(indentLevel, '\t') : std::string("")) + HitComponent::toString(formatted, indentLevel);
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "componentType: 'HitComponentList'" + (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "size: " + std::to_string(size()) + (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "components: [" + (formatted ? std::string("\n") : std::string(""));
 
     for (size_t i = 0; i < size(); i++) {
-        s += "{" + getChild(i)->toString() + (((i + 1) == size()) ? "}" : "}, ");
+        s += (formatted ? std::string(indentLevel + 1, '\t') : std::string("")) + "{" + (formatted ? std::string("\n") : std::string(""));
+        s += getChild(i)->toString(formatted, indentLevel + 2) + (formatted ? std::string("\n") : std::string(""));
+        s += (formatted ? std::string(indentLevel + 1, '\t') : std::string("")) + (((i + 1) == size()) ? "}" : "}, ") + (formatted ? std::string("\n") : std::string(""));
     }
-    s += "]";
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "]" + (formatted ? std::string("\n") : std::string(""));
     return s;
 }
