@@ -1,0 +1,185 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>821</x><y>221</y><w>168</w><h>64</h></coordinates><panel_attributes>Scene
+--
+- objects : Object [*]
+- camera : Camera
+- lights : Lights [*]
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1053</x><y>221</y><w>392</w><h>232</h></coordinates><panel_attributes>Object
+--
+- m_UUID: uuid
+- m_Component: HitComponent
+- m_Material: Material
+- m_Name: string
+- m_Translation: vec3
+- m_Rotation: vec3
+- m_Scale: vec3
+--
++ Object(objectPath: path&amp;)
++ Object(objectPath: path&amp;, name: string, translation: vec3, rotation: vec3, scale: vec3)
++ ~Object()
+
++ Object(: Object&amp;) {delete}
++ operator=(: Object&amp;): Object&amp; {delete}
++ Object(other: Object&amp;&amp;) {delete}
++ operator=(other: Object&amp;&amp;): Object&amp; {delete}
+
++ toString(formatted: bool, indentLevel int): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>821</x><y>549</y><w>168</w><h>176</h></coordinates><panel_attributes>/Light/
+--
+# color : vec3
+# intensity : float
+--
++ Light()
++ Light(color: vec3, intensity: float)
++ ~Light()
+
++ getColor() : vec3 {const}
++ setColor(color: vec3): void
++ getIntensity() : float {const}
++ setIntensity(intensity: float): void
+
+/+ getRay(worldPos : vec3) : Ray/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1093</x><y>549</y><w>168</w><h>120</h></coordinates><panel_attributes>/Camera/
+--
+# pos : vec3
+# top : vec3
+# left : vec3
+# resolution: float
+--
++ height(: float
++ width(): float
++ normal(): vec3</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1509</x><y>229</y><w>304</w><h>264</h></coordinates><panel_attributes>/HitComponent/
+--
+# m_UUID: uuid
+--
++ HitComponent()
++ ~HitComponent()
+
++ HitComponent(other: HitComponent&amp;) {delete}
++ operator=(other: HitComponent&amp;): HitComponent&amp; {delete}
++ HitComponent(other: HitComponent&amp;&amp;) {delete}
++ operator=(other: HitComponent&amp;&amp;): HitComponent&amp; {delete}
+
++ getUUID(): uuid
++ getUUIDString(): string
++ operator==(other : HitComponent&amp;) : bool
++ toString(formatted: bool, indentLevel int): string
+
+/+ hit() : Hit {const}  /
+/+ add(component : HitComponent) : void/
+/+ remove(component : HitComponent) : HitComponent/
+/+ getChild(position: size_t): HitComponent/
+/+ getChild(uuid: uuid): HitComponent/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1381</x><y>549</y><w>264</w><h>152</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
+Primitive
+--
+
+--
++ Primitive()
++ ~Primitive
+
++ add(component : HitComponent) : void
++ remove(component : HitComponent) : HitComponent
++ getChild(position: size_t): HitComponent
++ getChild(uuid: uuid): HitComponent</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1333</x><y>773</y><w>312</w><h>216</h></coordinates><panel_attributes>Triangle
+--
+- m_vertices : vec3[3]
+- m_FaceNormal : vec3
+--
++ Triangle(vertex0: vec3, vertex1: vec3, vertex2: vec3)
++ Triangle(vertices : vec3[3])
++ Triangle(vertex0: vec3, vertex1: vec3, vertex2: vec3, normal: vec3)
++ Triangle(vertices : vec3[3], normal : vec3)
++ ~Triangle()
+
++ getVertex(index: int): vec3 {const}
++ getVertices(): vec3[3] {const}
++ getFaceNormal(): vec3 {const}
+
++ hit() : Hit {const} 
+
++ toString(formatted: bool, indentLevel int): string
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1509</x><y>693</y><w>24</w><h>96</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1669</x><y>549</y><w>264</w><h>200</h></coordinates><panel_attributes>HitComponentList
+--
+- m_children : HitComponent[0..*]
+--
++ HitComponentList()
++ ~HitComponentList()
+
++ size(): size_t
+
++ hit() : Hit {const}
++ add(component : HitComponent) : void
++ remove(component : HitComponent) : HitComponent
++ getChild(position: size_t): HitComponent
++ getChild(uuid: uuid): HitComponent
+
++ toString(formatted: bool, indentLevel int): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1549</x><y>485</y><w>128</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>140;10;140;40;10;40;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>1717</x><y>485</y><w>56</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;40;50;40;50;80</additional_attributes></element><element><id>Relation</id><coordinates><x>1437</x><y>293</y><w>88</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1125</x><y>61</y><w>232</w><h>56</h></coordinates><panel_attributes>Material
+--
+- color : vec3
+--
++ toString(formatted: bool, indentLevel int): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1197</x><y>109</y><w>24</w><h>128</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>917</x><y>277</y><w>272</w><h>288</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>320;340;320;310;10;310;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>981</x><y>245</y><w>88</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>901</x><y>277</y><w>24</w><h>288</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;340;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>821</x><y>773</y><w>232</w><h>128</h></coordinates><panel_attributes>PointLight
+--
+# m_Pos: vec3
+--
++ PointLight()
++ PointLight(pos: vec3, color: vec3, intensity: float)
+
++ getPosition() : vec3 {const}
++ setPosition(pos: vec3): void
+
++ getRay(worldPos : vec3) : Ray</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>901</x><y>717</y><w>24</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1093</x><y>773</y><w>168</w><h>64</h></coordinates><panel_attributes>PerspectiveCamera
+--
+- near : float
+- far : float
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1173</x><y>661</y><w>24</w><h>128</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;140</additional_attributes></element><element><id>UMLNote</id><coordinates><x>1829</x><y>245</y><w>112</w><h>24</h></coordinates><panel_attributes>Composite Pattern
+bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1701</x><y>485</y><w>24</w><h>80</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1677</x><y>485</y><w>24</w><h>80</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>629</x><y>773</y><w>168</w><h>128</h></coordinates><panel_attributes>DirectionalLight
+--
+# m_Pos: vec3
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>717</x><y>717</y><w>176</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>200;10;200;40;10;40;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>261</x><y>221</y><w>288</w><h>96</h></coordinates><panel_attributes>Ray
+--
++ subray_stack : Stack&lt;Subray&gt;
+--
++ Ray(subray : Subray&amp;, obj: Object, lights: Light [*])
++ forward(subray: Subray&amp;, object:Object, light: Light&amp;): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>661</x><y>221</y><w>96</w><h>96</h></coordinates><panel_attributes>Subray
+--
++ direction: vec3
++ position: vec3
++ color: vec3
++ hit_normal; vec3
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1957</x><y>549</y><w>264</w><h>176</h></coordinates><panel_attributes>HitComponentOctree
+--
+# childern: HitComponent[8]
+--
++ HitComponentOctree()
++ ~HitComponentOctree()
+
++ hit() : Hit {const}
++ add(component : HitComponent) : void
++ remove(component : HitComponent) : HitComponent
++ getChild(position: size_t): HitComponent
++ getChild(uuid: uuid): HitComponent
+
++ toString(formatted: bool, indentLevel int): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1805</x><y>413</y><w>304</w><h>152</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;360;10;360;170</additional_attributes></element><element><id>Relation</id><coordinates><x>1805</x><y>437</y><w>256</w><h>128</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>300;140;300;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1805</x><y>461</y><w>232</w><h>104</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;270;10;270;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>413</x><y>53</y><w>112</w><h>96</h></coordinates><panel_attributes>&lt;&lt;external&gt;&gt;
+template=T
+Stack
+--
+
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>469</x><y>141</y><w>24</w><h>96</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>541</x><y>261</y><w>136</w><h>24</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>613</x><y>61</y><w>80</w><h>80</h></coordinates><panel_attributes>&lt;&lt;enumeration&gt;&gt;
+Resolution
+-
+high
+medium
+low</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1781</x><y>805</y><w>80</w><h>80</h></coordinates><panel_attributes>Hit
+-
++ hit: bool
++ intersect: vec3
++ normal: vec3
++ color: vec3</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>893</x><y>61</y><w>144</w><h>88</h></coordinates><panel_attributes>RayTracer
+-
++ scene: Scene
++ view: vec3[*]
+-
++ RayTracer(scene: Scene&amp;)
++ start(): void
++ view_to_rgb(): uint8_t[3]</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>949</x><y>141</y><w>24</w><h>96</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element></diagram>
