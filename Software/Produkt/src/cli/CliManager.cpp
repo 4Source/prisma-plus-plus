@@ -117,7 +117,7 @@ int CliManager::run(std::span<const char *const> args) {
         auto obj = std::make_shared<Object>(attrib, shapes);
 
         // print Object
-        std::cout << obj << "\n";
+        std::cout << obj->toString() << "\n";
         RayTracingRunner runner(obj);
         auto picture_ptr = runner.run();
         std::filesystem::path output_path;
