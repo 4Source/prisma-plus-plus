@@ -9,7 +9,7 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#include "cli/stb_image_write.h"
+#include "stb_image_write.h"
 #pragma GCC diagnostic pop
 
 #include <vector>

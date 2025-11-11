@@ -19,3 +19,6 @@
 [submodule "Software/Produkt/external/stduuid"]
 	path = Software/Produkt/external/stduuid
 	url = https://github.com/mariusbancila/stduuid
+[submodule "Software/Produkt/external/stb"]
+	path = Software/Produkt/external/stb
+	url = https://github.com/nothings/stb
