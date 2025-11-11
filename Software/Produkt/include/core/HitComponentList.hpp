@@ -10,10 +10,6 @@ class HitComponentList : public HitComponent {
 
   public:
     HitComponentList() = default;
-    HitComponentList(HitComponentList &&) noexcept = delete;
-    HitComponentList &operator=(HitComponentList &&) noexcept = delete;
-    HitComponentList(const HitComponentList &) = delete;
-    HitComponentList &operator=(const HitComponentList &) = delete;
     virtual ~HitComponentList() = default;
 
     size_t size() const { return m_Children.size(); }
