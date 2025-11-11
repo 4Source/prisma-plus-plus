@@ -33,6 +33,7 @@ void Menubar::draw() {
       if (ImGui::MenuItem("Start")) {
         std::cout << "<<Start Rendering>> called\n"; // ##### IMPLEMENT ACTUAL
                                                   // FUNCTION CALL #####
+        
       }
       if (ImGui::MenuItem("Pause")) {
         std::cout << "<<Pause Rendering>> called\n"; // ##### IMPLEMENT ACTUAL

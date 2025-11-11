@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) { // NOLINT
 		return CliManager::run({argv, static_cast<size_t>(argc)});
 
     } catch (const std::exception &e) {
-        std::cerr << "FATAL: " << e.what() << "\n";
+        std::cerr << "FATAL ERROR FROM MAIN: " << e.what() << "\n";
     }
     return 1;
 }
