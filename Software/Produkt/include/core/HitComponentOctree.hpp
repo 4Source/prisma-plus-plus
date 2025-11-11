@@ -9,10 +9,10 @@ class HitComponentOctree : public HitComponent {
     std::array<std::shared_ptr<HitComponent>, 8> m_Children;
 
   public:
-    HitComponentOctree() = default;
+    HitComponentOctree() = delete;
     virtual ~HitComponentOctree() = default;
 
-    virtual bool hit() const override;
+    virtual Hit hit(const Subray &s) const override;
     virtual void add(std::shared_ptr<HitComponent> component) override;
     virtual void remove(std::shared_ptr<HitComponent> component) override;
     virtual std::shared_ptr<HitComponent> getChild(size_t position) override;

@@ -1,6 +1,8 @@
 #pragma once
+#include "core/Material.hpp"
 #include "core/Primitive.hpp"
 #include <array>
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/glm.hpp>
 #include <string>
 
@@ -20,7 +22,7 @@ class Triangle : public Primitive {
     std::array<glm::vec3, 3> getVertices() const { return m_Vertices; }
     glm::vec3 getFaceNormal() const { return m_FaceNormal; }
 
-    virtual bool hit() const override;
+    virtual Hit hit(const Subray &s) const override;
 
     virtual std::string toString(bool formatted = false, int indentLevel = 0) override;
 };

@@ -7,12 +7,15 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 
+Object::Object(const std::shared_ptr<HitComponent> &c, const std::shared_ptr<Material> &m)
+    : m_Component(c), m_Material(m), m_Name{"Unknown"}, m_Translation{glm::vec3{0.0f}}, m_Rotation{glm::vec3{0.0f}}, m_Scale{glm::vec3{1.0f}} {}
+
 Object::Object(const std::filesystem::path &objectPath)
     : Object{objectPath, objectPath.filename().string(), glm::vec3{0.0f}, glm::vec3{0.0f}, glm::vec3{1.0f}} {}
 
 Object::Object(const std::filesystem::path &objectPath, std::string name, glm::vec3 translation, glm::vec3 rotation, glm::vec3 scale)
-    : m_UUID{UUIDGenerator::gen()}, m_Component{std::make_shared<HitComponentList>()}, m_Material{std::make_shared<Material>()}, m_Name{std::move(name)},
-      m_Translation{translation}, m_Rotation{rotation}, m_Scale{scale} {
+    : m_UUID{UUIDGenerator::gen()}, m_Component{std::make_shared<HitComponentList>()}, m_Material{std::make_shared<Material>()},
+      m_Name{std::move(name)}, m_Translation{translation}, m_Rotation{rotation}, m_Scale{scale} {
     std::string objFilepath;
     std::string matFilepath;
     if (objectPath.is_relative()) {
@@ -44,7 +47,7 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
     auto &materials = reader.GetMaterials();
 
     // Loop over shapes
-    for (const auto & shape : shapes) {
+    for (const auto &shape : shapes) {
         // Loop over faces(polygon)
         size_t indexOffset = 0;
         for (size_t faceIndex = 0; faceIndex < shape.mesh.num_face_vertices.size(); faceIndex++) {
@@ -85,7 +88,7 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
             }
             try {
                 m_Component->add(std::make_shared<Triangle>(face));
-            } catch (std::invalid_argument& ex) {
+            } catch (std::invalid_argument &ex) {
                 std::cout << "TinyObjReader: " << ex.what();
             }
 
@@ -101,9 +104,12 @@ std::string Object::toString(bool formatted, int indentLevel) {
     std::string s = (formatted ? std::string(indentLevel, '\t') : std::string("")) + "uuid: " + uuids::to_string(m_UUID) +
                     (formatted ? std::string("\n") : std::string(" "));
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "name: " + m_Name + (formatted ? std::string("\n") : std::string(" "));
-    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "translation: " + glm::to_string(m_Translation) + (formatted ? std::string("\n") : std::string(" "));
-    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "rotation: " + glm::to_string(m_Rotation) + (formatted ? std::string("\n") : std::string(" "));
-    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "scale: " + glm::to_string(m_Scale) + (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "translation: " + glm::to_string(m_Translation) +
+         (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "rotation: " + glm::to_string(m_Rotation) +
+         (formatted ? std::string("\n") : std::string(" "));
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "scale: " + glm::to_string(m_Scale) +
+         (formatted ? std::string("\n") : std::string(" "));
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "material: " + (formatted ? std::string("\n") : std::string(" "));
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + m_Material->toString(formatted, indentLevel + 1) +
          (formatted ? std::string("\n") : std::string(" "));

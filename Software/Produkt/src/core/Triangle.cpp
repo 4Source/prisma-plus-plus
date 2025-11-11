@@ -60,9 +60,25 @@ Triangle::Triangle(glm::vec3 vertex0, glm::vec3 vertex1, glm::vec3 vertex2, glm:
 
 Triangle::Triangle(std::array<glm::vec3, 3> vertices, glm::vec3 normal) : Triangle{vertices.at(0), vertices.at(1), vertices.at(2), normal} {}
 
-bool Triangle::hit() const {
-    // TODO: Implement Triangle Hit
-    return false;
+Hit Triangle::hit(const Subray& s) const {
+    float dot_startpoint = glm::dot(m_FaceNormal, s.position);
+    float dot_direction = glm::dot(m_FaceNormal, s.direction);
+    float d = glm::dot(m_FaceNormal, -m_Vertices.at(0));
+    glm::vec3 intersect = s.position + s.direction * ((d - dot_startpoint) / dot_direction);
+    
+    glm::vec3 v0 = m_Vertices.at(2) - m_Vertices.at(0);
+    glm::vec3 v1 = m_Vertices.at(1) - m_Vertices.at(0);
+    glm::vec3 v2 = intersect - m_Vertices.at(0);
+    float dot00 = glm::dot(v0, v0);
+    float dot01 = glm::dot(v0, v1);
+    float dot11 = glm::dot(v1, v1);
+    float dot20 = glm::dot(v2, v0);
+    float dot21 = glm::dot(v2, v1);
+ 
+    float u = (dot11 * dot20 - dot01 * dot21) / (dot00 * dot11 - dot01 * dot01);
+    float v = (dot00 * dot21 - dot01 * dot20) / (dot00 * dot11 - dot01 * dot01);
+ 
+    return {(u >= 0) && (v >= 0) && ((u + v) <= 1), intersect, m_FaceNormal, glm::vec3{255, 255, 255}};
 }
 
 std::string Triangle::toString(bool formatted, int indentLevel) {
