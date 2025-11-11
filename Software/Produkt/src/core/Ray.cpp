@@ -1,6 +1,7 @@
 #include "core/Ray.hpp"
 #include <glm/gtx/vector_angle.hpp>
-constexpr float PI=3.14159265359f;
+#include <numbers>
+constexpr float PI = std::numbers::pi_v<float>;
 
 Ray::Ray(const Subray& subray, const std::shared_ptr<Object>& obj, const std::shared_ptr<Light>& light){
 	Ray::forward(subray, obj, light);
