@@ -44,22 +44,22 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
     auto &materials = reader.GetMaterials();
 
     // Loop over shapes
-    for (size_t shapeIndex = 0; shapeIndex < shapes.size(); shapeIndex++) {
+    for (const auto & shape : shapes) {
         // Loop over faces(polygon)
         size_t indexOffset = 0;
-        for (size_t faceIndex = 0; faceIndex < shapes.at(shapeIndex).mesh.num_face_vertices.size(); faceIndex++) {
-            size_t faceVertexCount = size_t(shapes.at(shapeIndex).mesh.num_face_vertices.at(faceIndex));
+        for (size_t faceIndex = 0; faceIndex < shape.mesh.num_face_vertices.size(); faceIndex++) {
+            size_t faceVertexCount = size_t(shape.mesh.num_face_vertices.at(faceIndex));
             // With default config should always be fixed to 3 by tinyobjloader (reader_config.triangulate = true)
             if (faceVertexCount != 3) {
                 std::cout << "TinyObjReader: Unsupported number of vertices for face.\n";
                 continue;
             }
 
-            std::array<glm::vec3, 3> face;
+            std::array<glm::vec3, 3> face{};
             // Loop over vertices in the face.
             for (size_t vertexIndex = 0; vertexIndex < faceVertexCount; vertexIndex++) {
                 // Access the vertices
-                tinyobj::index_t idx = shapes.at(shapeIndex).mesh.indices.at(indexOffset + vertexIndex);
+                tinyobj::index_t idx = shape.mesh.indices.at(indexOffset + vertexIndex);
                 tinyobj::real_t vx = attrib.vertices.at(3 * size_t(idx.vertex_index) + 0);
                 tinyobj::real_t vy = attrib.vertices.at(3 * size_t(idx.vertex_index) + 1);
                 tinyobj::real_t vz = attrib.vertices.at(3 * size_t(idx.vertex_index) + 2);
@@ -85,14 +85,14 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
             }
             try {
                 m_Component->add(std::make_shared<Triangle>(face));
-            } catch (std::invalid_argument ex) {
+            } catch (std::invalid_argument& ex) {
                 std::cout << "TinyObjReader: " << ex.what();
             }
 
             indexOffset += faceVertexCount;
 
             // per-face material
-            // int mat = shapes.at(shapeIndex).mesh.material_ids.at(faceIndex);
+            // int mat = shape.mesh.material_ids.at(faceIndex);
         }
     }
 }
