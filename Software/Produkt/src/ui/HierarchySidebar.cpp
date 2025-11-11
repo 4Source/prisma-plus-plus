@@ -94,7 +94,11 @@ void HierarchySidebar::draw(int windowWidth, int windowHeight) {
                         renamingType = SelectedType::Object;
                         selectedIndex = i;
                         selectedType = SelectedType::Object;
-                        strncpy_s(renameBuffer.data(), renameBuffer.size(), label.c_str(), _TRUNCATE);
+                        #ifdef _WIN32
+                            strncpy_s(renameBuffer.data(), renameBuffer.size(), label.c_str(), _TRUNCATE);
+                        #else 
+                            strncpy(renameBuffer.data(), label.c_str(), renameBuffer.size());
+                        #endif
                     }
                 }
 
@@ -199,7 +203,11 @@ void HierarchySidebar::draw(int windowWidth, int windowHeight) {
                         renamingType = SelectedType::Light;
                         selectedIndex = i;
                         selectedType = SelectedType::Light;
-                        strncpy_s(renameBuffer.data(), renameBuffer.size(), label.c_str(), _TRUNCATE);
+                        #ifdef _WIN32
+                            strncpy_s(renameBuffer.data(), renameBuffer.size(), label.c_str(), _TRUNCATE);
+                        #else 
+                            strncpy(renameBuffer.data(), label.c_str(), renameBuffer.size());
+                        #endif
                     }
                 }
 
