@@ -1,6 +1,37 @@
 #include "cli/CliManager.h"
 #include "cli/CliArguments.h"
 #include "ui/UIManager.h"
+#include "core/RayTracer.hpp"
+#include "core/Triangle.hpp"
+#include "core/HitComponentList.hpp"
+
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include "cli/stb_image_write.h"
+
+#include <vector>
+#include <array>
+#include <string>
+
+bool CliManager::save_png(const std::vector<std::vector<std::array<uint8_t, 3>>>& img,
+              const std::string& filename) {
+    int height = static_cast<int>(img.size());
+    int width = static_cast<int>(img[0].size());
+
+    // Flatten the image data into a single contiguous buffer
+    std::vector<uint8_t> data;
+    data.reserve(width * height * 3);
+
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            data.push_back(img[y][x][0]); // R
+            data.push_back(img[y][x][1]); // G
+            data.push_back(img[y][x][2]); // B
+        }
+    }
+
+    // Write PNG (stride = width * 3 bytes)
+    return stbi_write_png(filename.c_str(), width, height, 3, data.data(), width * 3);
+}
 
 /// @brief load .obj File from standard input and parse with tinyobjparser
 /// @param attributes
@@ -32,7 +63,7 @@ bool CliManager::loadFromStdin(tinyobj::attrib_t &attributes, std::vector<tinyob
 /// @param height
 /// @param width
 /// @return
-bool CliManager::writeOutputFile(const std::filesystem::path &path, std::vector<glm::vec3> &data, const int height, const int width) {
+bool CliManager::writeOutputFile(const std::filesystem::path &path, const std::vector<std::vector<std::array<uint8_t, 3>>> &data, const int height, const int width) {
     std::ofstream file(path, std::ios::binary);
 
     if (!file) {
@@ -41,10 +72,10 @@ bool CliManager::writeOutputFile(const std::filesystem::path &path, std::vector<
     }
 
     // Write image data here
-    file << "Write Image here...\n";
-
-    file.close();
-    return true;
+    //file << "Write Image here...\n";
+	return save_png(data, path.string()); 
+    //file.close();
+    //return true;
 }
 
 /// @brief
@@ -78,12 +109,31 @@ int CliManager::run(std::span<const char *const> args) {
         }
         std::cout << "Loaded OBJ: " << shapes.size() << " shapes, " << attrib.vertices.size() / 3 << " vertices\n";
 
-        //-------------------------------------------------------------------------------------------------------------
-        //
-        // run raytracing here
-        //
-        //-------------------------------------------------------------------------------------------------------------
-        std::vector<glm::vec3> raytracing_data;
+		//  basic raytracing algorithm example
+        std::shared_ptr<Triangle> tri1_p = std::make_shared<Triangle>(glm::vec3{-3, -3, 0}, glm::vec3{5, 7, 0}, glm::vec3{3, -3, 0});
+        std::shared_ptr<Triangle> tri2_p = std::make_shared<Triangle>(glm::vec3{-3, -3, 0}, glm::vec3{5, 7, 0}, glm::vec3{-4, 5, -2});
+        std::shared_ptr<Triangle> tri3_p = std::make_shared<Triangle>(glm::vec3{-4, 5, -2}, glm::vec3{5, 7, 0}, glm::vec3{-2, 9, -3});
+        std::shared_ptr<Triangle> tri4_p = std::make_shared<Triangle>(glm::vec3{5, 7, 0}, glm::vec3{3, -3, 0}, glm::vec3{12, 4, -1});
+        std::shared_ptr<Triangle> tri5_p = std::make_shared<Triangle>(glm::vec3{-3, -3, 0}, glm::vec3{0, -9, -0.5}, glm::vec3{3, -3, 0});
+
+        std::shared_ptr<HitComponentList> list = std::make_shared<HitComponentList>();
+        list->add(tri1_p);
+        list->add(tri2_p);
+        list->add(tri3_p);
+        list->add(tri4_p);
+        list->add(tri5_p);
+
+        Material material{glm::vec3{0, 255, 255}};
+		std::shared_ptr<Material> material_p = std::make_shared<Material>(material);
+		std::shared_ptr<Object> object_p = std::make_shared<Object>(list, material_p);
+
+        Camera camera{glm::vec3{0, -0.1, 10}, glm::vec3{0, 12.8, 0}, glm::vec3{9.6, 0, 0}, 0.01};
+        Light light{glm::vec3{255, 255, 255}, 1.0, glm::vec3{0, 5, 5}};
+
+        Scene scene{light, std::vector<std::shared_ptr<Object>>{object_p}, camera};
+        RayTracer raytracer{scene};
+        raytracer.start();
+
         std::filesystem::path output_path;
 
         if (!CliArgs.file.empty() && CliArgs.createFile)
@@ -100,9 +150,8 @@ int CliManager::run(std::span<const char *const> args) {
             return 1;
         }
 
-        if (CliManager::writeOutputFile(output_path, raytracing_data, 920, 1080))
-            return 0;
-        return 1;
+        return CliManager::writeOutputFile(output_path, raytracer.view_to_rgb(), 960, 1280);
+            
     }
 
     // If no Standard input is passed run UI

@@ -2,6 +2,8 @@
 #include <memory>
 #include <string>
 #include <uuid.h>
+#include "core/Hit.hpp"
+#include "core/Subray.hpp"
 
 class HitComponent {
   protected:
@@ -20,7 +22,7 @@ class HitComponent {
     uuids::uuid getUUID() const { return m_UUID; }
     std::string getUUIDString() const { return uuids::to_string(m_UUID); }
 
-    virtual bool hit() const = 0;
+    virtual Hit hit(const Subray& s) const = 0;
     virtual void add(std::shared_ptr<HitComponent> component) = 0;
     virtual void remove(std::shared_ptr<HitComponent> component) = 0;
     virtual std::shared_ptr<HitComponent> getChild(size_t position) = 0;

@@ -10,9 +10,13 @@ class HitComponentOctree : public HitComponent {
 
   public:
     HitComponentOctree() = default;
+	HitComponentOctree(HitComponentOctree&&) noexcept = default;
+    HitComponentOctree& operator=(HitComponentOctree&&) noexcept = default;
+    HitComponentOctree(const HitComponentOctree&) = delete;
+    HitComponentOctree& operator=(const HitComponentOctree&) = delete;
     virtual ~HitComponentOctree() = default;
 
-    virtual bool hit() const override;
+    virtual Hit hit(const Subray& s) const override;
     virtual void add(std::shared_ptr<HitComponent> component) override;
     virtual void remove(std::shared_ptr<HitComponent> component) override;
     virtual std::shared_ptr<HitComponent> getChild(size_t position) override;

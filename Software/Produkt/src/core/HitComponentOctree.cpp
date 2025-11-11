@@ -1,8 +1,8 @@
 #include "core/HitComponentOctree.hpp"
 
-bool HitComponentOctree::hit() const {
+Hit HitComponentOctree::hit(const Subray& s) const {
     // TODO: Implement Hit for Octree
-    return false;
+    return {false, {}, {}, {}};
 }
 
 void HitComponentOctree::add(std::shared_ptr<HitComponent> component) {

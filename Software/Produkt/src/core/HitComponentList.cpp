@@ -1,12 +1,19 @@
 #include "core/HitComponentList.hpp"
 
-bool HitComponentList::hit() const {
-    for (auto &&child : m_Children) {
-        if (child->hit()) {
-            return true;
-        }
-    }
-    return false;
+Hit HitComponentList::hit(const Subray& s) const {
+    float closest_distance = 10000.0;
+    Hit closest_hit = {false, glm::vec3{}, glm::vec3{}};
+
+    for(auto&& child: m_Children){
+        Hit hit = child->hit(s); 
+        float current_distance = glm::length(hit.intersect - s.position);
+        if(current_distance < closest_distance && hit.hit){
+            closest_hit = hit;
+            closest_distance = current_distance;
+        }   
+    }   
+
+    return closest_hit;    
 }
 
 void HitComponentList::add(std::shared_ptr<HitComponent> component) { m_Children.push_back(component); }

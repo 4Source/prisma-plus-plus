@@ -1,18 +1,18 @@
-#include "Ray.hpp"
+#include "core/Ray.hpp"
 #include <glm/gtx/vector_angle.hpp>
 #define PI 3.14159265359f
 
-Ray::Ray(const Subray& subray, const Object& obj, const Light& light){
+Ray::Ray(const Subray& subray, std::shared_ptr<Object> obj, const Light& light){
 	Ray::forward(subray, obj, light);
 }
 
-void Ray::forward(const Subray& s, const Object& o, const Light& l){
+void Ray::forward(const Subray& s, std::shared_ptr<Object> o, const Light& l){
 	this->subray_stack.push(s);
 	// later while loop for further subrays (reflection etc.)
 	// diffuse reflection
-	Hit h = o.primitive->hit(s);
-   	if(o.primitive->hit(s).hit){
-		Subray next = Subray{l.pos - h.intersect, h.intersect, o.material.color, h.normal};
+	Hit h = o->getComponent()->hit(s);
+   	if(h.hit){
+		Subray next = Subray{l.pos - h.intersect, h.intersect, o->getMaterial()->get_color(), h.normal};
         this->subray_stack.push(next);
 	
 		Subray last = Subray{glm::vec3{0,0,0}, l.pos, next.color, glm::vec3{0,0,0}};

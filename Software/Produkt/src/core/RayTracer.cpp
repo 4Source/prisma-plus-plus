@@ -1,4 +1,5 @@
-#include "RayTracer.hpp"
+#include "core/RayTracer.hpp"
+#include "core/Ray.hpp"
 #include <iostream>
 #include <glm/gtx/string_cast.hpp>
 #include <cmath>

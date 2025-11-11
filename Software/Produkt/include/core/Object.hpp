@@ -10,6 +10,7 @@ class Object {
     std::shared_ptr<Material> m_Material;
 
   public:
+	Object(std::shared_ptr<HitComponent> c, std::shared_ptr<Material> m);
     Object(const std::filesystem::path& objectPath);
     Object(const std::filesystem::path& objectPath, const std::filesystem::path& materialPath);
     ~Object() = default;
@@ -19,4 +20,7 @@ class Object {
 
     Object(Object &&other) noexcept;
     Object &operator=(Object &&other) noexcept;
+
+	std::shared_ptr<HitComponent> getComponent() const {return m_Component;};
+	std::shared_ptr<Material> getMaterial() const {return m_Material;} ;
 };

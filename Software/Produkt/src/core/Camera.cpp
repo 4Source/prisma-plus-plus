@@ -1,4 +1,4 @@
-#include "Camera.hpp"
+#include "core/Camera.hpp"
 
 float Camera::height(){
 	return glm::length(this->left);

@@ -10,11 +10,15 @@ class HitComponentList : public HitComponent {
 
   public:
     HitComponentList() = default;
+	HitComponentList(HitComponentList&&) noexcept = default;
+    HitComponentList& operator=(HitComponentList&&) noexcept = default;
+    HitComponentList(const HitComponentList&) = delete;
+    HitComponentList& operator=(const HitComponentList&) = delete;
     virtual ~HitComponentList() = default;
 
     size_t size() const { return m_Children.size(); }
 
-    virtual bool hit() const override;
+    virtual Hit hit(const Subray& s) const override;
     virtual void add(std::shared_ptr<HitComponent> component) override;
     virtual void remove(std::shared_ptr<HitComponent> component) override;
     virtual std::shared_ptr<HitComponent> getChild(size_t position) override;

@@ -1,7 +1,5 @@
 #pragma once
-#include "Scene.hpp"
-#include "Triangle.hpp"
-#include "Ray.hpp"
+#include "core/Scene.hpp"
 
 class RayTracer{
 	public:
