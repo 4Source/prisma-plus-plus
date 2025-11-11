@@ -5,7 +5,7 @@
 #include <fstream>
 
 TEST(Object, Object_Import) {
-    Object teapot{std::filesystem::path("../../../Modelle/obj/suzanne_bare.obj")};
+    Object teapot{std::filesystem::path("../../../Modelle/obj/cube_bare.obj")};
 
     std::ofstream file("./output.log");
     
