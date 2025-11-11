@@ -8,7 +8,7 @@
 #include <glm/gtx/string_cast.hpp>
 
 Object::Object(const std::shared_ptr<HitComponent> &c, const std::shared_ptr<Material> &m)
-    : m_Component(c), m_Material(m), m_Name{std::move("Unknown")}, m_Translation{glm::vec3{0.0f}}, m_Rotation{glm::vec3{0.0f}}, m_Scale{glm::vec3{1.0f}} {}
+    : m_Component(c), m_Material(m), m_Name{"Unknown"}, m_Translation{glm::vec3{0.0f}}, m_Rotation{glm::vec3{0.0f}}, m_Scale{glm::vec3{1.0f}} {}
 
 Object::Object(const std::filesystem::path &objectPath)
     : Object{objectPath, objectPath.filename().string(), glm::vec3{0.0f}, glm::vec3{0.0f}, glm::vec3{1.0f}} {}
