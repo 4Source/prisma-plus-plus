@@ -11,7 +11,7 @@ Object::Object(const std::filesystem::path &objectPath)
     : Object{objectPath, objectPath.filename().string(), glm::vec3{0.0f}, glm::vec3{0.0f}, glm::vec3{1.0f}} {}
 
 Object::Object(const std::filesystem::path &objectPath, std::string name, glm::vec3 translation, glm::vec3 rotation, glm::vec3 scale)
-    : m_UUID{UUIDGenerator::gen()}, m_Component{std::make_shared<HitComponentList>()}, m_Material{std::make_shared<Material>()}, m_Name{name},
+    : m_UUID{UUIDGenerator::gen()}, m_Component{std::make_shared<HitComponentList>()}, m_Material{std::make_shared<Material>()}, m_Name{std::move(name)},
       m_Translation{translation}, m_Rotation{rotation}, m_Scale{scale} {
     std::string objFilepath;
     std::string matFilepath;
@@ -66,22 +66,22 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
                 face.at(vertexIndex) = glm::vec3{vx, vy, vz};
 
                 // Check if `normal_index` is zero or positive. negative = no normal data
-                if (idx.normal_index >= 0) {
-                    tinyobj::real_t nx = attrib.normals.at(3 * size_t(idx.normal_index) + 0);
-                    tinyobj::real_t ny = attrib.normals.at(3 * size_t(idx.normal_index) + 1);
-                    tinyobj::real_t nz = attrib.normals.at(3 * size_t(idx.normal_index) + 2);
-                }
+                // if (idx.normal_index >= 0) {
+                //     tinyobj::real_t nx = attrib.normals.at(3 * size_t(idx.normal_index) + 0);
+                //     tinyobj::real_t ny = attrib.normals.at(3 * size_t(idx.normal_index) + 1);
+                //     tinyobj::real_t nz = attrib.normals.at(3 * size_t(idx.normal_index) + 2);
+                // }
 
                 // Check if `texcoord_index` is zero or positive. negative = no texcoord data
-                if (idx.texcoord_index >= 0) {
-                    tinyobj::real_t tx = attrib.texcoords.at(2 * size_t(idx.texcoord_index) + 0);
-                    tinyobj::real_t ty = attrib.texcoords.at(2 * size_t(idx.texcoord_index) + 1);
-                }
+                // if (idx.texcoord_index >= 0) {
+                //     tinyobj::real_t tx = attrib.texcoords.at(2 * size_t(idx.texcoord_index) + 0);
+                //     tinyobj::real_t ty = attrib.texcoords.at(2 * size_t(idx.texcoord_index) + 1);
+                // }
 
                 // Optional: vertex colors
-                tinyobj::real_t red = attrib.colors.at(3 * size_t(idx.vertex_index) + 0);
-                tinyobj::real_t green = attrib.colors.at(3 * size_t(idx.vertex_index) + 1);
-                tinyobj::real_t blue = attrib.colors.at(3 * size_t(idx.vertex_index) + 2);
+                // tinyobj::real_t red = attrib.colors.at(3 * size_t(idx.vertex_index) + 0);
+                // tinyobj::real_t green = attrib.colors.at(3 * size_t(idx.vertex_index) + 1);
+                // tinyobj::real_t blue = attrib.colors.at(3 * size_t(idx.vertex_index) + 2);
             }
             try {
                 m_Component->add(std::make_shared<Triangle>(face));
@@ -92,7 +92,7 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
             indexOffset += faceVertexCount;
 
             // per-face material
-            int mat = shapes.at(shapeIndex).mesh.material_ids.at(faceIndex);
+            // int mat = shapes.at(shapeIndex).mesh.material_ids.at(faceIndex);
         }
     }
 }
