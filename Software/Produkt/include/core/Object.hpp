@@ -5,6 +5,7 @@
 #include <glm/glm.hpp>
 #include <memory>
 #include <uuid.h>
+#include <tiny_obj_loader.h>
 
 class Object {
   private:
@@ -26,6 +27,7 @@ class Object {
      */
     Object(const std::filesystem::path &objectPath);
     Object(const std::filesystem::path &objectPath, std::string name, glm::vec3 translation, glm::vec3 rotation, glm::vec3 scale);
+    Object(const tinyobj::attrib_t &attrib, std::vector<tinyobj::shape_t> &shapes);
     ~Object() = default;
 
     Object(const Object &) = delete;

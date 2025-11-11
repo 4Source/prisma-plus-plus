@@ -1,10 +1,7 @@
 #include "cli/CliManager.h"
 #include "cli/CliArguments.h"
-#include "core/HitComponentList.hpp"
-#include "core/PointLight.hpp"
-#include "core/RayTracer.hpp"
-#include "core/Triangle.hpp"
 #include "ui/UIManager.h"
+#include "core/RayTracingRunner.hpp"
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #pragma GCC diagnostic push
@@ -15,6 +12,7 @@
 #include <array>
 #include <string>
 #include <vector>
+#include "core/Object.hpp"
 
 bool CliManager::save_png(const std::vector<std::vector<std::array<uint8_t, 3>>> &img, const std::string &filename) {
     int height = static_cast<int>(img.size());
@@ -112,32 +110,16 @@ int CliManager::run(std::span<const char *const> args) {
             return 2;
         }
         std::cout << "Loaded OBJ: " << shapes.size() << " shapes, " << attrib.vertices.size() / 3 << " vertices\n";
-
+        
+        // TODO: outsource to RayTracingRunner
         //  basic raytracing algorithm example
-        std::shared_ptr<Triangle> tri1_p = std::make_shared<Triangle>(glm::vec3{-3, -3, 0}, glm::vec3{5, 7, 0}, glm::vec3{3, -3, 0});
-        std::shared_ptr<Triangle> tri2_p = std::make_shared<Triangle>(glm::vec3{-3, -3, 0}, glm::vec3{5, 7, 0}, glm::vec3{-4, 5, -2});
-        std::shared_ptr<Triangle> tri3_p = std::make_shared<Triangle>(glm::vec3{-4, 5, -2}, glm::vec3{5, 7, 0}, glm::vec3{-2, 9, -3});
-        std::shared_ptr<Triangle> tri4_p = std::make_shared<Triangle>(glm::vec3{5, 7, 0}, glm::vec3{3, -3, 0}, glm::vec3{12, 4, -1});
-        std::shared_ptr<Triangle> tri5_p = std::make_shared<Triangle>(glm::vec3{-3, -3, 0}, glm::vec3{0, -9, -0.5}, glm::vec3{3, -3, 0});
+        // Generate object from file
+        auto obj = std::make_shared<Object>(attrib, shapes);
 
-        std::shared_ptr<HitComponentList> list = std::make_shared<HitComponentList>();
-        list->add(tri1_p);
-        list->add(tri2_p);
-        list->add(tri3_p);
-        list->add(tri4_p);
-        list->add(tri5_p);
-
-        Material material{glm::vec3{0, 255, 255}};
-        std::shared_ptr<Material> material_p = std::make_shared<Material>(material);
-        std::shared_ptr<Object> object_p = std::make_shared<Object>(list, material_p);
-
-        Camera camera{glm::vec3{0, -0.1, 10}, glm::vec3{0, 12.8, 0}, glm::vec3{9.6, 0, 0}, 0.01};
-        std::shared_ptr<PointLight> light = std::make_shared<PointLight>(glm::vec3{0, 5, 5}, glm::vec3{255, 255, 255}, 1.0);
-
-        Scene scene{light, std::vector<std::shared_ptr<Object>>{object_p}, camera};
-        RayTracer raytracer{scene};
-        raytracer.start();
-
+        // print Object
+        std::cout << obj->toString() << "\n";
+        RayTracingRunner runner(obj);
+        auto picture_ptr = runner.run();
         std::filesystem::path output_path;
 
         if (!CliArgs.file.empty() && CliArgs.createFile)
@@ -153,8 +135,9 @@ int CliManager::run(std::span<const char *const> args) {
             std::cerr << "Failed to create file: " << output_path << "\n";
             return 1;
         }
-
-        return CliManager::writeOutputFile(output_path, raytracer.view_to_rgb(), 960, 1280);
+        // TODO: pass raytracer output to method
+        // Better give picture_ptr to writeOutputFile
+        return CliManager::writeOutputFile(output_path, (*picture_ptr).img, (*picture_ptr).height, (*picture_ptr).width);
     }
 
     // If no Standard input is passed run UI
