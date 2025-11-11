@@ -11,7 +11,7 @@ class HitComponentOctree : public HitComponent {
   public:
     HitComponentOctree() = delete;
 	  HitComponentOctree(HitComponentOctree&&) noexcept = delete;
-    HitComponentOctree& operator=(HitComponentOctree&&) noexcept = default;
+    HitComponentOctree& operator=(HitComponentOctree&&) noexcept = delete;
     HitComponentOctree(const HitComponentOctree&) = delete;
     HitComponentOctree& operator=(const HitComponentOctree&) = delete;
     virtual ~HitComponentOctree() = default;

@@ -3,7 +3,6 @@
 #include <glm/glm.hpp>
 
 // TODO: Remove this is temporary declaration
-using Ray = glm::vec3;
 
 class Light {
   protected:
@@ -21,7 +20,10 @@ class Light {
 
     float getIntensity() const { return m_Intensity; }
     void setIntensity(float intensity) { m_Intensity = intensity; }
-  
+ 	
+	virtual glm::vec3 getPosition() const = 0;
+    virtual void setPosition(glm::vec3 pos) = 0; 
+
     /**
      * Gets a ray representing a light ray of this light source at a point in
      * world space
@@ -29,5 +31,5 @@ class Light {
      * @param worldPos The position in world space of the point on a object.
      * @return The Ray from this light source
      */
-    virtual Ray getRay(const glm::vec3 worldPos) const = 0 ;
+    virtual glm::vec3 getRay(const glm::vec3 worldPos) const = 0 ;
 };

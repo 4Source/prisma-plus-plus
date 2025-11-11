@@ -4,6 +4,7 @@
 #include "core/RayTracer.hpp"
 #include "core/Triangle.hpp"
 #include "core/HitComponentList.hpp"
+#include "core/PointLight.hpp"
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "cli/stb_image_write.h"
