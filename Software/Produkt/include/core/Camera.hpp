@@ -14,5 +14,5 @@ class Camera{
 		float width();
 		glm::vec3 normal();
 
-//		Camera() = default;
+		Camera(glm::vec3 pos, glm::vec3 top, glm::vec3 left, float res) : pos{pos}, top{top}, left{left}, resolution{res} {}
 };

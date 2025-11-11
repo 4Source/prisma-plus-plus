@@ -12,5 +12,5 @@ class Scene{
 		std::vector<std::shared_ptr<Object>> objects;
 		Camera camera;
 
-//		Scene() = default;
+		Scene(std::shared_ptr<Light> l, std::vector<std::shared_ptr<Object>> o, Camera c) : light{l}, objects{s}, camera{c} {}
 };
