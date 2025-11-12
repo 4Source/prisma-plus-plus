@@ -1,5 +1,11 @@
 #include "ui/SettingsSidebar.h"
 #include <iostream>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <span>
+#include <compare>
+#include <string>
+#include <gsl/gsl>
 
 SettingsSidebar::SettingsSidebar(float maxWidth_, float slideSpeed_)
     : sidebarOpen(false), sidebarWidth(0.0f), maxWidth(maxWidth_),
@@ -44,62 +50,60 @@ void SettingsSidebar::draw(int windowWidth, int windowHeight) {
       // Placeholders for visual demonstration
       static float transparency = 0.5f;
       static float reflectivity = 0.8f;
-      static float color[3] = {1.0f, 0.5f, 0.0f};
-      static int materialIndex = 0;
-      static float position[3] = {10.0f, 5.0f, 0.0f};
+      static glm::vec3 color = glm::vec3(1.0f, 0.5f, 0.0f);
+      int materialIndex = 0;
+      static glm::vec3 position = glm::vec3(10.0f, 5.0f, 0.0f);
 
       ImGui::Separator();
-      ImGui::Text("Transparency");
+      ImGui::TextUnformatted("Transparency");
       if (ImGui::SliderFloat("##transparency", &transparency, 0.00f, 1.00f,
           "%.2f")) {
         std::cout << "Transparency: " << transparency << "\n";
       }
 
       ImGui::Separator();
-      ImGui::Text("Reflectivity");
+      ImGui::TextUnformatted("Reflectivity");
       if (ImGui::SliderFloat("##refelctivity", &reflectivity, 0.00f, 1.00f,
           "%.2f")) {
         std::cout << "Reflectivity: " << reflectivity << "\n";
       }
 
       ImGui::Separator();
-      ImGui::Text("Material Type");
-      const char *materialItems[] = {"Plastic", "Metal", "Glass", "Ceramic"};
-      const char *currentMaterial = materialItems[materialIndex];
+      ImGui::TextUnformatted("Material Type");
+      const std::array<std::string, 4> materialItems = {"Plastic", "Metal", "Glass", "Ceramic"};
 
-      if (ImGui::BeginCombo("##material", currentMaterial)) {
-        for (int n = 0; n < IM_ARRAYSIZE(materialItems); n++) {
-          bool is_selected = (currentMaterial == materialItems[n]);
-          if (ImGui::Selectable(materialItems[n], is_selected)) {
-            materialIndex = n;
-            std::cout << "Material changed to: " << materialItems[n]
-                      << "\n";
+      if (ImGui::BeginCombo("Material", gsl::at(materialItems, materialIndex).c_str())) {
+          int idx = 0;
+          for (const auto& item : materialItems) {
+              bool is_selected = (materialIndex == idx);
+              if (ImGui::Selectable(item.c_str(), is_selected)) {
+                  materialIndex = idx;
+                  std::cout << "Material changed to: " << item << "\n";
+              }
+              if (is_selected) ImGui::SetItemDefaultFocus();
+              ++idx;
           }
-          if (is_selected) {
-            ImGui::SetItemDefaultFocus();
-          }
-        }
-        ImGui::EndCombo();
+          ImGui::EndCombo();
       }
 
       ImGui::Separator();
-      if (ImGui::ColorEdit3("Object Color", color,
+      if (ImGui::ColorEdit3("Object Color", glm::value_ptr(color),
           ImGuiColorEditFlags_NoInputs)) {
       }
 
       ImGui::Separator();
       ImGui::Spacing();
-      ImGui::Text("Position (X, Y, Z)");
+      ImGui::TextUnformatted("Position (X, Y, Z)");
       ImGui::Separator();
 
       float v_speed = 0.01f;
       float v_min = -FLT_MAX;
       float v_max = +FLT_MAX;
 
-      if (ImGui::DragFloat3("##postionObject", position, v_speed, v_min, v_max,
+      if (ImGui::DragFloat3("##postionObject", glm::value_ptr(position), v_speed, v_min, v_max,
           "%.2f")) {
-        std::cout << "Position: (" << position[0] << ", " << position[1] << ", "
-                  << position[2] << ")\n";
+        std::cout << "Position: (" << position.x << ", " << position.y << ", "
+                  << position.z << ")\n";
       }
     }
 
@@ -111,33 +115,33 @@ void SettingsSidebar::draw(int windowWidth, int windowHeight) {
       // Placeholders for visual demonstration
       static float intensity = 0.5f;
       static float reflectivity = 0.8f;
-      static float color[3] = {1.0f, 0.5f, 0.0f};
+      static glm::vec3 color = glm::vec3(1.0f, 0.5f, 0.0f);
       static int materialIndex = 0;
-      static float position[3] = {10.0f, 5.0f, 0.0f};
+      static glm::vec3 position = glm::vec3(10.0f, 5.0f, 0.0f);
 
       ImGui::Separator();
-      ImGui::Text("Intensity");
+      ImGui::TextUnformatted("Intensity");
       if (ImGui::SliderFloat("##intensity", &intensity, 0.00f, 1.00f, "%.2f")) {
         std::cout << "Intensity: " << intensity << "\n";
       }
 
       ImGui::Separator();
-      if (ImGui::ColorEdit3("Light Color", color, ImGuiColorEditFlags_NoInputs)) {
+      if (ImGui::ColorEdit3("Light Color", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs)) {
       }
       
       ImGui::Separator();
       ImGui::Spacing();
-      ImGui::Text("Position (X, Y, Z)");
+      ImGui::TextUnformatted("Position (X, Y, Z)");
       ImGui::Separator();
 
       float v_speed = 0.01f;
       float v_min = -FLT_MAX;
       float v_max = +FLT_MAX;
 
-      if (ImGui::DragFloat3("##postionLight", position, v_speed, v_min, v_max,
+      if (ImGui::DragFloat3("##postionLight", glm::value_ptr(position), v_speed, v_min, v_max,
           "%.2f")) {
-        std::cout << "Position: (" << position[0] << ", " << position[1] << ", "
-                  << position[2] << ")\n";
+        std::cout << "Position: (" << position.x << ", " << position.y << ", "
+                  << position.z << ")\n";
       }
     } 
     
