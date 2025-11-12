@@ -110,6 +110,7 @@ target_include_directories(prisma-core PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/external/optionparser/include
     ${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader
+    ${CMAKE_SOURCE_DIR}/external/stb
 )
 target_link_libraries(prisma-core PUBLIC imgui)
 target_link_libraries(prisma-core PUBLIC glm)

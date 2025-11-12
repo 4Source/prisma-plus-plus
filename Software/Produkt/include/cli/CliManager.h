@@ -22,6 +22,7 @@ struct CliArguments;
 
 class CliManager {
   public:
+    static bool save_png(const std::vector<std::vector<std::array<uint8_t, 3>>> &img, const std::string &filename);
     static bool loadFromFile(const std::filesystem::path &path, tinyobj::attrib_t &attributes, std::vector<tinyobj::shape_t> &shapes,
                              std::string &error);
 
@@ -33,5 +34,6 @@ class CliManager {
     static int run(std::span<const char *const> args);
 
     // TODO: write cli output to standard output
-    static bool writeOutputFile(const std::filesystem::path &path, std::vector<glm::vec3> &data, const int height, const int width);
+    static bool writeOutputFile(const std::filesystem::path &path, const std::vector<std::vector<std::array<uint8_t, 3>>> &data, const int height,
+                                const int width);
 };

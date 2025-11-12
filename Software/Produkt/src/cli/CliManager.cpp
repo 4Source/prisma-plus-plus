@@ -1,6 +1,38 @@
 #include "cli/CliManager.h"
 #include "cli/CliArguments.h"
 #include "ui/UIManager.h"
+#include "core/RayTracingRunner.hpp"
+
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#include "stb_image_write.h"
+#pragma GCC diagnostic pop
+
+#include <array>
+#include <string>
+#include <vector>
+#include "core/Object.hpp"
+
+bool CliManager::save_png(const std::vector<std::vector<std::array<uint8_t, 3>>> &img, const std::string &filename) {
+    int height = static_cast<int>(img.size());
+    int width = static_cast<int>(img[0].size());
+
+    // Flatten the image data into a single contiguous buffer
+    std::vector<uint8_t> data;
+    data.reserve(static_cast<size_t>(width) * height * 3);
+
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            data.push_back(img[y][x][0]); // R
+            data.push_back(img[y][x][1]); // G
+            data.push_back(img[y][x][2]); // B
+        }
+    }
+
+    // Write PNG (stride = width * 3 bytes)
+    return stbi_write_png(filename.c_str(), width, height, 3, data.data(), width * 3);
+}
 
 /// @brief load .obj File from standard input and parse with tinyobjparser
 /// @param attributes
@@ -32,7 +64,8 @@ bool CliManager::loadFromStdin(tinyobj::attrib_t &attributes, std::vector<tinyob
 /// @param height
 /// @param width
 /// @return
-bool CliManager::writeOutputFile(const std::filesystem::path &path, std::vector<glm::vec3> &data, const int height, const int width) {
+bool CliManager::writeOutputFile(const std::filesystem::path &path, const std::vector<std::vector<std::array<uint8_t, 3>>> &data, const int height,
+                                 const int width) {
     std::ofstream file(path, std::ios::binary);
 
     if (!file) {
@@ -41,20 +74,20 @@ bool CliManager::writeOutputFile(const std::filesystem::path &path, std::vector<
     }
 
     // Write image data here
-    file << "Write Image here...\n";
-
-    file.close();
-    return true;
+    // file << "Write Image here...\n";
+    return save_png(data, path.string());
+    // file.close();
+    // return true;
 }
 
 /// @brief
 /// @return standard input exist - true : flase
-bool CliManager::stdinHasData() { 
-    #ifdef _WIN32
-        return !_isatty(_fileno(stdin));
-    #else
-        return !isatty(fileno(stdin));
-    #endif
+bool CliManager::stdinHasData() {
+#ifdef _WIN32
+    return !_isatty(_fileno(stdin));
+#else
+    return !isatty(fileno(stdin));
+#endif
 }
 
 /// @brief Main program startup controller
@@ -77,13 +110,16 @@ int CliManager::run(std::span<const char *const> args) {
             return 2;
         }
         std::cout << "Loaded OBJ: " << shapes.size() << " shapes, " << attrib.vertices.size() / 3 << " vertices\n";
+        
+        // TODO: outsource to RayTracingRunner
+        //  basic raytracing algorithm example
+        // Generate object from file
+        auto obj = std::make_shared<Object>(attrib, shapes);
 
-        //-------------------------------------------------------------------------------------------------------------
-        //
-        // run raytracing here
-        //
-        //-------------------------------------------------------------------------------------------------------------
-        std::vector<glm::vec3> raytracing_data;
+        // print Object
+        std::cout << obj->toString() << "\n";
+        RayTracingRunner runner(obj);
+        auto picture_ptr = runner.run();
         std::filesystem::path output_path;
 
         if (!CliArgs.file.empty() && CliArgs.createFile)
@@ -99,10 +135,9 @@ int CliManager::run(std::span<const char *const> args) {
             std::cerr << "Failed to create file: " << output_path << "\n";
             return 1;
         }
-
-        if (CliManager::writeOutputFile(output_path, raytracing_data, 920, 1080))
-            return 0;
-        return 1;
+        // TODO: pass raytracer output to method
+        // Better give picture_ptr to writeOutputFile
+        return CliManager::writeOutputFile(output_path, (*picture_ptr).img, (*picture_ptr).height, (*picture_ptr).width);
     }
 
     // If no Standard input is passed run UI

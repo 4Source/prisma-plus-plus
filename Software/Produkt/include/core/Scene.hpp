@@ -1,12 +1,16 @@
 #pragma once
-#include <core/Camera.hpp>
-#include <core/Light.hpp>
-#include <core/Object.hpp>
-#include <span>
+
+#include "core/Camera.hpp"
+#include "core/Light.hpp"
+#include "core/Object.hpp"
+#include <memory>
+#include <vector>
 
 class Scene {
   public:
-    std::span<Object> objects;
-    std::span<Light> lights;
+    std::shared_ptr<Light> light;
+    std::vector<std::shared_ptr<Object>> objects;
     Camera camera;
-}
+
+    Scene(std::shared_ptr<Light> l, std::vector<std::shared_ptr<Object>> o, Camera c) : light{l}, objects{o}, camera{c} {}
+};
