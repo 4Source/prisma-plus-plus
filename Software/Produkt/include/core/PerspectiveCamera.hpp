@@ -4,7 +4,5 @@
 
 class PerspectiveCamera : public Camera {
   public:
-    glm::vec3 position;
-    glm::vec3 up;
-    glm::vec3 right;
+    PerspectiveCamera(glm::vec3 pos, glm::vec3 top, glm::vec3 left, float res) : Camera{pos, top, left, res} {}
 };

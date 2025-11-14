@@ -10,7 +10,7 @@ class Scene {
   public:
     std::shared_ptr<Light> light;
     std::vector<std::shared_ptr<Object>> objects;
-    Camera camera;
+    std::shared_ptr<Camera> camera;
 
-    Scene(std::shared_ptr<Light> l, std::vector<std::shared_ptr<Object>> o, Camera c) : light{l}, objects{o}, camera{c} {}
+    Scene(std::shared_ptr<Light> l, std::vector<std::shared_ptr<Object>> o, std::shared_ptr<Camera> c) : light{l}, objects{o}, camera{c} {}
 };
