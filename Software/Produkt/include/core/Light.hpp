@@ -2,7 +2,6 @@
 
 #include <glm/glm.hpp>
 
-
 class Light {
   protected:
     glm::vec3 m_Color{1.0};

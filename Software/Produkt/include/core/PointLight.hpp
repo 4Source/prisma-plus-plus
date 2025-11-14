@@ -1,8 +1,7 @@
 #pragma once
 
-#include <glm/glm.hpp>
-
 #include "core/Light.hpp"
+#include <glm/glm.hpp>
 
 class PointLight : public Light {
   protected:

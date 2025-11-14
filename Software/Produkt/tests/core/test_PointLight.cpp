@@ -1,6 +1,5 @@
-#include <gtest/gtest.h>
-
 #include "core/PointLight.hpp"
+#include <gtest/gtest.h>
 
 TEST(PointLight_GetRay, EqualVectors) {
     PointLight pointLight(glm::vec3(1.0f), glm::vec3(0.5f), 50.0f);
