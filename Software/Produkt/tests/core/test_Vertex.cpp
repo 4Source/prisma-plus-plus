@@ -1,11 +1,6 @@
 #include <array>
-#include <glm/glm.hpp>
+#include <core/Vertex.hpp>
 #include <gtest/gtest.h>
-
-struct Vertex {
-    glm::vec3 position;
-    glm::vec3 color;
-};
 
 TEST(Vertex, ProofOfConcept) {
     std::array<float, 108> floatVertices = {
@@ -55,4 +50,11 @@ TEST(Vertex, ProofOfConcept) {
     for (size_t offset = 0; offset < floatVertices.size(); offset++) {
         EXPECT_EQ(*(p_vertex + offset), *(p_float + offset));
     }
+}
+
+TEST(Vertex, DefaultValues) {
+    Vertex v{};
+
+    EXPECT_EQ(v.Position, glm::vec3(0.0f));
+    EXPECT_EQ(v.Color, glm::vec3(1.0f));
 }
