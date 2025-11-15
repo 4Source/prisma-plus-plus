@@ -171,12 +171,12 @@ jobs:
     - name: Configure with CMake and Ninja (Windows)
       if: runner.os == 'Windows'
       shell: powershell
-      run: cmake -G Ninja -B Software/Produkt/build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+      run: cmake -G Ninja -B Software/Produkt/build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
     - name: Configure with CMake and Ninja (Ubuntu/macOS)
       if: runner.os != 'Windows'
       shell: bash
-      run: cmake -G Ninja -B Software/Produkt/build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+      run: cmake -G Ninja -B Software/Produkt/build -S Software/Produkt -DCMAKE_EXPORT_COMPILE_COMMANDS= -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 
     - name: Run clang-tidy (Windows)
       if: runner.os == 'Windows'

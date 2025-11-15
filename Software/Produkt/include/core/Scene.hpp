@@ -1,16 +1,44 @@
 #pragma once
-
 #include "core/Camera.hpp"
 #include "core/Light.hpp"
 #include "core/Object.hpp"
 #include <memory>
+#include <nlohmann/json.hpp>
+#include <uuid.h>
 #include <vector>
 
 class Scene {
-  public:
-    std::shared_ptr<Light> light;
-    std::vector<std::shared_ptr<Object>> objects;
-    std::shared_ptr<Camera> camera;
+  private:
+    std::vector<std::shared_ptr<Object>> m_Objects;
+    std::shared_ptr<Camera> m_Camera;
+    std::vector<std::shared_ptr<Light>> m_Lights;
 
-    Scene(std::shared_ptr<Light> l, std::vector<std::shared_ptr<Object>> o, std::shared_ptr<Camera> c) : light{l}, objects{o}, camera{c} {}
+  public:
+    Scene(std::shared_ptr<Light> light, std::vector<std::shared_ptr<Object>> objects, std::shared_ptr<Camera> camera)
+        : m_Lights{light}, m_Objects{objects}, m_Camera{camera} {}
+    Scene(const std::filesystem::path &scenePath);
+    ~Scene() = default;
+
+    void addObject(const std::shared_ptr<Object> &object);
+    std::vector<std::shared_ptr<Object>> getObjects() { return m_Objects; }
+    std::shared_ptr<Object> getObject(size_t index) { return m_Objects.at(index); }
+    std::shared_ptr<Object> getObject(uuids::uuid uuid);
+    void removeObject(uuids::uuid uuid);
+    std::shared_ptr<Camera> getCamera() { return m_Camera; }
+    void addLight(const std::shared_ptr<Light> &light);
+    std::vector<std::shared_ptr<Light>> getLights() { return m_Lights; }
+    std::shared_ptr<Light> getLight(size_t index) { return m_Lights.at(index); }
+    std::shared_ptr<Light> getLight(uuids::uuid uuid);
+    void removeLight(uuids::uuid uuid);
+
+    // TODO: Maybe we need a deep copy of the scene
+    // Scene(const Scene &) = delete;
+    // Scene &operator=(const Scene &) = delete;
+
+    // Scene(Scene &&) noexcept = delete;
+    // Scene &operator=(Scene &&) noexcept = delete;
+
+    void exportScene(const std::filesystem::path &scenePath);
+    friend void to_json(nlohmann::json &j, const Scene &scene);
+    friend void from_json(const nlohmann::json &j, const Scene &scene);
 };
