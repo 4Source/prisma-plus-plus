@@ -54,7 +54,6 @@ endif()
 # ------------------------------------------------------------------------------
 # Dependencies
 # ------------------------------------------------------------------------------
-set(CMAKE_WARN_DEPRECATED OFF CACHE BOOL "" FORCE)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/glfw)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/glm)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/googletest)
@@ -63,7 +62,6 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/stduuid)
 set(JSON_BuildTests OFF CACHE INTERNAL "")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/json)
-set(CMAKE_WARN_DEPRECATED ON CACHE BOOL "" FORCE)
 
 # --- GLAD ---
 add_library(glad STATIC ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/src/glad.c)
