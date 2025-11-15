@@ -19,13 +19,13 @@ class Scene {
     Scene(const std::filesystem::path &scenePath);
     ~Scene() = default;
 
-    void addObject(std::shared_ptr<Object> object);
+    void addObject(const std::shared_ptr<Object> &object);
     std::vector<std::shared_ptr<Object>> getObjects() { return m_Objects; }
     std::shared_ptr<Object> getObject(size_t index) { return m_Objects.at(index); }
     std::shared_ptr<Object> getObject(uuids::uuid uuid);
     void removeObject(uuids::uuid uuid);
     std::shared_ptr<Camera> getCamera() { return m_Camera; }
-    void addLight(std::shared_ptr<Light> light);
+    void addLight(const std::shared_ptr<Light> &light);
     std::vector<std::shared_ptr<Light>> getLights() { return m_Lights; }
     std::shared_ptr<Light> getLight(size_t index) { return m_Lights.at(index); }
     std::shared_ptr<Light> getLight(uuids::uuid uuid);

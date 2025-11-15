@@ -4,7 +4,7 @@
 #include <glm/gtx/string_cast.hpp>
 #include <iostream>
 
-RayTracer::RayTracer(Scene s) : scene(s) { std::vector<std::vector<glm::vec3>> view{}; }
+RayTracer::RayTracer(const Scene& s) : scene(s) { std::vector<std::vector<glm::vec3>> view{}; }
 
 void RayTracer::start() {
     // initialize view
