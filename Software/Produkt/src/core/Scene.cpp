@@ -8,9 +8,9 @@ Scene::Scene(const std::filesystem::path &scenePath) : m_Objects{}, m_Lights{} {
 void Scene::addObject(const std::shared_ptr<Object> &object) { m_Objects.push_back(object); }
 
 std::shared_ptr<Object> Scene::getObject(uuids::uuid uuid) {
-    for (size_t i = 0; i < m_Objects.size(); i++) {
-        if (m_Objects.at(i)->getUUID() == uuid) {
-            return m_Objects.at(i);
+    for (auto &obj : m_Objects) {
+        if (obj->getUUID() == uuid) {
+            return obj;
         }
     }
     return nullptr;
@@ -24,9 +24,9 @@ void Scene::removeObject(uuids::uuid uuid) {
 void Scene::addLight(const std::shared_ptr<Light> &light) { m_Lights.push_back(light); }
 
 std::shared_ptr<Light> Scene::getLight(uuids::uuid uuid) {
-    for (size_t i = 0; i < m_Lights.size(); i++) {
-        if (m_Lights.at(i)->getUUID() == uuid) {
-            return m_Lights.at(i);
+    for (auto &light : m_Lights) {
+        if (light->getUUID() == uuid) {
+            return light;
         }
     }
     return nullptr;
