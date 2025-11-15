@@ -2,6 +2,7 @@
 #include "UUIDGenerator.hpp"
 #include "core/HitComponentList.hpp"
 #include "core/Triangle.hpp"
+#include "core/Vertex.hpp"
 #include <iostream>
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
@@ -58,7 +59,7 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
                 continue;
             }
 
-            std::array<glm::vec3, 3> face{};
+            std::array<Vertex, 3> face{};
             // Loop over vertices in the face.
             for (size_t vertexIndex = 0; vertexIndex < faceVertexCount; vertexIndex++) {
                 // Access the vertices
@@ -66,7 +67,7 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
                 tinyobj::real_t vx = attrib.vertices.at(3 * size_t(idx.vertex_index) + 0);
                 tinyobj::real_t vy = attrib.vertices.at(3 * size_t(idx.vertex_index) + 1);
                 tinyobj::real_t vz = attrib.vertices.at(3 * size_t(idx.vertex_index) + 2);
-                face.at(vertexIndex) = glm::vec3{vx, vy, vz};
+                face.at(vertexIndex) = Vertex{.Position = glm::vec3{vx, vy, vz}};
 
                 // Check if `normal_index` is zero or positive. negative = no normal data
                 // if (idx.normal_index >= 0) {
@@ -103,7 +104,7 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
 // TODO: remove unnecessary file path
 Object::Object(const tinyobj::attrib_t &attrib, std::vector<tinyobj::shape_t> &shapes)
     : Object{"/", "Load with attributes and shapes", glm::vec3{0.0f}, glm::vec3{0.0f}, glm::vec3{1.0f}} {
-        // Loop over shapes
+    // Loop over shapes
 
     for (const auto &shape : shapes) {
         // Loop over faces(polygon)
@@ -116,7 +117,7 @@ Object::Object(const tinyobj::attrib_t &attrib, std::vector<tinyobj::shape_t> &s
                 continue;
             }
 
-            std::array<glm::vec3, 3> face{};
+            std::array<Vertex, 3> face{};
             // Loop over vertices in the face.
             for (size_t vertexIndex = 0; vertexIndex < faceVertexCount; vertexIndex++) {
                 // Access the vertices
@@ -124,7 +125,7 @@ Object::Object(const tinyobj::attrib_t &attrib, std::vector<tinyobj::shape_t> &s
                 tinyobj::real_t vx = attrib.vertices.at(3 * size_t(idx.vertex_index) + 0);
                 tinyobj::real_t vy = attrib.vertices.at(3 * size_t(idx.vertex_index) + 1);
                 tinyobj::real_t vz = attrib.vertices.at(3 * size_t(idx.vertex_index) + 2);
-                face.at(vertexIndex) = glm::vec3{vx, vy, vz};
+                face.at(vertexIndex) = Vertex{.Position = glm::vec3{vx, vy, vz}};
 
                 // Check if `normal_index` is zero or positive. negative = no normal data
                 // if (idx.normal_index >= 0) {
