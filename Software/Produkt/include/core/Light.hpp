@@ -31,11 +31,9 @@ class Light {
     bool operator==(const Light &other) const { return m_UUID == other.m_UUID; }
 
     /**
-     * Gets a ray representing a light ray of this light source at a point in
-     * world space
-     *
+     * @brief Gets a ray representing a light ray of this light source at a point in world space
      * @param worldPos The position in world space of the point on a object.
-     * @return The Ray from this light source
+     * @return The Ray from this light source which comes from light position and goes to worldPos
      */
     virtual glm::vec3 getRay(const glm::vec3 worldPos) const = 0;
 };
