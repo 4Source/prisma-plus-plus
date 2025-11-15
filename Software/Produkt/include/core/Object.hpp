@@ -5,6 +5,7 @@
 #include <glm/glm.hpp>
 #include <memory>
 #include <nlohmann/json.hpp>
+#include <string>
 #include <tiny_obj_loader.h>
 #include <uuid.h>
 
@@ -35,12 +36,16 @@ class Object {
     Object(const Object &) = delete;
     Object &operator=(const Object &) = delete;
 
-    std::shared_ptr<HitComponent> getComponent() const { return m_Component; };
-    std::shared_ptr<Material> getMaterial() const { return m_Material; };
-
     Object(Object &&other) noexcept = delete;
     Object &operator=(Object &&other) noexcept = delete;
 
+    std::shared_ptr<HitComponent> getComponent() const { return m_Component; };
+    std::shared_ptr<Material> getMaterial() const { return m_Material; };
+
+    uuids::uuid getUUID() const { return m_UUID; }
+    std::string getUUIDString() const { return uuids::to_string(m_UUID); }
+
+    bool operator==(const Object &other) const { return m_UUID == other.m_UUID; }
     std::string toString(bool formatted = false, int indentLevel = 0);
 
     friend void to_json(nlohmann::json &j, const Object &object);

@@ -4,6 +4,7 @@
 #include "core/Object.hpp"
 #include <memory>
 #include <nlohmann/json.hpp>
+#include <uuid.h>
 #include <vector>
 
 class Scene {
@@ -18,12 +19,19 @@ class Scene {
     Scene(const std::filesystem::path &scenePath);
     ~Scene() = default;
 
+    void addObject(std::shared_ptr<Object> object);
     std::vector<std::shared_ptr<Object>> getObjects() { return m_Objects; }
     std::shared_ptr<Object> getObject(size_t index) { return m_Objects.at(index); }
+    std::shared_ptr<Object> getObject(uuids::uuid uuid);
+    void removeObject(uuids::uuid uuid);
     std::shared_ptr<Camera> getCamera() { return m_Camera; }
+    void addLight(std::shared_ptr<Light> light);
     std::vector<std::shared_ptr<Light>> getLights() { return m_Lights; }
     std::shared_ptr<Light> getLight(size_t index) { return m_Lights.at(index); }
+    std::shared_ptr<Light> getLight(uuids::uuid uuid);
+    void removeLight(uuids::uuid uuid);
 
+    // TODO: Maybe we need a deep copy of the scene
     // Scene(const Scene &) = delete;
     // Scene &operator=(const Scene &) = delete;
 
