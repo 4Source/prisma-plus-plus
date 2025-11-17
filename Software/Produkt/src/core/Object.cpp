@@ -47,6 +47,9 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
     auto &shapes = reader.GetShapes();
     auto &materials = reader.GetMaterials();
 
+    m_Vertices.resize(attrib.vertices.size() / 3);
+    m_Indices.reserve(attrib.vertices.size());
+    
     // Loop over shapes
     for (const auto &shape : shapes) {
         // Loop over faces(polygon)
@@ -67,7 +70,10 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
                 tinyobj::real_t vx = attrib.vertices.at(3 * size_t(idx.vertex_index) + 0);
                 tinyobj::real_t vy = attrib.vertices.at(3 * size_t(idx.vertex_index) + 1);
                 tinyobj::real_t vz = attrib.vertices.at(3 * size_t(idx.vertex_index) + 2);
-                face.at(vertexIndex) = Vertex{.Position = glm::vec3{vx, vy, vz}};
+                Vertex vertex{.Position = glm::vec3{vx, vy, vz}};
+                m_Vertices[idx.vertex_index] = vertex;
+                m_Indices.push_back(idx.vertex_index);
+                face.at(vertexIndex) = vertex;
 
                 // Check if `normal_index` is zero or positive. negative = no normal data
                 // if (idx.normal_index >= 0) {
@@ -170,6 +176,30 @@ std::string Object::toString(bool formatted, int indentLevel) {
          (formatted ? std::string("\n") : std::string(" "));
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "scale: " + glm::to_string(m_Scale) +
          (formatted ? std::string("\n") : std::string(" "));
+
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "vertices: [" + (formatted ? std::string("\n") : std::string(""));
+    for (size_t i = 0; i < m_Vertices.size(); i++) {
+        s += (formatted ? std::string(indentLevel + 1, '\t') : std::string("")) + "{" + (formatted ? std::string("\n") : std::string(""));
+        s += m_Vertices.at(i).toString(formatted, indentLevel + 1) + (formatted ? std::string("\n") : std::string(""));
+        s += (formatted ? std::string(indentLevel + 1, '\t') : std::string("")) + (((i + 1) == m_Vertices.size()) ? "}" : "}, ") +
+             (formatted ? std::string("\n") : std::string(""));
+    }
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "]" + (formatted ? std::string("\n") : std::string(""));
+
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "indices: [" + (formatted ? std::string("\n") : std::string(""));
+    for (size_t i = 0; i < m_Indices.size(); i++) {
+        if (i % 3 == 0) {
+            s += (formatted ? std::string(indentLevel + 1, '\t') : std::string("")) + "{";
+        }
+        s += std::to_string(m_Indices.at(i));
+        if ((i + 1) % 3 == 0) {
+            s += (((i + 1) == m_Indices.size()) ? "}" : "}, ") + (formatted ? std::string("\n") : std::string(""));
+        } else {
+            s += ", ";
+        }
+    }
+    s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "]" + (formatted ? std::string("\n") : std::string(""));
+
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "material: " + (formatted ? std::string("\n") : std::string(" "));
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + m_Material->toString(formatted, indentLevel + 1) +
          (formatted ? std::string("\n") : std::string(" "));

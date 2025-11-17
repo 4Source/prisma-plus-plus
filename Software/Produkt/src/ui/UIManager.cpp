@@ -93,21 +93,18 @@ void UIManager::run() {
     int window_w = 0, window_h = 0;
     glfwGetWindowSize(window, &window_w, &window_h);
 
+    // Draw Scene Preview
+    scenePreview.draw(fb_w, fb_h);
+
     // -------- Draw UI Components --------
     menubar.draw();                            // Draw the menu bar
     hierarchySidebar.draw(window_w, window_h); // Draw the hierarchy sidebar
     settingsSidebar.draw(window_w, window_h);  // Draw settings sidebar
 
-    // Draw Scene Preview
-    glViewport(0, 0, fb_w, fb_h);
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-    scenePreview.draw(fb_w, fb_h);
-
     // Render ImGui overlay on top
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
+    
     glfwSwapBuffers(window); // Swap front/back buffers
   }
 
