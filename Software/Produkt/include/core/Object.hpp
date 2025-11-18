@@ -13,7 +13,7 @@
 class Object {
   private:
     uuids::uuid m_UUID;
-    std::shared_ptr<HitComponent> m_Component; // TODO: pointer to vertices instead of vertices them self
+    std::shared_ptr<HitComponent> m_Component;
     std::shared_ptr<Material> m_Material;
     std::string m_Name;
     glm::vec3 m_Translation;

@@ -6,13 +6,29 @@
 #include "core/Triangle.hpp"
 #include <iostream>
 
+Vertex v0{glm::vec3{-3, -3, 0}};
+Vertex v1{glm::vec3{5, 7, 0}};
+Vertex v2{glm::vec3{3, -3, 0}};
+Vertex v3{glm::vec3{-3, -3, 0}};
+Vertex v4{glm::vec3{5, 7, 0}};
+Vertex v5{glm::vec3{-4, 5, -2}};
+Vertex v6{glm::vec3{-4, 5, -2}};
+Vertex v7{glm::vec3{5, 7, 0}};
+Vertex v8{glm::vec3{-2, 9, -3}};
+Vertex v9{glm::vec3{5, 7, 0}};
+Vertex v10{glm::vec3{3, -3, 0}};
+Vertex v11{glm::vec3{12, 4, -1}};
+Vertex v12{glm::vec3{-3, -3, 0}};
+Vertex v13{glm::vec3{0, -9, -0.5}};
+Vertex v14{glm::vec3{3, -3, 0}};
+
 Scene createTestingScene() {
 
-    std::shared_ptr<Triangle> tri1_p = std::make_shared<Triangle>(glm::vec3{-3, -3, 0}, glm::vec3{5, 7, 0}, glm::vec3{3, -3, 0});
-    std::shared_ptr<Triangle> tri2_p = std::make_shared<Triangle>(glm::vec3{-3, -3, 0}, glm::vec3{5, 7, 0}, glm::vec3{-4, 5, -2});
-    std::shared_ptr<Triangle> tri3_p = std::make_shared<Triangle>(glm::vec3{-4, 5, -2}, glm::vec3{5, 7, 0}, glm::vec3{-2, 9, -3});
-    std::shared_ptr<Triangle> tri4_p = std::make_shared<Triangle>(glm::vec3{5, 7, 0}, glm::vec3{3, -3, 0}, glm::vec3{12, 4, -1});
-    std::shared_ptr<Triangle> tri5_p = std::make_shared<Triangle>(glm::vec3{-3, -3, 0}, glm::vec3{0, -9, -0.5}, glm::vec3{3, -3, 0});
+    std::shared_ptr<Triangle> tri1_p = std::make_shared<Triangle>(&v0, &v1, &v2);
+    std::shared_ptr<Triangle> tri2_p = std::make_shared<Triangle>(&v3, &v4, &v5);
+    std::shared_ptr<Triangle> tri3_p = std::make_shared<Triangle>(&v6, &v7, &v8);
+    std::shared_ptr<Triangle> tri4_p = std::make_shared<Triangle>(&v9, &v10, &v11);
+    std::shared_ptr<Triangle> tri5_p = std::make_shared<Triangle>(&v12, &v13, &v14);
 
     std::shared_ptr<HitComponentList> list = std::make_shared<HitComponentList>();
     list->add(tri1_p);

@@ -1,10 +1,15 @@
 #include "core/HitComponent.hpp"
 #include "core/Triangle.hpp"
+#include "core/Vertex.hpp"
 #include <gtest/gtest.h>
 
 TEST(HitComponent, Equal_operator) {
-    Triangle t1 = Triangle{glm::vec3{-0.5f, -0.5f, 0.0f}, glm::vec3{0.5f, -0.5f, 0.0f}, glm::vec3{0.0f, 0.5f, 0.0f}};
-    Triangle t2 = Triangle{glm::vec3{-0.5f, -0.5f, 0.0f}, glm::vec3{0.5f, -0.5f, 0.0f}, glm::vec3{0.0f, 0.5f, 0.0f}};
+    Vertex v0{glm::vec3{-0.5f, -0.5f, 0.0f}};
+    Vertex v1{glm::vec3{0.5f, -0.5f, 0.0f}};
+    Vertex v2{glm::vec3{0.0f, 0.5f, 0.0f}};
+
+    Triangle t1 = Triangle{&v0, &v1, &v2};
+    Triangle t2 = Triangle{&v0, &v1, &v2};
     HitComponent &c1 = t1;
     HitComponent &c2 = t2;
 
