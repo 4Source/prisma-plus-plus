@@ -51,3 +51,22 @@ std::unique_ptr<RunnerResult> RayTracingRunner::run() {
     result->img = raytracer.view_to_rgb();
     return result;
 }
+
+std::unique_ptr<HitComponent> build_octree(){
+	//create root node from object
+		//calculate minimal box
+		//create root with midpoint from minimal box
+		// create 8 children
+	// for each child:
+		//for triangle in object
+			//if triangle vertex in child box
+				//count++
+				// add triangles to temp triangle list
+		//if count > 10
+			//child -> octree
+			//repeat above
+		//else
+			//child -> list
+			//child = temp triangle list
+	//return root node
+}

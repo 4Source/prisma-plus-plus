@@ -22,6 +22,7 @@ class RayTracingRunner {
 public:
     explicit RayTracingRunner(const std::shared_ptr<Object> obj_ptr) : obj_ptr_(obj_ptr) {}
     std::unique_ptr<RunnerResult> run();
+	std::unique_ptr<HitComponent> build_octree();
 
 private:
     const std::shared_ptr<Object> obj_ptr_;  // store reference
