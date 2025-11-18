@@ -22,3 +22,6 @@
 [submodule "Software/Produkt/external/stb"]
 	path = Software/Produkt/external/stb
 	url = https://github.com/nothings/stb
+[submodule "Software/Produkt/external/json"]
+	path = Software/Produkt/external/json
+	url = https://github.com/nlohmann/json
