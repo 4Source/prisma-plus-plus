@@ -3,14 +3,18 @@
 #include <numbers>
 constexpr float PI = std::numbers::pi_v<float>;
 
+//TODO use light array instead
 Ray::Ray(const Subray &subray, const std::shared_ptr<Object> &obj, const std::shared_ptr<Light> &light) { Ray::forward(subray, obj, light); }
 
 void Ray::forward(const Subray &s, const std::shared_ptr<Object> &o, const std::shared_ptr<Light> &l) {
-    this->subray_stack.push(s);
+    
+	this->subray_stack.push(s);
     // later while loop for further subrays (reflection etc.)
     // diffuse reflection
     Hit h = o->getComponent()->hit(s);
     if (h.hit) {
+		//TODO use pattern to split into one subray for each light in array
+		//TODO then check for each light if there is no obstacle!! (shades)
         Subray next = Subray{l->getPosition() - h.intersect, h.intersect, o->getMaterial()->get_color(), h.normal};
         this->subray_stack.push(next);
 
@@ -33,6 +37,7 @@ glm::vec3 Ray::backward() {
     Subray to_camera = this->subray_stack.top();
     this->subray_stack.pop();
 
+	//TODO use intensity and light color!
     // the angle correction is only a quick fix to get the lighting right, I have to think about the directions further probably
     float angle_light_primitive = glm::angle(glm::normalize(from_light.direction), from_light.hit_normal);
     if (angle_light_primitive > PI / 2) {
