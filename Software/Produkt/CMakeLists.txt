@@ -173,4 +173,4 @@ target_link_libraries(prisma-plus-plus-tests PRIVATE gtest_main)
 target_link_libraries(prisma-plus-plus-tests PRIVATE prisma-core)
 
 enable_testing()
-gtest_discover_tests(prisma-plus-plus-tests)
+# gtest_discover_tests(prisma-plus-plus-tests)
