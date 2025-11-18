@@ -7,12 +7,16 @@ class Camera {
   protected:
     glm::vec3 pos;    // eye position
     glm::vec3 top;    // top edge
-    glm::vec3 left;   // left edge !!check whether perpendicular when constructing!!
-    float resolution; // pixel edge length
+	// add top left point
+    glm::vec3 left;   // left edge (construct from top edge, top left point and eye position)
+    float resolution; // change to resolution_v and _h like 1280x960, calculate pixel distance from that 
 
   public:
     Camera(glm::vec3 pos, glm::vec3 top, glm::vec3 left, float res) : pos{pos}, top{top}, left{left}, resolution{res} {}
     virtual ~Camera() = default;
+
+	// implement move action
+		// change coordinates/attributes according to rotation or translation (vec4?)
 
     // Static methods (non virtual)
     glm::vec3 getPos() { return pos; }
