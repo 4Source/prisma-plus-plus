@@ -6,21 +6,21 @@
 #include "core/Triangle.hpp"
 #include <iostream>
 
-Vertex v0{glm::vec3{-3, -3, 0}};
-Vertex v1{glm::vec3{5, 7, 0}};
-Vertex v2{glm::vec3{3, -3, 0}};
-Vertex v3{glm::vec3{-3, -3, 0}};
-Vertex v4{glm::vec3{5, 7, 0}};
-Vertex v5{glm::vec3{-4, 5, -2}};
-Vertex v6{glm::vec3{-4, 5, -2}};
-Vertex v7{glm::vec3{5, 7, 0}};
-Vertex v8{glm::vec3{-2, 9, -3}};
-Vertex v9{glm::vec3{5, 7, 0}};
-Vertex v10{glm::vec3{3, -3, 0}};
-Vertex v11{glm::vec3{12, 4, -1}};
-Vertex v12{glm::vec3{-3, -3, 0}};
-Vertex v13{glm::vec3{0, -9, -0.5}};
-Vertex v14{glm::vec3{3, -3, 0}};
+Vertex v0{glm::vec3{-3, -3, 0}, glm::vec3{0.0f, 0.0f, -1.0f}};
+Vertex v1{glm::vec3{5, 7, 0}, glm::vec3{0.0f, 0.0f, -1.0f}};
+Vertex v2{glm::vec3{3, -3, 0}, glm::vec3{0.0f, 0.0f, -1.0f}};
+Vertex v3{glm::vec3{-3, -3, 0}, glm::vec3{-0.26f, 0.2f, 0.94f}};
+Vertex v4{glm::vec3{5, 7, 0}, glm::vec3{-0.26f, 0.2f, 0.94f}};
+Vertex v5{glm::vec3{-4, 5, -2}, glm::vec3{-0.26f, 0.2f, 0.94f}};
+Vertex v6{glm::vec3{-4, 5, -2}, glm::vec3{-0.28f, 0.36f, 0.89f}};
+Vertex v7{glm::vec3{5, 7, 0}, glm::vec3{-0.28f, 0.36f, 0.89f}};
+Vertex v8{glm::vec3{-2, 9, -3}, glm::vec3{-0.28f, 0.36f, 0.89f}};
+Vertex v9{glm::vec3{5, 7, 0}, glm::vec3{0.54f, -0.62f, 0.57f}};
+Vertex v10{glm::vec3{3, -3, 0}, glm::vec3{0.54f, -0.62f, 0.57f}};
+Vertex v11{glm::vec3{12, 4, -1}, glm::vec3{0.54f, -0.62f, 0.57f}};
+Vertex v12{glm::vec3{-3, -3, 0}, glm::vec3{0.0f, -0.08f, 1.0f}};
+Vertex v13{glm::vec3{0, -9, -0.5}, glm::vec3{0.0f, -0.08f, 1.0f}};
+Vertex v14{glm::vec3{3, -3, 0}, glm::vec3{0.0f, -0.08f, 1.0f}};
 
 Scene createTestingScene() {
 

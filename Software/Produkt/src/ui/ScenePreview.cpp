@@ -16,7 +16,7 @@
 //  Simple geometry (diamond object)
 // -----------------------------------------------
 
-Object cube{std::filesystem::path("../../../Modelle/obj/cube_bare.obj"), "Cube", glm::vec3(1.0f, 1.0f, -2.0f), glm::vec3(1.0f, 1.0f, 90.0f), glm::vec3(0.5f, 0.5f, 0.5f)};
+Object cube{std::filesystem::path("../../../Modelle/obj/cube_bare.obj"), "Cube", glm::vec3(0.0f, 0.0f, -2.0f), glm::vec3(1.0f, 1.0f, 90.0f), glm::vec3(0.5f, 0.5f, 0.5f)};
 
 // -----------------------------------------------
 //  ScenePreview implementation
@@ -63,7 +63,6 @@ void ScenePreview::setupPyramid() {
     // reinterpret_cast<void*>(value); -> unsafe
     // std::bit_cast<void*>(value); -> safe
     constexpr GLsizei stride = sizeof(Vertex);
-    // constexpr GLsizei stride = 9 * sizeof(float);
 
     // Position
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, (void *)offsetof(Vertex, Position));
@@ -74,15 +73,15 @@ void ScenePreview::setupPyramid() {
     glEnableVertexAttribArray(1);
 
     // Normals
-    // glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, stride, std::bit_cast<void *>(6 * sizeof(float)));
-    // glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, stride, (void *)offsetof(Vertex, Normal));
+    glEnableVertexAttribArray(2);
 
     // --- Vertex shader ---
     const char *vertexShaderSource =
         R"(#version 410 core
         layout(location = 0) in vec3 aPos;
         layout(location = 1) in vec3 aColor;
-        // layout(location = 2) in vec3 aNormal;
+        layout(location = 2) in vec3 aNormal;
 
         out vec3 FragPos;
         flat out vec3 FlatNormal; // flat qualifier
@@ -94,8 +93,7 @@ void ScenePreview::setupPyramid() {
 
         void main() {
             FragPos = vec3(model * vec4(aPos, 1.0));
-            // FlatNormal = mat3(transpose(inverse(model))) * aNormal;
-            FlatNormal = mat3(transpose(inverse(model))) * vec3(1.0);
+            FlatNormal = mat3(transpose(inverse(model))) * aNormal;
             vertexColor = aColor;
             gl_Position = projection * view * vec4(FragPos, 1.0);
         }

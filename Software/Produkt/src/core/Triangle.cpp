@@ -85,8 +85,7 @@ std::string Triangle::toString(bool formatted, int indentLevel) {
          (formatted ? std::string("\n") : std::string(" "));
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "vertices: [" + (formatted ? std::string("\n") : std::string(""));
     for (size_t i = 0; i < m_Vertices.size(); i++) {
-        s += (formatted ? std::string(indentLevel + 1, '\t') : std::string("")) + glm::to_string(m_Vertices.at(i)->Position) +
-             (((i + 1) == m_Vertices.size()) ? "" : ", ") + (formatted ? std::string("\n") : std::string(""));
+        s += m_Vertices.at(i)->toString(formatted, indentLevel + 1) + (formatted ? std::string("\n") : std::string(""));
     }
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "]" + (formatted ? std::string("\n") : std::string(" "));
 

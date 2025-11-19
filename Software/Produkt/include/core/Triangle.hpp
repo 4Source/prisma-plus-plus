@@ -10,6 +10,7 @@
 class Triangle : public Primitive {
   private:
     std::array<Vertex *, 3> m_Vertices;
+    // TODO: Remove face Normal 
     glm::vec3 m_FaceNormal;
 
   public:

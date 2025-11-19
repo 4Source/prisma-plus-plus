@@ -69,16 +69,16 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
                 tinyobj::real_t vx = attrib.vertices.at(3 * size_t(idx.vertex_index) + 0);
                 tinyobj::real_t vy = attrib.vertices.at(3 * size_t(idx.vertex_index) + 1);
                 tinyobj::real_t vz = attrib.vertices.at(3 * size_t(idx.vertex_index) + 2);
-                Vertex vertex{.Position = glm::vec3{vx, vy, vz}};
-                m_Vertices[idx.vertex_index] = vertex;
-                m_Indices.push_back(idx.vertex_index);
 
                 // Check if `normal_index` is zero or positive. negative = no normal data
-                // if (idx.normal_index >= 0) {
-                //     tinyobj::real_t nx = attrib.normals.at(3 * size_t(idx.normal_index) + 0);
-                //     tinyobj::real_t ny = attrib.normals.at(3 * size_t(idx.normal_index) + 1);
-                //     tinyobj::real_t nz = attrib.normals.at(3 * size_t(idx.normal_index) + 2);
-                // }
+                tinyobj::real_t ny = NAN;
+                tinyobj::real_t nx = NAN;
+                tinyobj::real_t nz = NAN;
+                if (idx.normal_index >= 0) {
+                    nx = attrib.normals.at(3 * size_t(idx.normal_index) + 0);
+                    ny = attrib.normals.at(3 * size_t(idx.normal_index) + 1);
+                    nz = attrib.normals.at(3 * size_t(idx.normal_index) + 2);
+                }
 
                 // Check if `texcoord_index` is zero or positive. negative = no texcoord data
                 // if (idx.texcoord_index >= 0) {
@@ -90,11 +90,30 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
                 // tinyobj::real_t red = attrib.colors.at(3 * size_t(idx.vertex_index) + 0);
                 // tinyobj::real_t green = attrib.colors.at(3 * size_t(idx.vertex_index) + 1);
                 // tinyobj::real_t blue = attrib.colors.at(3 * size_t(idx.vertex_index) + 2);
+
+                //
+                Vertex vertex{glm::vec3{vx, vy, vz}, glm::normalize(glm::vec3{nx, ny, nz})};
+                m_Vertices[idx.vertex_index] = vertex;
+                m_Indices.push_back(idx.vertex_index);
             }
             try {
-                m_Component->add(std::make_shared<Triangle>(&m_Vertices.at(m_Indices.at(m_Indices.size() - 3)),
-                                                            &m_Vertices.at(m_Indices.at(m_Indices.size() - 2)),
-                                                            &m_Vertices.at(m_Indices.at(m_Indices.size() - 1))));
+                Vertex &v1 = m_Vertices.at(m_Indices.at(m_Indices.size() - 3));
+                Vertex &v2 = m_Vertices.at(m_Indices.at(m_Indices.size() - 2));
+                Vertex &v3 = m_Vertices.at(m_Indices.at(m_Indices.size() - 1));
+
+                if (!std::isfinite(v1.Normal.x) || !std::isfinite(v1.Normal.y) || !std::isfinite(v1.Normal.z) || !std::isfinite(v2.Normal.x) ||
+                    !std::isfinite(v2.Normal.y) || !std::isfinite(v2.Normal.z) || !std::isfinite(v3.Normal.x) || !std::isfinite(v3.Normal.y) ||
+                    !std::isfinite(v3.Normal.z)) {
+                    glm::vec3 edge1 = v2.Position - v1.Position;
+                    glm::vec3 edge2 = v3.Position - v1.Position;
+                    // Compute the cross product
+                    glm::vec3 normal = glm::cross(edge1, edge2);
+                    // Normalize the result to get a unit vector
+                    v1.Normal = glm::normalize(normal);
+                    v2.Normal = glm::normalize(normal);
+                    v3.Normal = glm::normalize(normal);
+                }
+                m_Component->add(std::make_shared<Triangle>(&v1, &v2, &v3));
             } catch (std::invalid_argument &ex) {
                 std::cout << "TinyObjReader: " << ex.what();
             }
@@ -107,9 +126,9 @@ Object::Object(const std::filesystem::path &objectPath, std::string name, glm::v
     }
 }
 
-// TODO: Remove not compatible Constructor path is needed
 Object::Object(const tinyobj::attrib_t &attrib, std::vector<tinyobj::shape_t> &shapes)
     : Object{"/", "Load with attributes and shapes", glm::vec3{0.0f}, glm::vec3{0.0f}, glm::vec3{1.0f}} {
+
     // Loop over shapes
 
     std::cout << "\033[31mDeprecated Object constructor use Object constructor with path instead!\033[0m\n";
@@ -124,7 +143,6 @@ Object::Object(const tinyobj::attrib_t &attrib, std::vector<tinyobj::shape_t> &s
                 continue;
             }
 
-            std::array<Vertex *, 3> face{};
             // Loop over vertices in the face.
             for (size_t vertexIndex = 0; vertexIndex < faceVertexCount; vertexIndex++) {
                 // Access the vertices
@@ -132,16 +150,16 @@ Object::Object(const tinyobj::attrib_t &attrib, std::vector<tinyobj::shape_t> &s
                 tinyobj::real_t vx = attrib.vertices.at(3 * size_t(idx.vertex_index) + 0);
                 tinyobj::real_t vy = attrib.vertices.at(3 * size_t(idx.vertex_index) + 1);
                 tinyobj::real_t vz = attrib.vertices.at(3 * size_t(idx.vertex_index) + 2);
-                Vertex vertex{.Position = glm::vec3{vx, vy, vz}};
-                m_Vertices[idx.vertex_index] = vertex;
-                m_Indices.push_back(idx.vertex_index);
 
                 // Check if `normal_index` is zero or positive. negative = no normal data
-                // if (idx.normal_index >= 0) {
-                //     tinyobj::real_t nx = attrib.normals.at(3 * size_t(idx.normal_index) + 0);
-                //     tinyobj::real_t ny = attrib.normals.at(3 * size_t(idx.normal_index) + 1);
-                //     tinyobj::real_t nz = attrib.normals.at(3 * size_t(idx.normal_index) + 2);
-                // }
+                tinyobj::real_t ny = NAN;
+                tinyobj::real_t nx = NAN;
+                tinyobj::real_t nz = NAN;
+                if (idx.normal_index >= 0) {
+                    nx = attrib.normals.at(3 * size_t(idx.normal_index) + 0);
+                    ny = attrib.normals.at(3 * size_t(idx.normal_index) + 1);
+                    nz = attrib.normals.at(3 * size_t(idx.normal_index) + 2);
+                }
 
                 // Check if `texcoord_index` is zero or positive. negative = no texcoord data
                 // if (idx.texcoord_index >= 0) {
@@ -153,11 +171,30 @@ Object::Object(const tinyobj::attrib_t &attrib, std::vector<tinyobj::shape_t> &s
                 // tinyobj::real_t red = attrib.colors.at(3 * size_t(idx.vertex_index) + 0);
                 // tinyobj::real_t green = attrib.colors.at(3 * size_t(idx.vertex_index) + 1);
                 // tinyobj::real_t blue = attrib.colors.at(3 * size_t(idx.vertex_index) + 2);
+
+                //
+                Vertex vertex{glm::vec3{vx, vy, vz}, glm::vec3{nx, ny, nz}};
+                m_Vertices[idx.vertex_index] = vertex;
+                m_Indices.push_back(idx.vertex_index);
             }
             try {
-                m_Component->add(std::make_shared<Triangle>(&m_Vertices.at(m_Indices.at(m_Indices.size() - 2)),
-                                                            &m_Vertices.at(m_Indices.at(m_Indices.size() - 1)),
-                                                            &m_Vertices.at(m_Indices.at(m_Indices.size() - 0))));
+                Vertex &v1 = m_Vertices.at(m_Indices.at(m_Indices.size() - 3));
+                Vertex &v2 = m_Vertices.at(m_Indices.at(m_Indices.size() - 2));
+                Vertex &v3 = m_Vertices.at(m_Indices.at(m_Indices.size() - 1));
+
+                if (!std::isfinite(v1.Normal.x) || !std::isfinite(v1.Normal.y) || !std::isfinite(v1.Normal.z) || !std::isfinite(v2.Normal.x) ||
+                    !std::isfinite(v2.Normal.y) || !std::isfinite(v2.Normal.z) || !std::isfinite(v3.Normal.x) || !std::isfinite(v3.Normal.y) ||
+                    !std::isfinite(v3.Normal.z)) {
+                    glm::vec3 edge1 = v2.Position - v1.Position;
+                    glm::vec3 edge2 = v3.Position - v1.Position;
+                    // Compute the cross product
+                    glm::vec3 normal = glm::cross(edge1, edge2);
+                    // Normalize the result to get a unit vector
+                    v1.Normal = glm::normalize(normal);
+                    v2.Normal = glm::normalize(normal);
+                    v3.Normal = glm::normalize(normal);
+                }
+                m_Component->add(std::make_shared<Triangle>(&v1, &v2, &v3));
             } catch (std::invalid_argument &ex) {
                 std::cout << "TinyObjReader: " << ex.what();
             }
@@ -183,10 +220,7 @@ std::string Object::toString(bool formatted, int indentLevel) {
 
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "vertices: [" + (formatted ? std::string("\n") : std::string(""));
     for (size_t i = 0; i < m_Vertices.size(); i++) {
-        s += (formatted ? std::string(indentLevel + 1, '\t') : std::string("")) + "{" + (formatted ? std::string("\n") : std::string(""));
         s += m_Vertices.at(i).toString(formatted, indentLevel + 1) + (formatted ? std::string("\n") : std::string(""));
-        s += (formatted ? std::string(indentLevel + 1, '\t') : std::string("")) + (((i + 1) == m_Vertices.size()) ? "}" : "}, ") +
-             (formatted ? std::string("\n") : std::string(""));
     }
     s += (formatted ? std::string(indentLevel, '\t') : std::string("")) + "]" + (formatted ? std::string("\n") : std::string(""));
 
