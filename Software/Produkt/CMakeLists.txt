@@ -63,6 +63,30 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/stduuid)
 set(JSON_BuildTests OFF CACHE INTERNAL "")
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/json)
 
+include(FetchContent)
+# Fetch libzip
+FetchContent_Declare(
+  libzip
+  GIT_REPOSITORY https://github.com/nih-at/libzip.git
+  GIT_TAG v1.11.3
+)
+
+# Configure dependencies and features
+set(ENABLE_ZLIB ON)
+set(ENABLE_OPENSSL OFF)
+set(ENABLE_BZIP2 OFF)
+set(ENABLE_LZMA OFF)
+set(ENABLE_ZSTD OFF)
+set(ENABLE_GNUTLS OFF)
+set(ENABLE_ICONV OFF)
+set(ENABLE_MBEDTLS OFF)
+
+
+
+
+FetchContent_MakeAvailable(libzip)
+
+
 # --- GLAD ---
 add_library(glad STATIC ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/src/glad.c)
 target_include_directories(glad PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/include)
@@ -121,6 +145,7 @@ target_link_libraries(prisma-core PUBLIC tinyobjloader)
 target_link_libraries(prisma-core PUBLIC glad)
 target_link_libraries(prisma-core PUBLIC stduuid)
 target_link_libraries(prisma-core PUBLIC nlohmann_json::nlohmann_json)
+target_link_libraries(prisma-core PUBLIC zip)
 target_compile_options(prisma-core PUBLIC -Wno-deprecated-literal-operator)
 
 if(APPLE)
