@@ -38,24 +38,24 @@ class Material {
     const glm::vec3 &getAmbient() const { return m_Ka; }
     const glm::vec3 &getDiffuse() const { return m_Kd; }
     const glm::vec3 &getSpecular() const { return m_Ks; }
-    const glm::vec3 &getTransmissionFilter() const { return m_Tf; } // Tf getter
+    const glm::vec3 &getTransmissionFilter() const { return m_Tf; }
     float getShininess() const { return m_Ns; }
     float getAlpha() const { return m_d; }
     float getIndexRefraction() const { return m_Ni; }
     int getIllumModel() const { return m_illum; }
-    float getSharpness() const { return m_sharpness; } // Sharpness getter
+    float getSharpness() const { return m_sharpness; }
 
     // --- Setters  ---
     void setName(const std::string &name) { m_name = name; }
     void setAmbient(const glm::vec3 &ka) { m_Ka = ka; }
     void setDiffuse(const glm::vec3 &kd) { m_Kd = kd; }
     void setSpecular(const glm::vec3 &ks) { m_Ks = ks; }
-    void setTransmissionFilter(const glm::vec3 &tf) { m_Tf = tf; } // Tf setter
+    void setTransmissionFilter(const glm::vec3 &tf) { m_Tf = tf; }
     void setShininess(float ns) { m_Ns = ns; }
     void setAlpha(float d) { m_d = d; }
     void setNi(float ni) { m_Ni = ni; }
     void setIllumModel(int illum) { m_illum = illum; }
-    void setSharpness(float sharpness) { m_sharpness = sharpness; } // Sharpness setter
+    void setSharpness(float sharpness) { m_sharpness = sharpness; }
 
     /**
      * @brief Generates a string representation of the Material object.
