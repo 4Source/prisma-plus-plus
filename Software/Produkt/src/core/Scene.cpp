@@ -1,4 +1,6 @@
 #include "core/Scene.hpp"
+#include <core/PerspectiveCamera.hpp>
+#include <core/PointLight.hpp>
 #include <fstream>
 
 Scene::Scene(const std::filesystem::path &scenePath) : m_Objects{}, m_Lights{} {
@@ -42,54 +44,80 @@ void Scene::exportScene(const std::filesystem::path &scenePath) {
     std::ifstream file(scenePath);
 }
 
+/*
+ * Converts a Scene object into a JSON representation.
+ */
 void to_json(nlohmann::json &j, const Scene &scene) {
-    // 1. Handle Objects: Manually dereference pointers
+    // Prepare Arrays for Objects and Lights
     nlohmann::json objects_array = nlohmann::json::array();
-    for (const auto &obj_ptr : scene.m_Objects) {
+    nlohmann::json lights_array = nlohmann::json::array();
+
+    // Iterate and Dereference Objects
+    for (const std::shared_ptr<Object> &obj_ptr : scene.m_Objects) {
         if (obj_ptr) {
-            // *obj_ptr triggers the to_json(json&, const Object&) function
             objects_array.push_back(*obj_ptr);
         }
     }
 
-    // 2. Handle Lights: Manually dereference pointers
-    nlohmann::json lights_array = nlohmann::json::array();
-    for (const auto &light_ptr : scene.m_Lights) {
-        if (light_ptr) {
-            lights_array.push_back(*light_ptr);
+    // Iterate and Dereference Lights, while checking for Light type
+    for (const std::shared_ptr<Light> &light_ptr : scene.m_Lights) {
+        std::shared_ptr<PointLight> pl = std::dynamic_pointer_cast<PointLight>(light_ptr);
+        if (pl) {
+            lights_array.push_back(*pl);
         }
     }
 
-    // 3. Handle Camera: Check for null and dereference
-    nlohmann::json camera_json = nullptr;
-    if (scene.m_Camera) {
-        camera_json = *scene.m_Camera;
+    // Check for Camera Type
+    nlohmann::json j_camera;
+    std::shared_ptr<PerspectiveCamera> pc = std::dynamic_pointer_cast<PerspectiveCamera>(scene.m_Camera);
+    if (pc) {
+        j_camera = *pc;
     }
 
-    // 4. Helper for background color (assuming m_BackgroundColor exists in Scene)
-    // If 'background' was a local variable in your code, replace usage below.
-    // Here I assume it is a member variable named m_BackgroundColor.
-    nlohmann::json bg_color = {
-        {"r", 1.0}, {"g", 1.0}, {"b", 1.0} // Default
-    };
-
-    // Uncomment and adjust if you have this member:
-    // bg_color = {{"r", scene.m_BackgroundColor.r}, {"g", scene.m_BackgroundColor.g}, {"b", scene.m_BackgroundColor.b}};
-
-    // 5. Final Assembly
-    j = nlohmann::json{
-        {"scene_name", scene.m_Name}, {"objects", objects_array}, {"lights", lights_array}, {"camera", camera_json}, {"background_color", bg_color}};
+    // Construct the Main Scene Object
+    j = nlohmann::json{{"scene_name", scene.m_Name},
+                       {"objects", objects_array},
+                       {"lights", lights_array},
+                       {"camera", j_camera},
+                       // Manual construction for background color (r, g, b)
+                       // Assuming m_BackgroundColor is a glm::vec3
+                       {"background_color", {{"r", scene.m_BackgroundColor.r}, {"g", scene.m_BackgroundColor.g}, {"b", scene.m_BackgroundColor.b}}}};
 }
 
+/*
+ * Crafts a Scene object from a JSON representation.
+ */
 void from_json(const nlohmann::json &j, Scene &scene) {
-    j.at("name").get_to(scene.m_Name);
-    j.at("objects").get_to(scene.m_Objects);
-    j.at("lights").get_to(scene.m_Lights);
-    j.at("camera").get_to(scene.m_Camera);
+    // Scene name
+    j.at("scene_name").get_to(scene.m_Name);
 
-    nlohmann::json j_background = j.at("background_color");
-    glm::vec3 background{1.0};
-    background.x = j_background.at("x").get<float>();
-    background.y = j_background.at("y").get<float>();
-    background.z = j_background.at("z").get<float>();
+    // Background color
+    const nlohmann::json &j_bg = j.at("background_color");
+    scene.m_BackgroundColor = glm::vec3(j_bg.at("r").get<float>(), j_bg.at("g").get<float>(), j_bg.at("b").get<float>());
+
+    // Camera(always PerspectiveCamera)
+    scene.m_Camera = std::make_shared<PerspectiveCamera>();
+    j.at("camera").get_to(*std::static_pointer_cast<PerspectiveCamera>(scene.m_Camera));
+
+    // Objects (always teh same type)
+    scene.m_Objects.clear();
+    for (const nlohmann::json &jobj : j.at("objects")) {
+        std::shared_ptr<Object> obj = std::make_shared<Object>();
+        jobj.get_to(*obj);
+        scene.m_Objects.push_back(obj);
+    }
+
+    // Lights (Uses the "type" attribute in the JSON)
+    scene.m_Lights.clear();
+    for (const nlohmann::json &j_light : j.at("lights")) {
+        std::string type = j_light.at("type").get<std::string>();
+
+        if (type == "point") {
+            std::shared_ptr<PointLight> light = std::make_shared<PointLight>();
+            j_light.get_to(*light);
+            scene.m_Lights.push_back(light);
+        } else {
+            throw std::runtime_error("Unknown light type: " + type);
+        }
+    }
 }

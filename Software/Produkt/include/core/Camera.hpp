@@ -11,6 +11,7 @@ class Camera {
     float resolution; // pixel edge length
 
   public:
+    Camera() = default;
     Camera(glm::vec3 pos, glm::vec3 top, glm::vec3 left, float res) : pos{pos}, top{top}, left{left}, resolution{res} {}
     virtual ~Camera() = default;
 
