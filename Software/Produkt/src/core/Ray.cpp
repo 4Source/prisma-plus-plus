@@ -11,7 +11,7 @@ void Ray::forward(const Subray &s, const std::shared_ptr<Object> &o, const std::
     // diffuse reflection
     Hit h = o->getComponent()->hit(s);
     if (h.hit) {
-        Subray next = Subray{l->getPosition() - h.intersect, h.intersect, o->getMaterial()->get_color(), h.normal};
+        Subray next = Subray{l->getPosition() - h.intersect, h.intersect, o->getMaterial()->getDiffuse(), h.normal};
         this->subray_stack.push(next);
 
         Subray last = Subray{glm::vec3{0, 0, 0}, l->getPosition(), next.color, glm::vec3{0, 0, 0}};
