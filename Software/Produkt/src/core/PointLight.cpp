@@ -6,6 +6,9 @@ PointLight::PointLight(glm::vec3 pos, glm::vec3 color, float intensity) : m_Pos{
 
 glm::vec3 PointLight::getRay(const glm::vec3 worldPos) const { return worldPos - this->m_Pos; }
 
+/*
+ * Converts a Scene object into a JSON representation.
+ */
 void to_json(nlohmann::json &j, const PointLight &light) {
     glm::vec3 position = light.getPosition();
     glm::vec3 rotation = light.getRotation();
@@ -19,6 +22,9 @@ void to_json(nlohmann::json &j, const PointLight &light) {
                        {"color", {{"r", color.r}, {"g", color.g}, {"b", color.b}}}};
 }
 
+/*
+ * Crafts a Scene object from a JSON representation.
+ */
 void from_json(const nlohmann::json &j, PointLight &light) {
     light.setName(j.at("name").get<std::string>());
     light.setIntensity(j.at("luminosity").get<float>());
