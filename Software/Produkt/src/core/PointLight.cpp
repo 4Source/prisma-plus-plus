@@ -12,6 +12,7 @@ void to_json(nlohmann::json &j, const PointLight &light) {
     glm::vec3 color = light.getColor();
 
     j = nlohmann::json{{"name", light.getName()},
+                       {"type", "point"},
                        {"luminosity", light.getIntensity()},
                        {"position", {{"x", position.x}, {"y", position.y}, {"z", position.z}}},
                        {"rotation", {{"x", rotation.x}, {"y", rotation.y}, {"z", rotation.z}}},
