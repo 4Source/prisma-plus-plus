@@ -2,6 +2,7 @@
 #include "core/Camera.hpp"
 #include "core/Light.hpp"
 #include "core/Object.hpp"
+#include <glm/glm.hpp>
 #include <memory>
 #include <nlohmann/json.hpp>
 #include <uuid.h>
@@ -12,6 +13,8 @@ class Scene {
     std::vector<std::shared_ptr<Object>> m_Objects;
     std::shared_ptr<Camera> m_Camera;
     std::vector<std::shared_ptr<Light>> m_Lights;
+    std::string m_Name;
+    glm::vec3 m_BackgroundColor{1.0};
 
   public:
     Scene(std::shared_ptr<Light> light, std::vector<std::shared_ptr<Object>> objects, std::shared_ptr<Camera> camera)
@@ -40,5 +43,5 @@ class Scene {
 
     void exportScene(const std::filesystem::path &scenePath);
     friend void to_json(nlohmann::json &j, const Scene &scene);
-    friend void from_json(const nlohmann::json &j, const Scene &scene);
+    friend void from_json(const nlohmann::json &j, Scene &scene);
 };

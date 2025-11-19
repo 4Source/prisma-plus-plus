@@ -43,9 +43,53 @@ void Scene::exportScene(const std::filesystem::path &scenePath) {
 }
 
 void to_json(nlohmann::json &j, const Scene &scene) {
-    // TODO: Scene to json
+    // 1. Handle Objects: Manually dereference pointers
+    nlohmann::json objects_array = nlohmann::json::array();
+    for (const auto &obj_ptr : scene.m_Objects) {
+        if (obj_ptr) {
+            // *obj_ptr triggers the to_json(json&, const Object&) function
+            objects_array.push_back(*obj_ptr);
+        }
+    }
+
+    // 2. Handle Lights: Manually dereference pointers
+    nlohmann::json lights_array = nlohmann::json::array();
+    for (const auto &light_ptr : scene.m_Lights) {
+        if (light_ptr) {
+            lights_array.push_back(*light_ptr);
+        }
+    }
+
+    // 3. Handle Camera: Check for null and dereference
+    nlohmann::json camera_json = nullptr;
+    if (scene.m_Camera) {
+        camera_json = *scene.m_Camera;
+    }
+
+    // 4. Helper for background color (assuming m_BackgroundColor exists in Scene)
+    // If 'background' was a local variable in your code, replace usage below.
+    // Here I assume it is a member variable named m_BackgroundColor.
+    nlohmann::json bg_color = {
+        {"r", 1.0}, {"g", 1.0}, {"b", 1.0} // Default
+    };
+
+    // Uncomment and adjust if you have this member:
+    // bg_color = {{"r", scene.m_BackgroundColor.r}, {"g", scene.m_BackgroundColor.g}, {"b", scene.m_BackgroundColor.b}};
+
+    // 5. Final Assembly
+    j = nlohmann::json{
+        {"scene_name", scene.m_Name}, {"objects", objects_array}, {"lights", lights_array}, {"camera", camera_json}, {"background_color", bg_color}};
 }
 
 void from_json(const nlohmann::json &j, Scene &scene) {
-    // TODO: Scene from json
+    j.at("name").get_to(scene.m_Name);
+    j.at("objects").get_to(scene.m_Objects);
+    j.at("lights").get_to(scene.m_Lights);
+    j.at("camera").get_to(scene.m_Camera);
+
+    nlohmann::json j_background = j.at("background_color");
+    glm::vec3 background{1.0};
+    background.x = j_background.at("x").get<float>();
+    background.y = j_background.at("y").get<float>();
+    background.z = j_background.at("z").get<float>();
 }
