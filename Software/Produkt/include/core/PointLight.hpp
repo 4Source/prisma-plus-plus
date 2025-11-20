@@ -8,6 +8,7 @@ class PointLight : public Light {
   protected:
     glm::vec3 m_Pos{0};
     glm::vec3 m_Rotation{0};
+    std::string m_Type{"point"};
 
   public:
     PointLight();

@@ -10,6 +10,7 @@ class Light {
     glm::vec3 m_Color{1.0};
     float m_Intensity{1.0};
     std::string m_Name;
+    std::string m_Type;
 
   public:
     Light() : m_UUID{UUIDGenerator::gen()} {};
@@ -31,6 +32,9 @@ class Light {
 
     std::string getName() const { return m_Name; }
     void setName(const std::string &name) { m_Name = name; }
+
+    std::string getType() const { return m_Type; }
+    void setType(const std::string &type) { m_Type = type; }
 
     bool operator==(const Light &other) const { return m_UUID == other.m_UUID; }
 
