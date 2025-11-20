@@ -3,6 +3,7 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 
+#pragma pack(push, 1)
 struct Vertex {
     glm::vec3 Position{0.0f};
     glm::vec3 Color{1.0f};
@@ -29,3 +30,4 @@ struct Vertex {
         return s;
     }
 };
+#pragma pack(pop)
