@@ -56,22 +56,28 @@ void to_json(nlohmann::json &j, const Scene &scene) {
     for (const std::shared_ptr<Object> &obj_ptr : scene.m_Objects) {
         if (obj_ptr) {
             objects_array.push_back(*obj_ptr);
+        } else {
+            throw std::runtime_error("Error: Casting of Object to Json failed.\n");
         }
     }
 
-    // Iterate and Dereference Lights, while checking for Light type
+    // Iterate and Dereference Lights, while checking for Light type (Need to be extended, when other light types are added)
     for (const std::shared_ptr<Light> &light_ptr : scene.m_Lights) {
         std::shared_ptr<PointLight> pl = std::dynamic_pointer_cast<PointLight>(light_ptr);
         if (pl) {
             lights_array.push_back(*pl);
+        } else {
+            throw std::runtime_error("Error: Casting from Light to PointLight failed.\n");
         }
     }
 
-    // Check for Camera Type
+    // Check for Camera Type (Need to be extended, when other Camera types are added)
     nlohmann::json j_camera;
     std::shared_ptr<PerspectiveCamera> pc = std::dynamic_pointer_cast<PerspectiveCamera>(scene.m_Camera);
     if (pc) {
         j_camera = *pc;
+    } else {
+        throw std::runtime_error("Error: Casting from Camera to PerspectiveCamera failed.\n");
     }
 
     // Construct the Main Scene Object
