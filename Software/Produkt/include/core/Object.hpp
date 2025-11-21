@@ -18,7 +18,7 @@ class Object {
     glm::vec3 m_Translation;
     glm::vec3 m_Rotation;
     glm::vec3 m_Scale;
-    const std::filesystem::path m_Path;
+    std::filesystem::path m_Path;
 
   public:
     Object() = default;
@@ -37,8 +37,8 @@ class Object {
     Object(const Object &) = delete;
     Object &operator=(const Object &) = delete;
 
-    Object(Object &&other) noexcept = delete;
-    Object &operator=(Object &&other) noexcept = delete;
+    Object(Object &&other) noexcept = default;
+    Object &operator=(Object &&other) noexcept = default;
 
     std::shared_ptr<HitComponent> getComponent() const { return m_Component; };
     std::shared_ptr<Material> getMaterial() const { return m_Material; };
