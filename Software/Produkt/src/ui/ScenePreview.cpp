@@ -81,6 +81,13 @@ ScenePreview::ScenePreview(std::string glsl_version) {
     glEnableVertexAttribArray(2);
     PrintglError("glEnableVertexAttribArray Normal");
 
+    glBindVertexArray(0);
+    PrintglError("glBindVertexArray 0");
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    PrintglError("glBindBuffer GL_ARRAY_BUFFER 0");
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+    PrintglError("glBindBuffer GL_ELEMENT_ARRAY_BUFFER 0");
+
     // --- Vertex shader ---
     std::string vertexShaderSource = glsl_version +
                                      R"(
@@ -203,8 +210,6 @@ void ScenePreview::draw(int width, int height) {
     PrintglError("glEnable");
     glUseProgram(shaderProgram);
     PrintglError("glUseProgram");
-    glBindVertexArray(VAO);
-    PrintglError("glBindVertexArray");
 
     // Light and camera uniforms
     int lightPosLoc = glGetUniformLocation(shaderProgram, "lightPos");
@@ -255,6 +260,10 @@ void ScenePreview::draw(int width, int height) {
     PrintglError("glUniformMatrix4fv projection");
 
     // Draw triangles
+    glBindVertexArray(VAO);
+    PrintglError("glBindVertexArray VAO");
     glDrawElements(GL_TRIANGLES, cube.indicesSize(), GL_UNSIGNED_INT, nullptr);
     PrintglError("glDrawElements");
+    glBindVertexArray(0);
+    PrintglError("glBindVertexArray 0");
 }

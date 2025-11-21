@@ -63,12 +63,12 @@ class Object {
     /**
      * @brief Returns the number of Vertices in the Vertices array
      */
-    size_t verticesSize() { return m_Vertices.size(); }
+    int verticesSize() { return m_Vertices.size(); }
     Vertex *verticesData() { return m_Vertices.data(); }
     /**
      * @brief Returns the number of Indices in the Indices array
      */
-    size_t indicesSize() { return m_Indices.size(); }
+    int indicesSize() { return m_Indices.size(); }
     unsigned int *indicesData() { return m_Indices.data(); }
 
     std::shared_ptr<HitComponent> getComponent() const { return m_Component; };
