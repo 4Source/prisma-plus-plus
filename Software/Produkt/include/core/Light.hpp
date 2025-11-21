@@ -34,7 +34,6 @@ class Light {
     void setName(const std::string &name) { m_Name = name; }
 
     std::string getType() const { return m_Type; }
-    void setType(const std::string &type) { m_Type = type; }
 
     bool operator==(const Light &other) const { return m_UUID == other.m_UUID; }
 
