@@ -21,6 +21,7 @@ class Object {
     const std::filesystem::path m_Path;
 
   public:
+    Object() = default;
     Object(const std::shared_ptr<HitComponent> &c, const std::shared_ptr<Material> &m);
     /**
      * Creates an object from an .obj file. Will import the material file if one is provided inside the .obj the .mat file has to be in

@@ -9,7 +9,7 @@ class PointLight : public Light {
     glm::vec3 m_Pos{0};
 
   public:
-    PointLight();
+    PointLight() = default;
 
     PointLight(glm::vec3 pos, glm::vec3 color, float intensity);
 
