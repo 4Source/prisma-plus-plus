@@ -11,7 +11,7 @@ class PointLight : public Light {
     std::string m_Type{"point"};
 
   public:
-    PointLight();
+    PointLight() = default;
 
     PointLight(glm::vec3 pos, glm::vec3 color, float intensity);
 
