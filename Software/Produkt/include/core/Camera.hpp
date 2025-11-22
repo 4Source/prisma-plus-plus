@@ -17,6 +17,7 @@ class Camera {
 
   public:
     Camera(glm::vec3 pos, glm::vec3 up, glm::vec3 look_at, float d, float w, int res_h, int res_v); // implement
+	Camera() = default;
     virtual ~Camera() = default;
 
 	// implement move action
