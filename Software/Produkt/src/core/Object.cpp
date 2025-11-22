@@ -3,6 +3,7 @@
 #include "core/HitComponentList.hpp"
 #include "core/Triangle.hpp"
 #include <iostream>
+#include "core/glm_json.hpp"
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/string_cast.hpp>
 
@@ -180,8 +181,19 @@ std::string Object::toString(bool formatted, int indentLevel) {
 }
 
 void to_json(nlohmann::json &j, const Object &object) {
-    // TODO: Object to json
+    j = nlohmann::json{{"name", object.m_Name},
+                       {"path", object.m_Path},
+                       {"scale", object.m_Scale},
+                       {"rotation", object.m_Rotation},
+                       {"translation", object.m_Translation}};
 }
-void from_json(const nlohmann::json &j, const Object &object) {
-    // TODO: Object from json
+void from_json(const nlohmann::json &j, Object &object) {
+    std::string name = j.at("name").get_to(name);
+    std::string pathStr = j.at("path").get<std::string>();
+    glm::vec3 scale = j.at("scale").get_to(scale);
+    glm::vec3 rotation = j.at("rotation").get_to(rotation);
+    glm::vec3 translation = j.at("translation").get_to(translation);
+    
+    Object obj{std::filesystem::path(pathStr), name, translation, rotation, scale};
+    object = std::move(obj);
 }

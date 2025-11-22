@@ -1,5 +1,6 @@
 #pragma once
 #include "core/Camera.hpp"
+#include "core/Color.hpp"
 #include "core/Light.hpp"
 #include "core/Object.hpp"
 #include <glm/glm.hpp>
@@ -14,7 +15,7 @@ class Scene {
     std::shared_ptr<Camera> m_Camera;
     std::vector<std::shared_ptr<Light>> m_Lights;
     std::string m_Name;
-    glm::vec3 m_BackgroundColor{0.2};
+    Color m_BackgroundColor{0.2};
 
   public:
     Scene(std::shared_ptr<Light> light, std::vector<std::shared_ptr<Object>> objects, std::shared_ptr<Camera> camera)

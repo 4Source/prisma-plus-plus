@@ -1,5 +1,6 @@
 #pragma once
 #include "UUIDGenerator.hpp"
+#include "core/Color.hpp"
 #include <glm/glm.hpp>
 #include <string>
 #include <uuid.h>
@@ -7,7 +8,7 @@
 class Light {
   protected:
     uuids::uuid m_UUID;
-    glm::vec3 m_Color{1.0};
+    Color m_Color{1.0};
     float m_Intensity{1.0};
     std::string m_Name;
     std::string m_Type;
@@ -15,11 +16,11 @@ class Light {
   public:
     Light() : m_UUID{UUIDGenerator::gen()} {};
 
-    Light(glm::vec3 color, float intensity) : m_UUID{UUIDGenerator::gen()}, m_Color{color}, m_Intensity{intensity} {}
+    Light(Color color, float intensity) : m_UUID{UUIDGenerator::gen()}, m_Color{color}, m_Intensity{intensity} {}
     virtual ~Light() = default;
 
-    glm::vec3 getColor() const { return m_Color; }
-    void setColor(glm::vec3 color) { m_Color = color; }
+    Color getColor() const { return m_Color; }
+    void setColor(Color color) { m_Color = color; }
 
     float getIntensity() const { return m_Intensity; }
     void setIntensity(float intensity) { m_Intensity = intensity; }
