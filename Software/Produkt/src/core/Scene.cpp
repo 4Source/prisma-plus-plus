@@ -87,7 +87,7 @@ void to_json(nlohmann::json &j, const Scene &scene) {
                        {"camera", j_camera},
                        // Manual construction for background color (r, g, b)
                        // Assuming m_BackgroundColor is a glm::vec3
-                       {"background_color", {{"r", scene.m_BackgroundColor.r}, {"g", scene.m_BackgroundColor.g}, {"b", scene.m_BackgroundColor.b}}}};
+                       {"background_color", scene.m_BackgroundColor}};
 }
 
 /*
@@ -98,9 +98,8 @@ void from_json(const nlohmann::json &j, Scene &scene) {
     j.at("scene_name").get_to(scene.m_Name);
 
     // Background color
-    const nlohmann::json &j_bg = j.at("background_color");
-    scene.m_BackgroundColor = glm::vec3(j_bg.at("r").get<float>(), j_bg.at("g").get<float>(), j_bg.at("b").get<float>());
-
+    j.at("background_color").get_to(scene.m_BackgroundColor);
+    
     // Camera(always PerspectiveCamera)
     scene.m_Camera = std::make_shared<PerspectiveCamera>();
     j.at("camera").get_to(*std::static_pointer_cast<PerspectiveCamera>(scene.m_Camera));
