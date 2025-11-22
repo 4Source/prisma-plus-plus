@@ -7,14 +7,19 @@
 class PointLight : public Light {
   protected:
     glm::vec3 m_Pos{0};
+    glm::vec3 m_Rotation{0};
+    std::string m_Type{"point"};
 
   public:
-    PointLight();
+    PointLight() = default;
 
     PointLight(glm::vec3 pos, glm::vec3 color, float intensity);
 
     glm::vec3 getPosition() const override { return m_Pos; }
     void setPosition(glm::vec3 pos) override { m_Pos = pos; }
+
+    glm::vec3 getRotation() const { return m_Rotation; }
+    void setRotation(glm::vec3 rot) { m_Rotation = rot; }
 
     /**
      * Gets a ray representing a light ray of this light source at a point in
