@@ -1,18 +1,37 @@
-<diagram program="umletino" version="15.1"><zoom_level>18</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>1260</x><y>390</y><w>378</w><h>144</h></coordinates><panel_attributes>Scene
+<diagram program="umletino" version="15.1"><zoom_level>14</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>1190</x><y>504</y><w>490</w><h>518</h></coordinates><panel_attributes>Scene
 --
-- objects : Object [*]
-- camera : Camera
-- lights : Lights [*]
+- m_Objects : Object [*]
+- m_Camera : Camera
+- m_Lights : Lights [*]
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1782</x><y>390</y><w>882</w><h>522</h></coordinates><panel_attributes>Object
++ Scene()
++ Scene(scenePath : path&amp;)
++ ~Scene()
+
++ addObject(object : Object) : void 
++ getObjects() : Object [*]
++ getObject(index : int) : Object
++ getObject(uuid : uuid) : Object
++ removeObject(uuid : uuid) void
++ getCamera() : Camera
++ addLight(light : Light) : void
++ getLights() : Light [*]
++ getLight(index : int) : Light
++ getLight(uuid : uuid) : Light
++ removeLigth(uuid : uuid) void
+
++ exportScene(scenePath : path&amp;) : void
++ to_json(j : json&amp;, scene : Scene&amp;) : void
++ from_json(j : json&amp;, scene : Scene&amp;) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1792</x><y>406</y><w>700</w><h>630</h></coordinates><panel_attributes>Object
 --
-- m_UUID: uuid
-- m_Component: HitComponent
-- m_Material: Material
-- m_Name: string
-- m_Translation: vec3
-- m_Rotation: vec3
-- m_Scale: vec3
+- m_UUID : uuid
+- m_Component : HitComponent
+- m_Material : Material
+- m_Name : string
+- m_Translation : vec3
+- m_Rotation : vec3
+- m_Scale : vec3
+- m_Path : path
 --
 + Object(objectPath: path&amp;)
 + Object(objectPath: path&amp;, name: string, translation: vec3, rotation: vec3, scale: vec3)
@@ -23,10 +42,20 @@
 + Object(other: Object&amp;&amp;) {delete}
 + operator=(other: Object&amp;&amp;): Object&amp; {delete}
 
-+ toString(formatted: bool, indentLevel int): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1260</x><y>1128</y><w>378</w><h>396</h></coordinates><panel_attributes>/Light/
++ getComponent() : HitComponent
++ getMaterial() : Material
+
++ getUUID() : uuid
++ getUUIDString() : string
+
++ operator==(other : Object&amp;) : bool
++ toString(formatted: bool, indentLevel int): string
++ to_json(j : json&amp;, object : Object&amp;) : void
++ from_json(j : json&amp;, object : Object&amp;) : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1386</x><y>1092</y><w>308</w><h>462</h></coordinates><panel_attributes>/Light/
 --
-# color : vec3
-# intensity : float
+# m_UUID : uuid
+# m_Color : vec3
+# m_Intensity : float
 --
 + Light()
 + Light(color: vec3, intensity: float)
@@ -36,8 +65,14 @@
 + setColor(color: vec3): void
 + getIntensity() : float {const}
 + setIntensity(intensity: float): void
++ getPosition() : vec3 {const}
++ setPosition(pos: vec3): void
++ getUUID() : uuid
++ getUUIDString() : string
 
-/+ getRay(worldPos : vec3) : Ray/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1872</x><y>1128</y><w>378</w><h>270</h></coordinates><panel_attributes>/Camera/
++ operator==(other : Light&amp;) : bool
+
+/+ getRay(worldPos : vec3) : Ray/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1862</x><y>1120</y><w>294</w><h>210</h></coordinates><panel_attributes>/Camera/
 --
 # pos : vec3
 # top : vec3
@@ -46,7 +81,7 @@
 --
 + height(: float
 + width(): float
-+ normal(): vec3</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2808</x><y>408</y><w>684</w><h>594</h></coordinates><panel_attributes>/HitComponent/
++ normal(): vec3</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2590</x><y>560</y><w>532</w><h>462</h></coordinates><panel_attributes>/HitComponent/
 --
 # m_UUID: uuid
 --
@@ -67,7 +102,7 @@
 /+ add(component : HitComponent) : void/
 /+ remove(component : HitComponent) : HitComponent/
 /+ getChild(position: size_t): HitComponent/
-/+ getChild(uuid: uuid): HitComponent/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2520</x><y>1128</y><w>594</w><h>342</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
+/+ getChild(uuid: uuid): HitComponent/</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2366</x><y>1120</y><w>462</w><h>266</h></coordinates><panel_attributes>&lt;&lt;abstract&gt;&gt;
 Primitive
 --
 
@@ -78,7 +113,7 @@ Primitive
 + add(component : HitComponent) : void
 + remove(component : HitComponent) : HitComponent
 + getChild(position: size_t): HitComponent
-+ getChild(uuid: uuid): HitComponent</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2412</x><y>1632</y><w>702</w><h>486</h></coordinates><panel_attributes>Triangle
++ getChild(uuid: uuid): HitComponent</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2282</x><y>1512</y><w>546</w><h>378</h></coordinates><panel_attributes>Triangle
 --
 - m_vertices : vec3[3]
 - m_FaceNormal : vec3
@@ -96,7 +131,7 @@ Primitive
 + hit() : Hit {const} 
 
 + toString(formatted: bool, indentLevel int): string
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2808</x><y>1452</y><w>54</w><h>216</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>UMLClass</id><coordinates><x>3168</x><y>1128</y><w>594</w><h>450</h></coordinates><panel_attributes>HitComponentList
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2590</x><y>1372</y><w>42</w><h>168</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>UMLClass</id><coordinates><x>2870</x><y>1120</y><w>462</w><h>350</h></coordinates><panel_attributes>HitComponentList
 --
 - m_children : HitComponent[0..*]
 --
@@ -111,11 +146,11 @@ Primitive
 + getChild(position: size_t): HitComponent
 + getChild(uuid: uuid): HitComponent
 
-+ toString(formatted: bool, indentLevel int): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2898</x><y>984</y><w>288</w><h>180</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>140;10;140;40;10;40;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>3276</x><y>984</y><w>126</w><h>180</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;40;50;40;50;80</additional_attributes></element><element><id>Relation</id><coordinates><x>2646</x><y>552</y><w>198</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1944</x><y>30</y><w>522</w><h>126</h></coordinates><panel_attributes>Material
++ toString(formatted: bool, indentLevel int): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2660</x><y>1008</y><w>224</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>140;10;140;40;10;40;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>2954</x><y>1008</y><w>98</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;10;40;50;40;50;80</additional_attributes></element><element><id>Relation</id><coordinates><x>2478</x><y>672</y><w>140</w><h>42</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1918</x><y>224</y><w>406</w><h>98</h></coordinates><panel_attributes>Material
 --
 - color : vec3
 --
-+ toString(formatted: bool, indentLevel int): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2106</x><y>138</y><w>54</w><h>288</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;140</additional_attributes></element><element><id>Relation</id><coordinates><x>1476</x><y>516</y><w>612</w><h>648</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>320;340;320;310;10;310;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1620</x><y>444</y><w>198</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1440</x><y>516</y><w>54</w><h>648</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;340;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1260</x><y>1632</y><w>522</w><h>288</h></coordinates><panel_attributes>PointLight
++ toString(formatted: bool, indentLevel int): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2044</x><y>308</y><w>42</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>Relation</id><coordinates><x>1554</x><y>1008</y><w>476</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>320;80;320;40;10;40;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1666</x><y>588</y><w>154</w><h>42</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>90;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1526</x><y>1008</y><w>42</w><h>112</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;60;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1386</x><y>1652</y><w>406</w><h>224</h></coordinates><panel_attributes>PointLight
 --
 # m_Pos: vec3
 --
@@ -125,28 +160,28 @@ Primitive
 + getPosition() : vec3 {const}
 + setPosition(pos: vec3): void
 
-+ getRay(worldPos : vec3) : Ray</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1440</x><y>1506</y><w>54</w><h>162</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1872</x><y>1632</y><w>378</w><h>144</h></coordinates><panel_attributes>PerspectiveCamera
++ getRay(worldPos : vec3) : Ray</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1526</x><y>1540</y><w>42</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1862</x><y>1512</y><w>294</w><h>112</h></coordinates><panel_attributes>PerspectiveCamera
 --
 - near : float
 - far : float
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2052</x><y>1380</y><w>54</w><h>288</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;140</additional_attributes></element><element><id>UMLNote</id><coordinates><x>3528</x><y>444</y><w>252</w><h>54</h></coordinates><panel_attributes>Composite Pattern
-bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>3240</x><y>984</y><w>54</w><h>180</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>3186</x><y>984</y><w>54</w><h>180</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>828</x><y>1632</y><w>378</w><h>288</h></coordinates><panel_attributes>DirectionalLight
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2002</x><y>1316</y><w>42</w><h>224</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;140</additional_attributes></element><element><id>UMLNote</id><coordinates><x>3150</x><y>588</y><w>196</w><h>42</h></coordinates><panel_attributes>Composite Pattern
+bg=blue</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2926</x><y>1008</y><w>42</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>2884</x><y>1008</y><w>42</w><h>140</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1050</x><y>1652</y><w>294</w><h>224</h></coordinates><panel_attributes>DirectionalLight
 --
 # m_Pos: vec3
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1026</x><y>1506</y><w>396</w><h>162</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>200;10;200;40;10;40;10;70</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>390</y><w>648</w><h>216</h></coordinates><panel_attributes>Ray
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1204</x><y>1540</y><w>308</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>200;10;200;60;10;60;10;80</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>532</y><w>504</w><h>168</h></coordinates><panel_attributes>Ray
 --
 + subray_stack : Stack&lt;Subray&gt;
 --
 + Ray(subray : Subray&amp;, obj: Object, lights: Light [*])
-+ forward(subray: Subray&amp;, object:Object, light: Light&amp;): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>900</x><y>390</y><w>216</w><h>216</h></coordinates><panel_attributes>Subray
++ forward(subray: Subray&amp;, object:Object, light: Light&amp;): void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>700</x><y>532</y><w>168</w><h>168</h></coordinates><panel_attributes>Subray
 --
 + direction: vec3
 + position: vec3
 + color: vec3
 + hit_normal; vec3
---</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>3816</x><y>1128</y><w>594</w><h>396</h></coordinates><panel_attributes>HitComponentOctree
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>3374</x><y>1120</y><w>462</w><h>308</h></coordinates><panel_attributes>HitComponentOctree
 --
 # childern: HitComponent[8]
 --
@@ -159,27 +194,27 @@ bg=blue</panel_attributes><additional_attributes></additional_attributes></eleme
 + getChild(position: size_t): HitComponent
 + getChild(uuid: uuid): HitComponent
 
-+ toString(formatted: bool, indentLevel int): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>3474</x><y>822</y><w>684</w><h>342</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;360;10;360;170</additional_attributes></element><element><id>Relation</id><coordinates><x>3474</x><y>876</y><w>576</w><h>288</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>300;140;300;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>3474</x><y>930</y><w>522</w><h>234</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;270;10;270;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>342</x><y>12</y><w>252</w><h>216</h></coordinates><panel_attributes>&lt;&lt;external&gt;&gt;
++ toString(formatted: bool, indentLevel int): string</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>3108</x><y>882</y><w>532</w><h>266</h></coordinates><panel_attributes>lt=&lt;&lt;.</panel_attributes><additional_attributes>10;10;360;10;360;170</additional_attributes></element><element><id>Relation</id><coordinates><x>3108</x><y>924</y><w>448</w><h>224</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>300;140;300;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>3108</x><y>966</y><w>406</w><h>182</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;10;270;10;270;110</additional_attributes></element><element><id>UMLClass</id><coordinates><x>266</x><y>238</y><w>196</w><h>168</h></coordinates><panel_attributes>&lt;&lt;external&gt;&gt;
 template=T
 Stack
 --
 
 --
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>468</x><y>210</y><w>54</w><h>216</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>630</x><y>480</y><w>306</w><h>54</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>792</x><y>30</y><w>180</w><h>180</h></coordinates><panel_attributes>&lt;&lt;enumeration&gt;&gt;
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>364</x><y>392</y><w>42</w><h>168</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>490</x><y>602</y><w>238</w><h>42</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>150;10;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>616</x><y>252</y><w>140</w><h>140</h></coordinates><panel_attributes>&lt;&lt;enumeration&gt;&gt;
 Resolution
 -
 high
 medium
-low</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>3420</x><y>1704</y><w>180</w><h>180</h></coordinates><panel_attributes>Hit
+low</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>3066</x><y>1568</y><w>140</w><h>140</h></coordinates><panel_attributes>Hit
 -
 + hit: bool
 + intersect: vec3
 + normal: vec3
-+ color: vec3</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1422</x><y>30</y><w>324</w><h>198</h></coordinates><panel_attributes>RayTracer
++ color: vec3</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1512</x><y>266</y><w>252</w><h>154</h></coordinates><panel_attributes>RayTracer
 -
 + scene: Scene
 + view: vec3[*]
 -
 + RayTracer(scene: Scene&amp;)
 + start(): void
-+ view_to_rgb(): uint8_t[3]</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1548</x><y>210</y><w>54</w><h>216</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element></diagram>
++ view_to_rgb(): uint8_t[3]</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1610</x><y>406</y><w>42</w><h>126</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;70;10;10</additional_attributes></element></diagram>

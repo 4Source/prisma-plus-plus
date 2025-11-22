@@ -60,6 +60,8 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/googletest)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/optionparser)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/stduuid)
+set(JSON_BuildTests OFF CACHE INTERNAL "")
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/json)
 
 # --- GLAD ---
 add_library(glad STATIC ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/src/glad.c)
@@ -118,6 +120,8 @@ target_link_libraries(prisma-core PUBLIC cxxopts)
 target_link_libraries(prisma-core PUBLIC tinyobjloader)
 target_link_libraries(prisma-core PUBLIC glad)
 target_link_libraries(prisma-core PUBLIC stduuid)
+target_link_libraries(prisma-core PUBLIC nlohmann_json::nlohmann_json)
+target_compile_options(prisma-core PUBLIC -Wno-deprecated-literal-operator)
 
 if(APPLE)
     target_link_libraries(prisma-core PUBLIC "-framework OpenGL")
@@ -150,16 +154,27 @@ include(GoogleTest)
 file(GLOB_RECURSE TEST_FILES "${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cpp")
 
 # Print the resulting list
-message(STATUS "Test files for runTests:")
+message(STATUS "Test files:")
 foreach(f ${TEST_FILES})
     message(STATUS "  ${f}")
+
+    get_filename_component(TEST_NAME ${f} NAME_WE)
+    string(REGEX REPLACE "^test_" "" TEST_NAME ${TEST_NAME})
+    string(TOLOWER ${TEST_NAME} TEST_NAME)
+    set(TEST_NAME "${TEST_NAME}-test")
+    add_executable(${TEST_NAME} ${f})
+    target_include_directories(${TEST_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/tests)
+    target_link_libraries(${TEST_NAME} PRIVATE gtest_main)
+    target_link_libraries(${TEST_NAME} PRIVATE prisma-core)
+    gtest_discover_tests(${TEST_NAME})
+
 endforeach()
 
-add_executable(runTests ${TEST_FILES})
+add_executable(prisma-plus-plus-tests ${TEST_FILES})
 
-target_include_directories(runTests PRIVATE ${CMAKE_SOURCE_DIR}/tests)
-target_link_libraries(runTests PRIVATE gtest_main)
-target_link_libraries(runTests PRIVATE prisma-core)
+target_include_directories(prisma-plus-plus-tests PRIVATE ${CMAKE_SOURCE_DIR}/tests)
+target_link_libraries(prisma-plus-plus-tests PRIVATE gtest_main)
+target_link_libraries(prisma-plus-plus-tests PRIVATE prisma-core)
 
 enable_testing()
-gtest_discover_tests(runTests)
+# gtest_discover_tests(prisma-plus-plus-tests)
