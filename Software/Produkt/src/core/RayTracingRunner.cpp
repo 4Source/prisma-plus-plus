@@ -26,7 +26,7 @@ Scene createTestingScene() {
     std::shared_ptr<Object> object_p = std::make_shared<Object>(list, material_p);
 
     std::shared_ptr<PerspectiveCamera> camera =
-        std::make_shared<PerspectiveCamera>(glm::vec3{0, -0.1, 10}, glm::vec3{0, 12.8, 0}, glm::vec3{9.6, 0, 0}, 0.01);
+        std::make_shared<PerspectiveCamera>(glm::vec3{0, -0.1, 10}, glm::vec3{1, 0, 0}, glm::vec3{-1, 0, 0}, 5.0, 12.8, 960, 1280);
     std::shared_ptr<PointLight> light = std::make_shared<PointLight>(glm::vec3{0, 5, 5}, glm::vec3{255, 255, 255}, 1.0);
 
     Scene scene{light, std::vector<std::shared_ptr<Object>>{object_p}, camera};
@@ -36,7 +36,7 @@ Scene createTestingScene() {
 std::unique_ptr<RunnerResult> RayTracingRunner::run() {
     auto result = std::make_unique<RunnerResult>();
     std::shared_ptr<PerspectiveCamera> camera =
-        std::make_shared<PerspectiveCamera>(glm::vec3{0, -0.1, 10}, glm::vec3{0, 12.8, 0}, glm::vec3{9.6, 0, 0}, 0.01);
+        std::make_shared<PerspectiveCamera>(glm::vec3{5, 5, 5}, glm::vec3{-1, 1, 0}, glm::vec3{-1, -1, -1}, 1.0, 12.8, 1280, 960);
     std::shared_ptr<PointLight> light = std::make_shared<PointLight>(glm::vec3{0, 5, 5}, glm::vec3{255, 255, 255}, 1.0);
 
     // TODO: making sharedpntr later give sharedpntr to Constructor
