@@ -1,6 +1,6 @@
 #include "core/Camera.hpp"
 
-Camera::Camera(glm::vec3 pos, glm::vec3 up, glm::vec3 look_at, float d, float w, int res_h, int res_v) : pos{pos}, pane_distance{d}, pane_width{w}, resolution_h{res_h}, resolution_v{res_v}{
+Camera::Camera(glm::vec3 pos, glm::vec3 up, glm::vec3 look_at, float d, float w, int res_h, int res_v) : pos{pos}, up{up}, look_at{look_at}, pane_distance{d}, pane_width{w}, resolution_h{res_h}, resolution_v{res_v}, right{}, pane_height{}{
 	pane_height = pane_width / (float) resolution_v * (float) resolution_h;
 	this->look_at = glm::normalize(look_at);
 	this->up = glm::normalize(up);
